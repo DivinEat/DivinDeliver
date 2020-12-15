@@ -1,0 +1,12 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Edition du livre {{ book.name }}{% endblock %}
+
+{% block body %}
+    <h1>Edition du livre {{ book.name }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <input type="submit" value="Modifier">
+    {{ form_end(form) }}
+{% endblock %}

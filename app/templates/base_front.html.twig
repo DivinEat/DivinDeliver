@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{ path('default_index') }}">Accueil</a></li>
+                    {% if app.user and is_granted("ROLE_ADMIN") %}
+                        <li><a href="{{ path('admin_default_index') }}">Admin</a></li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

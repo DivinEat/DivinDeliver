@@ -1,0 +1,14 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Livre {{ book.name }}{% endblock %}
+
+{% block body %}
+    <h1>Livre {{ book.name }}</h1>
+
+    Average Price : {{ book.averagePrice ? book.averagePrice : "NC" }} <br>
+    Description : {{ book.description ? book.description : "NC" }} <br>
+    <br>
+    <a href="{{ path('admin_book_edit', {id: book.id}) }}">Editer</a> <br>
+    <br>
+    <a href="{{ path('admin_book_index') }}">Retour aux livres</a>
+{% endblock %}

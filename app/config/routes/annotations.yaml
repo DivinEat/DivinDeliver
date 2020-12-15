@@ -1,0 +1,17 @@
+controllers_security:
+    resource: ../../src/Controller/Security
+    type: annotation
+
+controllers_front:
+    resource: ../../src/Controller/Front
+    type: annotation
+
+controllers_back:
+    resource: ../../src/Controller/Back
+    name_prefix: admin_
+    prefix: /admin
+    type: annotation
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: annotation
