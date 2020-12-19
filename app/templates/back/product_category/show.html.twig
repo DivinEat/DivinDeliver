@@ -1,0 +1,10 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Produit {{ productCategory.name }}{% endblock %}
+
+{% block body %}
+    Name : {{ productCategory.name }} <br>
+    <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}">Editer</a> <br>
+    <br>
+    <a href="{{ path('admin_productcategory_index') }}">Retour aux produits</a>
+{% endblock %}
