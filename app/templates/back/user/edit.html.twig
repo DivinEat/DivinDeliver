@@ -1,0 +1,12 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Edition du user {{ user.id }}{% endblock %}
+
+{% block body %}
+    <h1>Edition du user {{ user.id }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <input type="submit" value="Modifier">
+    {{ form_end(form) }}
+{% endblock %}
