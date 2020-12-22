@@ -1,0 +1,14 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Menu {{ menu.name }}{% endblock %}
+
+{% block body %}
+    Menu : {{ menu.name }} <br>
+    Entrée : {{ menu.entree ? menu.entree.name : "" }} <br>
+    Plat : {{ menu.main.name }} <br>
+    Dessert : {{ menu.dessert ? menu.dessert.name : ""}} <br>
+    Boisson : {{ menu.drink.name }} <br>
+    <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">Editer</a> <br>
+    <br>
+    <a href="{{ path('admin_menu_index') }}">Retour aux produits</a>
+{% endblock %}
