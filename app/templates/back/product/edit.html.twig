@@ -6,7 +6,12 @@
     <h1>Edition du produit {{ product.name }}</h1>
 
     {{ form_start(form) }}
-        {{ form_rest(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.productCategory, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.price) }}
         <input type="submit" value="Modifier">
     {{ form_end(form) }}
 {% endblock %}

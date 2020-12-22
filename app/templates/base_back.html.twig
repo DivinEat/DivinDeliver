@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -13,7 +13,7 @@
                 <li><a href="">Dashboard</a></li>
                 <li><a href="">Menu</a></li>
                 <li><a href="{{ path('admin_product_index') }}">Produit</a></li>
-                <li><a href="">Catégorie</a></li>
+                <li><a href="{{ path('admin_productcategory_index') }}">Catégorie</a></li>
                 <li><a href="">Commandes</a></li>
                 <li><a href="">Utilisateurs</a></li>
                 <li><a href="">Images</a></li>
