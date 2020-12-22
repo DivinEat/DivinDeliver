@@ -3,7 +3,7 @@
 {% block title %}Produit {{ product.name }}{% endblock %}
 
 {% block body %}
-    Category : {{ product.category }} <br>
+    Category : {{ product.productCategory.name }} <br>
     Name : {{ product.name }} <br>
     Description : {{ product.description }} <br>
     Price : {{ product.price }} <br>
