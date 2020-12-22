@@ -26,7 +26,7 @@ class ProductCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}", name="show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(ProductCategory $productCategory): Response
     {
