@@ -1,0 +1,30 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Liste des menus{% endblock %}
+
+{% block body %}
+    <h1 class="title">Liste des menus</h1>
+
+    <a href="{{ path('admin_menu_new') }}" class="btn">Création d'un nouveau menu</a>
+
+    <div class="row">
+        {% for menu in menus %}
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        Menu : {{ menu.name }} <br>
+                        Entrée : {{ menu.entree ? menu.entree.name : "" }} <br>
+                        Plat : {{ menu.main.name }} <br>
+                        Dessert : {{ menu.dessert ? menu.dessert.name : ""}} <br>
+                        Boisson : {{ menu.drink.name }} <br>
+                    </div>
+                    <div class="card-action">
+                        <a href="{{ path('admin_menu_show', {id: menu.id}) }}">Voir</a>
+                        <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">Editer</a>
+                        <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="red-text">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

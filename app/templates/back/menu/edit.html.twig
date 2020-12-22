@@ -1,0 +1,18 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Edition du menu {{ menu.name }}{% endblock %}
+
+{% block body %}
+    <h1>Edition du menu {{ menu.name }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        
+        {{ form_row(form.name) }}
+        {{ form_row(form.entree, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.main, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.dessert, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.drink, { 'attr': {'class': 'browser-default'} }) }}
+        <input type="submit" value="Modifier">
+    {{ form_end(form) }}
+{% endblock %}

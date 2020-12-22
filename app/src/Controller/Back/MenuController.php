@@ -2,36 +2,36 @@
 
 namespace App\Controller\Back;
 
-use App\Entity\Product;
-use App\Form\ProductType;
-use App\Repository\ProductRepository;
+use App\Entity\Menu;
+use App\Form\MenuType;
+use App\Repository\MenuRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/products", name="product_")
+ * @Route("/menus", name="menu_")
  */
-class ProductController extends AbstractController
+class MenuController extends AbstractController
 {
     /**
      * @Route("/", name="index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository)
+    public function index(MenuRepository $menuRepository)
     {
-        return $this->render('back/product/index.html.twig', [
-            'products' => $productRepository->findAll()
+        return $this->render('back/menu/index.html.twig', [
+            'menus' => $menuRepository->findAll()
         ]);
     }
 
     /**
      * @Route("/show/{id}", name="show", methods={"GET"})
      */
-    public function show(Product $product)
+    public function show(Menu $menu)
     {
-        return $this->render('back/product/show.html.twig', [
-            'product' => $product
+        return $this->render('back/menu/show.html.twig', [
+            'menu' => $menu
         ]);
     }
 
@@ -40,21 +40,21 @@ class ProductController extends AbstractController
      */
     public function new(Request $request)
     {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
+        $menu = new Menu();
+        $form = $this->createForm(MenuType::class, $menu);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
+            $em->persist($menu);
             $em->flush();
 
-            return $this->redirectToRoute('admin_product_show', [
-                'id' => $product->getId()
+            return $this->redirectToRoute('admin_menu_show', [
+                'id' => $menu->getId()
             ]);
         }
 
-        return $this->render('back/product/new.html.twig', [
+        return $this->render('back/menu/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -62,38 +62,38 @@ class ProductController extends AbstractController
     /**
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"})
      */
-    public function edit(Product $product, Request $request)
+    public function edit(Menu $menu, Request $request)
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(MenuType::class, $menu);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_product_edit', [
-                'id' => $product->getId()
+            return $this->redirectToRoute('admin_menu_edit', [
+                'id' => $menu->getId()
             ]);
         }
 
-        return $this->render('back/product/edit.html.twig', [
+        return $this->render('back/menu/edit.html.twig', [
             'form' => $form->createView(),
-            'product' => $product
+            'menu' => $menu
         ]);
     }
 
     /**
      * @Route("/delete/{id}/{token}", name="delete", methods={"GET"})
      */
-    public function delete(Product $product, $token)
+    public function delete(Menu $menu, $token)
     {
-        if (!$this->isCsrfTokenValid('delete_product' . $product->getName(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_menu' . $menu->getName(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 
         $em = $this->getDoctrine()->getManager();
-        $em->remove($product);
+        $em->remove($menu);
         $em->flush();
 
-        return $this->redirectToRoute('admin_product_index');
+        return $this->redirectToRoute('admin_menu_index');
     }
 }
