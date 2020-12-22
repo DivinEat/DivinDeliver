@@ -7,19 +7,26 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ path('default_index') }}">Accueil</a></li>
-                    <li><a href="{{ path('admin_product_index') }}">Produit</a></li>
-                </ul>
-            </div>
-        </nav>
+        <header>
+            <ul id="nav-mobile" class="sidenav sidenav-fixed">
+                <li><a href="{{ path('default_index') }}">Accueil</a></li>
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Menu</a></li>
+                <li><a href="{{ path('admin_product_index') }}">Produit</a></li>
+                <li><a href="">Catégorie</a></li>
+                <li><a href="">Commandes</a></li>
+                <li><a href="">Utilisateurs</a></li>
+                <li><a href="">Images</a></li>
+                <li><a href="">Paramètres</a></li>
+            </ul>
+        </header>
 
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
+        <main style="padding-left: 300px;">
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
+        </main>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
