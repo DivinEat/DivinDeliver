@@ -1,0 +1,26 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1 class="title">Liste des utilisateurs</h1>
+
+    <div class="row">
+        {% for user in users %}
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        Name : {{ user.firstname }} <br>
+                        Lastname : {{ user.lastname }} <br>
+                        Email : {{ user.email }} <br>
+                    </div>
+                    <div class="card-action">
+                        <a href="{{ path('admin_user_show', {id: user.id}) }}">Voir</a>
+                        <a href="{{ path('admin_user_edit', {id: user.id}) }}">Editer</a>
+                        <a href="{{ path('admin_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}" class="red-text">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
