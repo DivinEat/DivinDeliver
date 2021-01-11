@@ -13,6 +13,7 @@
                         Name : {{ user.firstname }} <br>
                         Lastname : {{ user.lastname }} <br>
                         Email : {{ user.email }} <br>
+                        Roles : {{ user.roles ? user.roles|json_encode : '' }} <br>
                     </div>
                     <div class="card-action">
                         <a href="{{ path('admin_user_show', {id: user.id}) }}">Voir</a>

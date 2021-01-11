@@ -25,6 +25,29 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
+  
+    /**
+     * @Route("/new", name="new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('back/user/new.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/show/{id}", name="show", methods={"GET"})
