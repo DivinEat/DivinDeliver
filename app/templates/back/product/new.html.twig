@@ -6,7 +6,12 @@
     <h1>Création d'un nouveau produit</h1>
 
     {{ form_start(form) }}
-        {{ form_rest(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.productCategory, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.price) }}
         <input type="submit" value="Créer">
     {{ form_end(form) }}
 {% endblock %}

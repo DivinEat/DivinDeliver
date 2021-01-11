@@ -1,12 +1,17 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Edition du user {{ user.id }}{% endblock %}
+{% block title %}Edition de l'utilisateur {{ user.firstname }} {{ user.lastname }}{% endblock %}
 
 {% block body %}
-    <h1>Edition du user {{ user.id }}</h1>
+    <h1>Edition de l'utilisateur {{ user.firstname }} {{ user.lastname }}</h1>
 
     {{ form_start(form) }}
-        {{ form_rest(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.roles, { 'attr': {'class': 'browser-default'} }) }}
         <input type="submit" value="Modifier">
     {{ form_end(form) }}
 {% endblock %}
