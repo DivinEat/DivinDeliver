@@ -1,0 +1,12 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Edition de la category {{ productCategory.name }}{% endblock %}
+
+{% block body %}
+    <h1>Edition de la category {{ productCategory.name }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <input type="submit" value="Modifier">
+    {{ form_end(form) }}
+{% endblock %}
