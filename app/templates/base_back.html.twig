@@ -3,23 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/flag-icon.min.css?v=10757425894848348376" rel="stylesheet">
+        <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/admin-materialize.min.css?v=8850535670742419153" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
         <header>
-            <ul id="nav-mobile" class="sidenav sidenav-fixed">
-                <li><a href="{{ path('default_index') }}">Accueil</a></li>
-                <li><a href="">Dashboard</a></li>
-                <li><a href="{{ path('admin_menu_index') }}">Menu</a></li>
-                <li><a href="{{ path('admin_product_index') }}">Produit</a></li>
-                <li><a href="{{ path('admin_productcategory_index') }}">Catégorie</a></li>
-                <li><a href="">Commandes</a></li>
-                <li><a href="{{ path('admin_user_index') }}">Utilisateurs</a></li>
-                <li><a href="">Images</a></li>
-                <li><a href="">Paramètres</a></li>
-            </ul>
+            <nav class="navbar white">
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                        </li>
+                    </ul>
+                    <i class="material-icons black-text">dashboard</i>
+                </div>
+            </nav>
         </header>
+
+        <ul id="sidenav-left" class="sidenav grey" style="transform: translateX(0px);">
+            <li><a href="{{ path('admin_default_index') }}" class="logo-container">Admin</a></li>
+            
+            <li><a href="">Dashboard</a></li>
+            <li><a href="{{ path('admin_menu_index') }}">Menu</a></li>
+            <li><a href="{{ path('admin_product_index') }}">Produit</a></li>
+            <li><a href="{{ path('admin_productcategory_index') }}">Catégorie</a></li>
+            <li><a href="">Commandes</a></li>
+            <li><a href="{{ path('admin_user_index') }}">Utilisateurs</a></li>
+            <li><a href="">Images</a></li>
+            <li><a href="">Paramètres</a></li>
+        </ul>
 
         <main style="padding-left: 300px;">
             <div class="container">
@@ -28,6 +43,9 @@
         </main>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/pinzon1992/materialize_table_pagination/f9a8478f/js/pagination.js"></script>
+        <script type="text/javascript" src="javascript/pagination.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
