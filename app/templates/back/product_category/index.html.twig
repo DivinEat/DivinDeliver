@@ -4,23 +4,34 @@
 
 {% block body %}
     <h1 class="title">Liste des catégories de produits</h1>
+    
+    <a href="{{ path('admin_productcategory_new') }}" href="#!" class="btn-floating btn-large scale-transition">
+        <i class="material-icons">add</i>
+    </a>
 
-    <a href="{{ path('admin_productcategory_new') }}" class="btn">Création d'une nouvelle catégorie de produit</a>
-
-    <div class="row">
-        {% for productCategory in productCategories %}
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        Name : {{ productCategory.name }} <br>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ path('admin_productcategory_show', {id: productCategory.id}) }}">Voir</a>
-                        <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}">Editer</a>
-                        <a href="{{ path('admin_productcategory_delete', {id: productCategory.id, token: csrf_token('delete_productcategory' ~ productCategory.name)}) }}" class="red-text">Supprimer</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+    <div class="col s12 m12 l6 offset-l2 center">
+        <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for productCategory in productCategories %}
+                    <tr>
+                        <td>{{ productCategory.name }}</td>
+                        <td>
+                            <a href="{{ path('admin_productcategory_show', {id: productCategory.id}) }}">Voir</a>
+                            <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}">Editer</a>
+                            <a href="{{ path('admin_productcategory_delete', {id: productCategory.id, token: csrf_token('delete_productcategory' ~ productCategory.name)}) }}" class="red-text">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col-md-12 center text-center">
+            <ul class="pagination pager" id="pagination"></ul>
+        </div>
     </div>
 {% endblock %}

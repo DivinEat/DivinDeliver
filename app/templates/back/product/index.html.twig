@@ -5,25 +5,39 @@
 {% block body %}
     <h1 class="title">Liste des produits</h1>
 
-    <a href="{{ path('admin_product_new') }}" class="btn">Création d'un nouveau produit</a>
+    <a href="{{ path('admin_product_new') }}" href="#!" class="btn-floating btn-large scale-transition">
+        <i class="material-icons">add</i>
+    </a>
 
-    <div class="row">
-        {% for product in products %}
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        Category : {{ product.productCategory.name }} <br>
-                        Name : {{ product.name }} <br>
-                        Description : {{ product.description }} <br>
-                        Price : {{ product.price }} <br>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ path('admin_product_show', {id: product.id}) }}">Voir</a>
-                        <a href="{{ path('admin_product_edit', {id: product.id}) }}">Editer</a>
-                        <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="red-text">Supprimer</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+    <div class="col s12 m12 l6 offset-l2 center">
+        <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.productCategory.name }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>
+                            <a href="{{ path('admin_product_show', {id: product.id}) }}">Voir</a>
+                            <a href="{{ path('admin_product_edit', {id: product.id}) }}">Editer</a>
+                            <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="red-text">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col-md-12 center text-center">
+            <ul class="pagination pager" id="pagination"></ul>
+        </div>
     </div>
 {% endblock %}

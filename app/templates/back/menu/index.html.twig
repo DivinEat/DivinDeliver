@@ -4,27 +4,42 @@
 
 {% block body %}
     <h1 class="title">Liste des menus</h1>
+    
+    <a href="{{ path('admin_menu_new') }}" href="#!" class="btn-floating btn-large scale-transition">
+        <i class="material-icons">add</i>
+    </a>
 
-    <a href="{{ path('admin_menu_new') }}" class="btn">Création d'un nouveau menu</a>
-
-    <div class="row">
-        {% for menu in menus %}
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        Menu : {{ menu.name }} <br>
-                        Entrée : {{ menu.entree ? menu.entree.name : "" }} <br>
-                        Plat : {{ menu.main.name }} <br>
-                        Dessert : {{ menu.dessert ? menu.dessert.name : ""}} <br>
-                        Boisson : {{ menu.drink.name }} <br>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ path('admin_menu_show', {id: menu.id}) }}">Voir</a>
-                        <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">Editer</a>
-                        <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="red-text">Supprimer</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+    <div class="col s12 m12 l6 offset-l2 center">
+        <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>Menu</th>
+                    <th>Entrée</th>
+                    <th>Plat</th>
+                    <th>Dessert</th>
+                    <th>Boisson</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in menus %}
+                    <tr>
+                        <td>{{ menu.name }}</td>
+                        <td>{{ menu.entree ? menu.entree.name : "" }}</td>
+                        <td>{{ menu.main.name }}</td>
+                        <td>{{ menu.dessert ? menu.dessert.name : ""}}</td>
+                        <td>{{ menu.drink.name }}</td>
+                        <td>
+                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}">Voir</a>
+                            <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">Editer</a>
+                            <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="red-text">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col-md-12 center text-center">
+            <ul class="pagination pager" id="pagination"></ul>
+        </div>
     </div>
 {% endblock %}
