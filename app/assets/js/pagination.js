@@ -4,6 +4,6 @@ $(document).ready(function(){
         activeColor: 'blue',
         showPrevNext: true,
         hidePageNumbers: false,
-        perPage: 10
+        perPage: 1
     });
 });
