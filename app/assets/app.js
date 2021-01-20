@@ -6,7 +6,8 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-var $ = require('jquery');
+import $ from 'jquery';
+
 import './styles/app.css';
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
