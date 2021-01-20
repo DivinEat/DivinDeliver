@@ -3,8 +3,9 @@
 {% block title %}Produit {{ productCategory.name }}{% endblock %}
 
 {% block body %}
-    Name : {{ productCategory.name }} <br>
-    <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}">Editer</a> <br>
+    <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}" class="dd-btn dd-btn-edit">Editer</a> <br>
     <br>
-    <a href="{{ path('admin_productcategory_index') }}">Retour aux produits</a>
+    Name : {{ productCategory.name }} <br>
+    <br>
+    <a href="{{ path('admin_productcategory_index') }}" class="dd-btn dd-btn-default">Retour</a>
 {% endblock %}
