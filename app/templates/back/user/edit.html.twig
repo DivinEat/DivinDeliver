@@ -12,6 +12,7 @@
         {{ form_row(form.lastname) }}
         {{ form_row(form.email) }}
         {{ form_row(form.roles, { 'attr': {'class': 'browser-default'} }) }}
-        <input type="submit" value="Modifier">
+        <br>
+        <input type="submit" value="Modifier" class="dd-btn dd-btn-edit">
     {{ form_end(form) }}
 {% endblock %}

@@ -28,9 +28,9 @@
                         <td>{{ product.description }}</td>
                         <td>{{ product.price }}</td>
                         <td>
-                            <a href="{{ path('admin_product_show', {id: product.id}) }}">Voir</a>
-                            <a href="{{ path('admin_product_edit', {id: product.id}) }}">Editer</a>
-                            <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="red-text">Supprimer</a>
+                            <a href="{{ path('admin_product_show', {id: product.id}) }}" class="dd-btn dd-btn-primary">Voir</a>
+                            <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="dd-btn dd-btn-edit">Editer</a>
+                            <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="dd-btn dd-btn-remove">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

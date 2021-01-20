@@ -30,9 +30,9 @@
                         <td>{{ menu.dessert ? menu.dessert.name : ""}}</td>
                         <td>{{ menu.drink.name }}</td>
                         <td>
-                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}">Voir</a>
-                            <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">Editer</a>
-                            <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="red-text">Supprimer</a>
+                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}" class="dd-btn dd-btn-primary">Voir</a>
+                            <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">Editer</a>
+                            <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="dd-btn dd-btn-remove">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
