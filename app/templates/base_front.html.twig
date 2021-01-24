@@ -11,15 +11,15 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">Logo</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ path('default_index') }}">Accueil</a></li>
+                    <li><a href="{{ path('default_index') }}">{% trans %}home{% endtrans %}</a></li>
                     {% if app.user and is_granted("ROLE_ADMIN") %}
                         <li><a href="{{ path('admin_default_index') }}">Admin</a></li>
                     {% endif %}
                     {% if app.user %}
-                        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        <li><a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a></li>
                     {% else %}
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        <li><a href="{{ path('app_register') }}">S'enregister</a></li>
+                        <li><a href="{{ path('app_login') }}">{% trans %}user.login{% endtrans %}</a></li>
+                        <li><a href="{{ path('app_register') }}">{% trans %}user.register{% endtrans %}</a></li>
                     {% endif %}
                 </ul>
             </div>
