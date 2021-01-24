@@ -1,16 +1,16 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Liste des utilisateurs{% endblock %}
+{% block title %}{% trans %}user.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">Liste des utilisateurs</h1>
+    <h1 class="title">{% trans %}user.list{% endtrans %}</h1>
 
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Lastname</th>
+                    <th>{% trans %}name{% endtrans %}</th>
+                    <th>{% trans %}user.last_name{% endtrans %}</th>
                     <th>Email</th>
                     <th>Roles</th>
                     <th>Action</th>
@@ -24,9 +24,9 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                         <td>
-                            <a href="{{ path('admin_user_show', {id: user.id}) }}" class="dd-btn dd-btn-primary">Voir</a>
-                            <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="dd-btn dd-btn-edit">Editer</a>
-                            <a href="{{ path('admin_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}" class="dd-btn dd-btn-remove">Supprimer</a>
+                            <a href="{{ path('admin_user_show', {id: user.id}) }}" class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}</a>
+                            <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a>
+                            <a href="{{ path('admin_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}" class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}
