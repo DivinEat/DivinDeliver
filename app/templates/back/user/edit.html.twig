@@ -1,9 +1,9 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Edition de l'utilisateur {{ user.firstname }} {{ user.lastname }}{% endblock %}
+{% block title %}{% trans with {'%user_firstname%': user.firstname, '%user_lastname%': user.lastname} %}user.edit{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Edition de l'utilisateur {{ user.firstname }} {{ user.lastname }}</h1>
+    <h1>{% trans with {'%user_firstname%': user.firstname, '%user_lastname%': user.lastname} %}user.edit{% endtrans %}</h1>
 
     {{ form_start(form) }}
         {{ form_errors(form) }}
@@ -13,6 +13,6 @@
         {{ form_row(form.email) }}
         {{ form_row(form.roles, { 'attr': {'class': 'browser-default'} }) }}
         <br>
-        <input type="submit" value="Modifier" class="dd-btn dd-btn-edit">
+        <input type="submit" value="{% trans %}button.update{% endtrans %}" class="dd-btn dd-btn-edit">
     {{ form_end(form) }}
 {% endblock %}

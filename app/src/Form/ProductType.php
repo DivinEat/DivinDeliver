@@ -20,16 +20,16 @@ class ProductType extends AbstractType
             ->add('productCategory', EntityType::class, [
                 'class' => ProductCategory::class,
                 'choice_label' => 'name',
-                'label' => 'Catégorie'
+                'label' => 'category.word'
             ])
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'name'
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description'
             ])
             ->add('price', IntegerType::class, [
-                'label' => 'Prix',
+                'label' => 'price',
                 'required' => false
             ])
         ;

@@ -26,31 +26,31 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'name'
             ])
             ->add('entree', EntityType::class, [
                 'class' => Product::class,
-                'label' => 'Entrée',
+                'label' => 'product.starter',
                 'choices' => $this->productRepository->findByCategory(1),
                 'choice_label' => 'name',
                 'required' => false
             ])
             ->add('main', EntityType::class, [
                 'class' => Product::class,
-                'label' => 'Plat',
+                'label' => 'product.main',
                 'choices' => $this->productRepository->findByCategory(2),
                 'choice_label' => 'name'
             ])
             ->add('dessert', EntityType::class, [
                 'class' => Product::class,
-                'label' => 'Dessert',
+                'label' => 'product.dessert',
                 'choices' => $this->productRepository->findByCategory(3),
                 'choice_label' => 'name',
                 'required' => false
             ])
             ->add('drink', EntityType::class, [
                 'class' => Product::class,
-                'label' => 'Boisson',
+                'label' => 'product.drink',
                 'choices' => $this->productRepository->findByCategory(4),
                 'choice_label' => 'name'
             ])

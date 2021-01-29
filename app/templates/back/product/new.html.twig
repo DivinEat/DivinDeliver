@@ -1,9 +1,9 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Création d'un nouveau produit{% endblock %}
+{% block title %}{% trans %}product.new{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Création d'un nouveau produit</h1>
+    <h1>{% trans %}product.new{% endtrans %}</h1>
 
     {{ form_start(form) }}
         {{ form_errors(form) }}
@@ -12,6 +12,6 @@
         {{ form_row(form.name) }}
         {{ form_row(form.description) }}
         {{ form_row(form.price) }}
-        <input type="submit" class="btn green" value="Créer">
+        <input type="submit" class="btn green" value="{% trans %}button.create{% endtrans %}">
     {{ form_end(form) }}
 {% endblock %}

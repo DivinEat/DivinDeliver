@@ -16,7 +16,7 @@
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
-                            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                            <a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a>
                         </li>
                     </ul>
                     <i class="material-icons black-text">dashboard</i>
@@ -29,12 +29,12 @@
             
             <li><a href="">Dashboard</a></li>
             <li><a href="{{ path('admin_menu_index') }}">Menu</a></li>
-            <li><a href="{{ path('admin_product_index') }}">Produit</a></li>
-            <li><a href="{{ path('admin_productcategory_index') }}">Catégorie</a></li>
-            <li><a href="">Commandes</a></li>
-            <li><a href="{{ path('admin_user_index') }}">Utilisateurs</a></li>
+            <li><a href="{{ path('admin_product_index') }}">{% trans %}product.word{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_productcategory_index') }}">{% trans %}category.word{% endtrans %}</a></li>
+            <li><a href="">{% trans %}order.word{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
             <li><a href="">Images</a></li>
-            <li><a href="">Paramètres</a></li>
+            <li><a href="">{% trans %}settings.word{% endtrans %}</a></li>
         </ul>
 
         <main style="padding-left: 300px;">

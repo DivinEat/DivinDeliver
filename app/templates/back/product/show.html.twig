@@ -1,14 +1,14 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Produit {{ product.name }}{% endblock %}
+{% block title %}{% trans %}product.word{% endtrans %} {{ product.name }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="dd-btn dd-btn-edit">Editer</a> <br>
+    <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
     <br>
-    Category : {{ product.productCategory.name }} <br>
-    Name : {{ product.name }} <br>
+    {% trans %}category.word{% endtrans %} : {{ product.productCategory.name }} <br>
+    {% trans %}name{% endtrans %} : {{ product.name }} <br>
     Description : {{ product.description }} <br>
-    Price : {{ product.price }} <br>
+    {% trans %}price{% endtrans %} : {{ product.price }} <br>
     <br>
-    <a href="{{ path('admin_product_index') }}" class="dd-btn dd-btn-default">Retour</a>
+    <a href="{{ path('admin_product_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
 {% endblock %}
