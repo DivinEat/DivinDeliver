@@ -32,3 +32,12 @@ services:
     App\EventListener\UserSubscriber:
         tags:
             - { name: 'doctrine.event_subscriber' }
+
+    App\Form\UserShouldExistValidator:
+        arguments: ['@doctrine.orm.entity_manager']
+
+    App\Service\User\ResetPasswordService:
+        arguments: ['@doctrine.orm.entity_manager']
+
+    App\Service\MailService:
+        arguments: ['@mailer.mailer']
