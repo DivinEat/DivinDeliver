@@ -2,12 +2,14 @@
 
 namespace App\Validator;
 
+use Webmozart\Assert\Assert;
 use Symfony\Component\Validator\Constraint;
 
 /**
 * @Annotation
+* @Assert
 */
 class UserShouldExist extends Constraint
 {
-    public $message = "Any user exist with the email : {{ email }}. You may register.";
+    public $message = '';
 }
