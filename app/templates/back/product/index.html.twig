@@ -5,12 +5,11 @@
 {% block body %}
     <h1 class="title">{% trans %}product.list{% endtrans %}</h1>
 
-    <a href="{{ path('admin_product_new') }}" href="#!" class="btn-floating btn-large scale-transition">
-        <i class="material-icons">{% trans %}button.add{% endtrans %}</i>
+    <a href="{{ path('admin_product_new') }}" href="#!" class="dd-btn dd-btn-add">Ajouter</a>
     </a>
 
     <div class="col s12 m12 l6 offset-l2 center">
-        <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
+        <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
                 <tr>
                     <th>{% trans %}category.word{% endtrans %}</th>

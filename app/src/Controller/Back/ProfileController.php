@@ -4,7 +4,6 @@ namespace App\Controller\Back;
 
 use App\Form\ProfileType;
 use App\Form\EditPasswordType;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
