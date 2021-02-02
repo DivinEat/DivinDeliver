@@ -1,12 +1,12 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Liste des menus{% endblock %}
+{% block title %}{% trans %}menu.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">Liste des menus</h1>
+    <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
     
     <a href="{{ path('admin_menu_new') }}" href="#!" class="btn-floating btn-large scale-transition">
-        <i class="material-icons">add</i>
+        <i class="material-icons">{% trans %}button.add{% endtrans %}</i>
     </a>
 
     <div class="col s12 m12 l6 offset-l2 center">
@@ -14,10 +14,10 @@
             <thead>
                 <tr>
                     <th>Menu</th>
-                    <th>Entrée</th>
-                    <th>Plat</th>
-                    <th>Dessert</th>
-                    <th>Boisson</th>
+                    <th>{% trans %}product.starter{% endtrans %}</th>
+                    <th>{% trans %}product.main{% endtrans %}</th>
+                    <th>{% trans %}product.dessert{% endtrans %}</th>
+                    <th>{% trans %}product.drink{% endtrans %}</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -30,9 +30,9 @@
                         <td>{{ menu.dessert ? menu.dessert.name : ""}}</td>
                         <td>{{ menu.drink.name }}</td>
                         <td>
-                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}" class="dd-btn dd-btn-primary">Voir</a>
-                            <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">Editer</a>
-                            <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="dd-btn dd-btn-remove">Supprimer</a>
+                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}" class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}</a>
+                            <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a>
+                            <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}

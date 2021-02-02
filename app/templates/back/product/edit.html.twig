@@ -1,9 +1,9 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Edition du produit {{ product.name }}{% endblock %}
+{% block title %}{% trans with {'%product_name%': product.name} %}product.edit{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Edition du produit {{ product.name }}</h1>
+    <h1>{% trans with {'%product_name%': product.name} %}product.edit{% endtrans %}</h1>
 
     {{ form_start(form) }}
         {{ form_errors(form) }}
@@ -13,6 +13,6 @@
         {{ form_row(form.description) }}
         {{ form_row(form.price) }}
         <br>
-        <input type="submit" value="Modifier" class="dd-btn dd-btn-edit">
+        <input type="submit" value="{% trans %}button.update{% endtrans %}" class="dd-btn dd-btn-edit">
     {{ form_end(form) }}
 {% endblock %}

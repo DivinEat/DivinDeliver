@@ -1,0 +1,48 @@
+name: Name
+prix: Price
+home: Home
+
+button:
+    add: Add
+    see: See
+    edit: Edit
+    delete: Delete
+    back: Back
+    create: Create
+    update: Update
+form:
+    email: Your email
+    password: Your password
+    password_confirm: Confirm password
+menu:
+    list: Menus list
+    edit: Edit menu %menu_name%
+    new: Create new menu
+    back: Back to menus
+category:
+    word: Category
+    list: Product categories list
+    edit: Edit category %category_name%
+    new: Create new product categorie
+product:
+    word: Product
+    list: Products list
+    edit: Edit product %product_name%
+    new: Create new product
+    starter: Starter
+    main: Main course
+    dessert: Dessert
+    drink: Drink
+user:
+    word: User
+    list: Users list
+    edit: Edit user %user_firstname% %user_lastname%
+    last_name: Lastname
+    first_name: Firstname
+    login: Login
+    logout: Logout
+    register: Register
+order:
+    word: Order
+settings:
+    word: Settings

@@ -1,0 +1,48 @@
+name: Nom
+prix: Prix
+home: Accueil
+
+button:
+    add: Ajouter
+    see: Voir
+    edit: Editer
+    delete: Supprimer
+    back: Retour
+    create: Créer
+    update: Modifier
+form:
+    email: Votre email
+    password: Votre mot de passe
+    password_confirm: Confirmez votre mot de passe
+menu:
+    list: Liste des menus
+    edit: Edition du menu %menu_name%
+    new: Création d'un nouveau menu
+    back: Retour aux menus
+category:
+    word: Catégorie
+    list: Liste des catégories de produits
+    edit: Edition de la categorie %category_name%
+    new: Création d'une nouvelle catégorie de produit
+product:
+    word: Produit
+    list: Liste des produits
+    edit: Edition du produit %product_name%
+    new: Création d'un nouveau produit
+    starter: Entrée
+    main: Plat
+    dessert: Dessert
+    drink: Boissin
+user:
+    word: Utilisateur
+    list: Liste des utilisateurs
+    edit: Edition de l'utilisateur %user_firstname% %user_lastname%
+    last_name: Nom
+    first_name: Prénom
+    login: Se connecter
+    logout: Se déconnecter
+    register: S'enregistrer
+order:
+    word: Commande
+settings:
+    word: Paramètres
