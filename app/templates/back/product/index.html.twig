@@ -1,22 +1,21 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Liste des produits{% endblock %}
+{% block title %}{% trans %}product.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">Liste des produits</h1>
+    <h1 class="title">{% trans %}product.list{% endtrans %}</h1>
 
-    <a href="{{ path('admin_product_new') }}" href="#!" class="btn-floating btn-large scale-transition">
-        <i class="material-icons">add</i>
+    <a href="{{ path('admin_product_new') }}" href="#!" class="dd-btn dd-btn-add">{% trans %}button.add{% endtrans %}</a>
     </a>
 
     <div class="col s12 m12 l6 offset-l2 center">
-        <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
+        <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
                 <tr>
-                    <th>Catégorie</th>
-                    <th>Nom</th>
+                    <th>{% trans %}category.word{% endtrans %}</th>
+                    <th>{% trans %}name{% endtrans %}</th>
                     <th>Description</th>
-                    <th>Prix</th>
+                    <th>{% trans %}price{% endtrans %}</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -28,16 +27,13 @@
                         <td>{{ product.description }}</td>
                         <td>{{ product.price }}</td>
                         <td>
-                            <a href="{{ path('admin_product_show', {id: product.id}) }}">Voir</a>
-                            <a href="{{ path('admin_product_edit', {id: product.id}) }}">Editer</a>
-                            <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="red-text">Supprimer</a>
+                            <a href="{{ path('admin_product_show', {id: product.id}) }}" class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}</a>
+                            <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a>
+                            <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <div class="col-md-12 center text-center">
-            <ul class="pagination pager" id="pagination"></ul>
-        </div>
     </div>
 {% endblock %}

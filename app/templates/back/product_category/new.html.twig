@@ -1,12 +1,12 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Création d'une nouvelle catégorie de produit{% endblock %}
+{% block title %}{% trans %}category.new{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Création d'une nouvelle catégorie de produit</h1>
+    <h1>{% trans %}category.new{% endtrans %}</h1>
 
     {{ form_start(form) }}
         {{ form_rest(form) }}
-        <input type="submit" class="btn green" value="Créer">
+        <input type="submit" class="btn green" value="{% trans %}button.create{% endtrans %}">
     {{ form_end(form) }}
 {% endblock %}
