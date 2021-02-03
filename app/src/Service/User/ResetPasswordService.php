@@ -56,6 +56,6 @@ class ResetPasswordService
         $requestDate = $resetPwdRequest->getRequestDate();
         $diff_minutes = $requestDate->diff($now)->format('%i');
 
-        return $diff_minutes < 1;
+        return $diff_minutes < 60;
     }
 }
