@@ -1,6 +1,7 @@
 name: Name
 prix: Price
 home: Home
+here: here
 
 button:
     add: Add
@@ -10,6 +11,8 @@ button:
     back: Back
     create: Create
     update: Update
+    send: Send
+    reset: Reset
 form:
     email: Your email
     password: Your password
@@ -46,3 +49,13 @@ order:
     word: Order
 settings:
     word: Settings
+password:
+    reset_pwd_title: Reset your password
+    reset_link: Click here to reset your password
+    reset_link_expired_title: Reset password link expired
+    reset_link_not_valid: This link expired or has already been used
+    reset_link_conditions: This link expire in 60 minutes and can be used only one time
+    reset_link_sent: Reset password link sent
+    reset_link_will_receive: You will receive a link to reset your password on this mail adress
+    resend_link: You can resend a link
+    forgot_password: Forgot password ?

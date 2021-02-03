@@ -84,8 +84,9 @@ class SecurityController extends AbstractController
      */
     public function forgotPassword(Request $request)
     {
-        $form = $this->createForm(ForgotPasswordType::class);
+        $user = new User();
 
+        $form = $this->createForm(ForgotPasswordType::class, $user);
         $form->handleRequest($request);
 
         $data = $form->getData();
