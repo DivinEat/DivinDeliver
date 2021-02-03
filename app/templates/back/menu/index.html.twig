@@ -5,12 +5,10 @@
 {% block body %}
     <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
     
-    <a href="{{ path('admin_menu_new') }}" href="#!" class="btn-floating btn-large scale-transition">
-        <i class="material-icons">{% trans %}button.add{% endtrans %}</i>
-    </a>
+    <a href="{{ path('admin_menu_new') }}" href="#!" class="dd-btn dd-btn-add">{% trans %}button.add{% endtrans %}</a>
 
     <div class="col s12 m12 l6 offset-l2 center">
-        <table cellpadding="1" cellspacing="1" class="table table-hover" id="table">
+        <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
                 <tr>
                     <th>Menu</th>

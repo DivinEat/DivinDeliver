@@ -1,0 +1,17 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <h1>Modifier mon profil</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.email) }}
+        <br>
+        <input type="submit" value="Modifier" class="dd-btn dd-btn-edit">
+    {{ form_end(form) }}
+{% endblock %}
