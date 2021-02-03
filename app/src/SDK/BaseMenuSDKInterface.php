@@ -4,7 +4,7 @@ namespace App\SDK;
 
 interface BaseMenuSDKInterface
 {
-    public function getMenus();
+    public function getMenus(): ?array;
 
     public function uploadMenu();
 
