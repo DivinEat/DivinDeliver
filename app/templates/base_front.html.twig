@@ -10,6 +10,7 @@
     <body>
         <div class="container-front">
             <nav class="nav-front">
+                <a href="{{ path('default_index') }}" style="height:100%"><img src="images/logo.png" class="logo"></img></a>
                 <ul>
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a></li>
@@ -24,7 +25,6 @@
                 {% endblock %}
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
