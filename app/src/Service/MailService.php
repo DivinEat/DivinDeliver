@@ -5,14 +5,17 @@ namespace App\Service;
 use Symfony\Component\Mime\Email;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MailService
 {
     private $mailer;
+    private $translator;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(MailerInterface $mailer, TranslatorInterface $translator)
     {
         $this->mailer = $mailer;
+        $this->translator = $translator;
     }
 
     /**
@@ -20,7 +23,7 @@ class MailService
      */
     public function sendResetPasswordMail(String $to, String $token, int $userid)
     {
-        $subject = 'password.reset_pwd_title';
+        $subject = $this->translator->trans('password.reset_pwd_title');
         $from = 'noreply@divindeliver.com';
         $htmlTemplate = 'emails/password/reset_password.html.twig';
         $context = ['token' => $token, 'userid' => $userid];
