@@ -24,7 +24,7 @@ security:
                 path: app_logout
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: [ROLE_RESTAURATEUR, ROLE_WAITER] }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/forgot_password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -34,5 +34,5 @@ security:
         #- { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_RESTAURATEUR, ROLE_WAITER]
+        # ROLE_ADMIN: [ROLE_RESTAURATEUR, ROLE_WAITER]
         ROLE_RESTAURATEUR: ROLE_WAITER

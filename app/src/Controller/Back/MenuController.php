@@ -8,6 +8,7 @@ use App\Repository\MenuRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -37,6 +38,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/new", name="new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function new(Request $request)
     {
@@ -61,6 +63,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function edit(Menu $menu, Request $request)
     {
@@ -83,6 +86,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/delete/{id}/{token}", name="delete", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function delete(Menu $menu, $token)
     {

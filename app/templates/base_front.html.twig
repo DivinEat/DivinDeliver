@@ -12,8 +12,10 @@
                 <a href="#" class="brand-logo">Logo</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ path('default_index') }}">{% trans %}home{% endtrans %}</a></li>
-                    <li><a href="{{ path('default_index') }}">Créer un restaurant</a></li>
-                    {% if app.user and is_granted("ROLE_ADMIN") %}
+                    {% if is_granted('ROLE_RESTAURATEUR') %}
+                        <li><a href="{{ path('default_index') }}">Créer un restaurant</a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_WAITER') %}
                         <li><a href="{{ path('admin_default_index') }}">Admin</a></li>
                     {% endif %}
                     {% if app.user %}

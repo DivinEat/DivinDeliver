@@ -14,8 +14,8 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $object = (new User())
-            ->setEmail("dev@technique")
-            ->setRoles(["ROLE_ADMIN"])
+            ->setEmail("res@technique")
+            ->setRoles(["ROLE_RESTAURATEUR"])
             ->setPassword(self::PWD)
         ;
         $manager->persist($object);
@@ -23,8 +23,8 @@ class UserFixtures extends Fixture
         $object = (new User())
             ->setFirstname("Name")
             ->setLastname("Lastname")
-            ->setEmail("dev2@technique")
-            ->setRoles(["ROLE_ADMIN"])
+            ->setEmail("wait@technique")
+            ->setRoles(["ROLE_WAITER"])
             ->setPassword(self::PWD)
         ;
         $manager->persist($object);

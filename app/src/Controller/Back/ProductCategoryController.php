@@ -9,6 +9,7 @@ use App\Repository\ProductCategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -38,6 +39,7 @@ class ProductCategoryController extends AbstractController
 
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function new(Request $request): Response
     {
@@ -62,6 +64,7 @@ class ProductCategoryController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function edit(Request $request, ProductCategory $productCategory): Response
     {
@@ -84,6 +87,7 @@ class ProductCategoryController extends AbstractController
 
     /**
      * @Route("/delete/{id}/{token}", name="delete", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function delete(ProductCategory $productCategory, $token)
     {
