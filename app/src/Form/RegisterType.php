@@ -16,7 +16,10 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'form.email'
+                'label' => 'form.email',
+                'attr'   =>  [
+                    'class'   => 'form-control form-control-user'
+                ]
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -25,6 +28,9 @@ class RegisterType extends AbstractType
                 ],
                 'second_options' => [
                     'label' => 'form.password_confirm'
+                ],
+                'attr'   =>  [
+                    'class'   => 'form-control form-control-user'
                 ]
             ])
         ;

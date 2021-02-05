@@ -1,0 +1,14 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 4px;
+
+    box-shadow: rgba(50,50,93,.11) 0 4px 4px 0, rgba(0,0,0,.08) 0 1px 3px 0;
+    background-color: $white;
+
+    width: 50%;
+    min-height: 80%;
+}

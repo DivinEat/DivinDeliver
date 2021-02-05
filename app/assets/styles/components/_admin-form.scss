@@ -1,0 +1,49 @@
+.admin-form {
+    width: 80%;
+
+    & label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: 700;
+        color: #333;
+        font-size: 14px;
+    }
+
+    & .form-control {
+        display: block;
+        width: 100%!important;
+        height: 34px!important;
+        padding: 6px 12px!important;
+        font-size: 14px!important;
+        line-height: 1.42857143;
+        color: #555;
+        border: 1px solid #ccc!important;
+        border-radius: 0!important;
+        border-color: #d2d6de!important;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s!important;
+
+        &-user {
+            border: none!important;
+            border-bottom: rem(1) solid $grey!important;
+
+            &:focus {
+                outline: none;
+                border-bottom: rem(2) solid $purple;
+            }
+
+            &::placeholder {
+                color: $grey;
+                font-family: $font3;
+            }
+        }
+
+        &-textarea {
+            height: rem(150);
+        }
+
+        &-none {
+            display: none;
+        }
+    }
+}

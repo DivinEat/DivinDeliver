@@ -21,6 +21,9 @@ class ResetPasswordType extends AbstractType
                 ],
                 'second_options' => [
                     'label' => 'form.password_confirm'
+                ],
+                'attr'   =>  [
+                    'class'   => 'form-control form-control-user'
                 ]
             ]);
     }

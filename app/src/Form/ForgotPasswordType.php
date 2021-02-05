@@ -19,6 +19,9 @@ class ForgotPasswordType extends AbstractType
             'constraints' => [
                 new NotBlank(),
                 new UserShouldExist()
+            ],
+            'attr'   =>  [
+                'class'   => 'form-control form-control-user'
             ]
         ]);
     }
