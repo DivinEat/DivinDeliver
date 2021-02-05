@@ -89,12 +89,10 @@ class SecurityController extends AbstractController
         $form = $this->createForm(ForgotPasswordType::class, $user);
         $form->handleRequest($request);
 
-        $data = $form->getData();
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            $user = $form->getData();
             
-            $email = $data['email'];
+            $email = $user->getEmail();
             $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
             $token = $this->resetPasswordService->generateResetPasswordRequest($email);
 
