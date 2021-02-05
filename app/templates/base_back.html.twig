@@ -26,14 +26,20 @@
         <ul id="sidenav-left" class="sidenav grey" style="transform: translateX(0px);">
             <li><a href="{{ path('admin_default_index') }}" class="logo-container">Admin</a></li>
             
-            <li><a href="{{ path('admin_default_index') }}">Dashboard</a></li>
+            {% if is_granted('ROLE_RESTAURATEUR') %}
+                <li><a href="{{ path('admin_default_index') }}">Dashboard</a></li>
+            {% endif %}
+
             <li><a href="{{ path('admin_menu_index') }}">Menu</a></li>
             <li><a href="{{ path('admin_product_index') }}">{% trans %}product.word{% endtrans %}</a></li>
             <li><a href="{{ path('admin_productcategory_index') }}">{% trans %}category.word{% endtrans %}</a></li>
             <li><a href="">{% trans %}order.word{% endtrans %}</a></li>
-            <li><a href="{{ path('admin_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
-            <li><a href="">Images</a></li>
-            <li><a href="">{% trans %}settings.word{% endtrans %}</a></li>
+            
+            {% if is_granted('ROLE_RESTAURATEUR') %}
+                <li><a href="{{ path('admin_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
+                <li><a href="">Images</a></li>
+                <li><a href="">{% trans %}settings.word{% endtrans %}</a></li>
+            {% endif %}
         </ul>
 
         <main style="padding-left: 300px;">

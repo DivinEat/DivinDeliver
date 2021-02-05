@@ -27,11 +27,7 @@ class UserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'multiple' => false,
-                'choices'  => [
-                    'Utilisateur' => "ROLE_USER",
-                    'Restaurateur' => "ROLE_RESTAURATEUR",
-                    'Administrateur' => "ROLE_ADMIN",                   
-                ]
+                'choices'  => $options['roles_list']
             ])
         ;
 
@@ -50,6 +46,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'roles_list' => null,
         ]);
     }
 }

@@ -11,7 +11,10 @@
         <div class="container-front">
             <nav class="nav-front">
                 <a href="{{ path('default_index') }}" style="height:100%"><img src="images/logo.png" class="logo"></img></a>
-                <ul>
+                <ul>        
+                    {% if is_granted('ROLE_WAITER') %}
+                        <li><a href="{{ path('admin_default_index') }}">{% trans %}my-restaurant{% endtrans %}</a></li>
+                    {% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a></li>
                     {% else %}

@@ -2,6 +2,7 @@ name: Name
 prix: Price
 home: Home
 here: here
+my-restaurant: My Restaurant
 
 button:
     add: Add
