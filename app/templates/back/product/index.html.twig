@@ -4,9 +4,11 @@
 
 {% block body %}
     <h1 class="title">{% trans %}product.list{% endtrans %}</h1>
-
-    <a href="{{ path('admin_product_new') }}" href="#!" class="dd-btn dd-btn-add">{% trans %}button.add{% endtrans %}</a>
-    </a>
+    {% if is_granted('ROLE_RESTAURATEUR') %}
+        <a href="{{ path('admin_product_new') }}"
+            class="dd-btn dd-btn-add">{% trans %}button.add{% endtrans %}
+        </a>
+    {% endif %}
 
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="admin-table">
@@ -27,9 +29,17 @@
                         <td>{{ product.description }}</td>
                         <td>{{ product.price }}</td>
                         <td>
-                            <a href="{{ path('admin_product_show', {id: product.id}) }}" class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}</a>
-                            <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a>
-                            <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}</a>
+                            <a href="{{ path('admin_product_show', {id: product.id}) }}" 
+                                class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}
+                            </a>
+                            {% if is_granted('ROLE_RESTAURATEUR') %}
+                                <a href="{{ path('admin_product_edit', {id: product.id}) }}" 
+                                    class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}
+                                </a>
+                                <a href="{{ path('admin_product_delete', {id: product.id, token: csrf_token('delete_product' ~ product.name)}) }}" 
+                                    class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
