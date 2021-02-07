@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Store;
+use App\Validator as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use App\Validator as Assert;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -45,6 +48,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastname;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Store::class, mappedBy="restaurateur")
+     */
+    private $stores;
+
+    public function __construct()
+    {
+        $this->stores = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -144,6 +157,21 @@ class User implements UserInterface
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getStores(): Collection
+    {
+        return $this->stores;
+    }
+
+    public function addStore(Store $store): self
+    {
+        if (!$this->products->contains($store)) {
+            $this->products[] = $store;
+            $store->setRestaurateur($this);
+        }
 
         return $this;
     }

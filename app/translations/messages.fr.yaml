@@ -37,7 +37,9 @@ item:
     starter: Entrée
     main: Plat
     dessert: Dessert
-    drink: Boissin
+    drink: Boisson
+store: 
+    new: Create a restaurant
 user:
     word: Utilisateur
     list: Liste des utilisateurs
@@ -51,6 +53,15 @@ order:
     word: Commande
 settings:
     word: Paramètres
+    list: Liste des commandes
+    id: Identifiant
+    state: Etat
+    type: Type
+    store: Restaurant
+    eater: Utilisateur
+    payment: Paiement
+    placed_at: Commandé à
+    estimated_ready_for_pickup_at: Prêt pour l'envoie à
 password:
     reset_pwd_title: Réinitialiser votre mot de passe
     reset_link: Cliquez ici pour réinitialiser votre mot de passe

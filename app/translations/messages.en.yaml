@@ -38,6 +38,8 @@ item:
     main: Main course
     dessert: Dessert
     drink: Drink
+store: 
+    new: Create a restaurant
 user:
     word: User
     list: Users list
@@ -49,6 +51,15 @@ user:
     register: Register
 order:
     word: Order
+    list: Orders list
+    id: Order id
+    state: State
+    type: Type
+    store: Store
+    eater: Eater
+    payment: Payment
+    placed_at: Placed at
+    estimated_ready_for_pickup_at: Ready for pickup at
 settings:
     word: Settings
 password:

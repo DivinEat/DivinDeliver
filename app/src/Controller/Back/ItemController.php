@@ -4,7 +4,10 @@ namespace App\Controller\Back;
 
 use App\Entity\Item;
 use App\Form\ItemType;
+use App\Entity\Product;
+use App\Form\AuthAppType;
 use App\Repository\ItemRepository;
+use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
