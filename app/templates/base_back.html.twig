@@ -33,7 +33,7 @@
             <li><a href="{{ path('admin_menu_index') }}">Menu</a></li>
             <li><a href="{{ path('admin_product_index') }}">{% trans %}product.word{% endtrans %}</a></li>
             <li><a href="{{ path('admin_productcategory_index') }}">{% trans %}category.word{% endtrans %}</a></li>
-            <li><a href="">{% trans %}order.word{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_order_index') }}">{% trans %}order.word{% endtrans %}</a></li>
             
             {% if is_granted('ROLE_RESTAURATEUR') %}
                 <li><a href="{{ path('admin_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>

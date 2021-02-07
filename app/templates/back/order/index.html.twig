@@ -5,6 +5,13 @@
 {% block body %}
     <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
 
+    <form action"{{ path('admin_order_index') }}" method="get">
+        <select name="choice" id="choice" class="browser-default" onchange="this.form.submit()">
+            <option value="accepted">Accepted</option>
+            <option value="canceled">Canceled</option>
+        </select>
+    </form>
+
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
@@ -40,4 +47,11 @@
             </tbody>
         </table>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        document.getElementById("choice").value = params.get("choice");
+    </script>
 {% endblock %}

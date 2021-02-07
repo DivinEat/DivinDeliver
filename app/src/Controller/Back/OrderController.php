@@ -3,6 +3,7 @@
 namespace App\Controller\Back;
 
 use App\SDK\UberEats\OrderSDK;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -26,11 +27,23 @@ class OrderController extends AbstractController
     /**
      * @Route("/", name="index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $orders = $this->orderSDK->getActiveCreatedOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
+        $choice = $request->query->get('choice');
+        
+        if(empty($choice)) {
+            $choice = "accepted";
+        }
 
-        return $this->render('back/order/index.html.twig', ['orders' => $orders]);
+        $orders = [];
+
+        if("accepted" == $choice) {
+            // $orders = $this->orderSDK->getActiveCreatedOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
+        } else {
+            // $orders = $this->orderSDK->getCancelOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
+        }
+
+        return $this->render('back/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
     }
 
     /**
