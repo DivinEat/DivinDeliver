@@ -3,10 +3,12 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
+    <div class="card">
+        <h2>Inscription</h2>
 
-    {{ form_start(form) }}
-        {{ form_rest(form) }}
-        <button type="submit" class="btn">S'inscrire</button>
-    {{ form_end(form) }}
+        {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+            {{ form_rest(form) }}
+            <button type="submit" class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50">S'inscrire</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

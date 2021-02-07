@@ -1,6 +1,8 @@
 name: Nom
 prix: Prix
 home: Accueil
+here: ici
+my-restaurant: Mon Restaurant
 
 button:
     add: Ajouter
@@ -10,10 +12,13 @@ button:
     back: Retour
     create: Créer
     update: Modifier
+    send: Envoyer
+    reset: Réinitialiser
 form:
     email: Votre email
     password: Votre mot de passe
     password_confirm: Confirmez votre mot de passe
+    slug: Slug
 menu:
     list: Liste des menus
     edit: Edition du menu %menu_name%
@@ -46,3 +51,13 @@ order:
     word: Commande
 settings:
     word: Paramètres
+password:
+    reset_pwd_title: Réinitialiser votre mot de passe
+    reset_link: Cliquez ici pour réinitialiser votre mot de passe
+    reset_link_expired_title: Lien de réinitialisation de mot de passe expiré
+    reset_link_not_valid: Ce lien a expiré ou a déjà été utilisé
+    reset_link_conditions: Ce lien expore dans 60 minutes et n'est utilisable qu'une seule fois
+    reset_link_sent: Lien de réinitialisation de mot de passe envoyé
+    reset_link_will_receive: Vous allez recevoir un lien pour réinitialiser votre mot de passe à cette adresse
+    resend_link: Vous pouvez renvoyer ce lien
+    forgot_password: Mot de passe oublié ?

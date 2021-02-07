@@ -4,9 +4,9 @@
 
 {% block body %}
     <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
-    
-    <a href="{{ path('admin_menu_new') }}" href="#!" class="dd-btn dd-btn-add">{% trans %}button.add{% endtrans %}</a>
-
+    {% if is_granted('ROLE_RESTAURATEUR') %}
+        <a href="{{ path('admin_menu_new') }}" class="add"><i class="material-icons">control_point</i></a>
+    {% endif %}
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
@@ -28,9 +28,17 @@
                         <td>{{ menu.dessert ? menu.dessert.name : ""}}</td>
                         <td>{{ menu.drink.name }}</td>
                         <td>
-                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}" class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}</a>
-                            <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a>
-                            <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}" class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}</a>
+                            <a href="{{ path('admin_menu_show', {id: menu.id}) }}">
+                                <i class="material-icons">remove_red_eye</i>
+                            </a>
+                            {% if is_granted('ROLE_RESTAURATEUR') %}
+                                <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">
+                                    <i class="material-icons">mode</i>
+                                </a>
+                                <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

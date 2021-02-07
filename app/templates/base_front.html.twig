@@ -3,18 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ path('default_index') }}">{% trans %}home{% endtrans %}</a></li>
-                    <li><a href="{{ path('default_index') }}">Créer un restaurant</a></li>
-                    {% if app.user and is_granted("ROLE_ADMIN") %}
-                        <li><a href="{{ path('admin_default_index') }}">Admin</a></li>
+        <div class="container-front">
+            <nav class="nav-front">
+                <a href="{{ path('default_index') }}" style="height:100%"><img src="images/logo.png" class="logo"></img></a>
+                <ul>        
+                    {% if is_granted('ROLE_WAITER') %}
+                        <li><a href="{{ path('admin_default_index') }}">{% trans %}my-restaurant{% endtrans %}</a></li>
                     {% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a></li>
@@ -23,13 +22,11 @@
                         <li><a href="{{ path('app_register') }}">{% trans %}user.register{% endtrans %}</a></li>
                     {% endif %}
                 </ul>
+            </nav>
+            <div class="content">
+                {% block body %}{% endblock %}
             </div>
-        </nav>
-
-        <div class="container">
-            {% block body %}{% endblock %}
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

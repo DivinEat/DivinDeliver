@@ -5,17 +5,27 @@ namespace App\Controller\Back;
 use Exception;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\User\UserService;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/user", name="user_")
+ * @IsGranted("ROLE_RESTAURATEUR")
  */
 class UserController extends AbstractController
 {
+    private $userService;
+    
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -41,7 +51,9 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $rolesList = $this->userService->getRolesList();
+        
+        $form = $this->createForm(UserType::class, $user, ['roles_list' => $rolesList]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

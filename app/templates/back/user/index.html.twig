@@ -24,9 +24,9 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                         <td>
-                            <a href="{{ path('admin_user_show', {id: user.id}) }}" class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}</a>
-                            <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a>
-                            <a href="{{ path('admin_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}" class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}</a>
+                            <a href="{{ path('admin_user_show', {id: user.id}) }}"><i class="material-icons">remove_red_eye</i></a>
+                            <a href="{{ path('admin_user_edit', {id: user.id}) }}"><i class="material-icons">mode</i></a>
+                            <a href="{{ path('admin_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}"><i class="material-icons">delete</i></a>
                         </td>
                     </tr>
                 {% endfor %}
