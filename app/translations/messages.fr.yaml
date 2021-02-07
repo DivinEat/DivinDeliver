@@ -30,10 +30,10 @@ category:
     edit: Edition de la categorie %category_name%
     new: Création d'une nouvelle catégorie
 item:
-    word: Item
-    list: Liste des items
-    edit: Edition de l'item %item_name%
-    new: Création d'un nouvel item
+    word: Produit
+    list: Liste des produits
+    edit: Edition du produit %item_name%
+    new: Création d'un nouveau produit
     starter: Entrée
     main: Plat
     dessert: Dessert
