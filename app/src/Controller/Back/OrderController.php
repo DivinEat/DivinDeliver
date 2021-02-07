@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/order", name="order_")
+ * @Route("/orders", name="order_")
  */
 class OrderController extends AbstractController
 {
@@ -28,7 +28,9 @@ class OrderController extends AbstractController
      */
     public function index(): Response
     {
-        dd($this->orderSDK->getActiveCreatedOrders('2b04ce24-1aad-4ea7-91ef-844de630a923'));
+        $orders = $this->orderSDK->getActiveCreatedOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
+        dd($orders);
+        
 //        return $this->render('back/order/index.html.twig');
     }
 

@@ -51,6 +51,15 @@ order:
     word: Commande
 settings:
     word: Paramètres
+    list: Liste des commandes
+    order.id: Identifiant
+    order.state: Etat
+    order.type: Type
+    order.store: Restaurant
+    order.eater: Utilisateur
+    order.payment: Paiement
+    order.placed_at: Commandé à
+    order.estimated_ready_for_pickup_at: Prêt pour l'envoie à
 password:
     reset_pwd_title: Réinitialiser votre mot de passe
     reset_link: Cliquez ici pour réinitialiser votre mot de passe

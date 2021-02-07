@@ -49,6 +49,15 @@ user:
     register: Register
 order:
     word: Order
+    list: Orders list
+    order.id: Order id
+    order.state: State
+    order.type: Type
+    order.store: Store
+    order.eater: Eater
+    order.payment: Payment
+    order.placed_at: Placed at
+    order.estimated_ready_for_pickup_at: Ready for pickup at
 settings:
     word: Settings
 password:
