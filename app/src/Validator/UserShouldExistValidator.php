@@ -7,14 +7,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserShouldExistValidator extends ConstraintValidator
 {
     private $em;
+    private $translator;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
     {
         $this->em = $em;
+        $this->translator = $translator;
     }
 
 
@@ -31,8 +34,12 @@ class UserShouldExistValidator extends ConstraintValidator
         $userExist = $repository->findOneBy(['email' => $email]);
 
         if (!$userExist)
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ email }}', $email)
+            $this->context->buildViolation(
+                $this->translator->trans(
+                    $constraint->message,
+                    ['%email%' => $email],
+                    'validators'
+                ))
                 ->addViolation();
     }
 }

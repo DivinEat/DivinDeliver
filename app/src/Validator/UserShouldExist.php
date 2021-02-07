@@ -11,5 +11,5 @@ use Symfony\Component\Validator\Constraint;
 */
 class UserShouldExist extends Constraint
 {
-    public $message = '';
+    public $message = "user.email.user_should_exist";
 }

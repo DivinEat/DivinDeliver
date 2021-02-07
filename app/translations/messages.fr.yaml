@@ -18,6 +18,7 @@ form:
     email: Votre email
     password: Votre mot de passe
     password_confirm: Confirmez votre mot de passe
+    slug: Slug
 menu:
     list: Liste des menus
     edit: Edition du menu %menu_name%

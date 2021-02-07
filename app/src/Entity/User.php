@@ -22,7 +22,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\UserShouldExist(message="user.email.user_should_exist")
      */
     private $email;
 
