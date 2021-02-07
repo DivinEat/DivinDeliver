@@ -52,6 +52,8 @@
 {% block javascripts %}
     <script>
         let params = (new URL(document.location)).searchParams;
-        document.getElementById("choice").value = params.get("choice");
+        let choice = params.get("choice") ?? "accepted";
+
+        document.getElementById("choice").value = choice;
     </script>
 {% endblock %}

@@ -29,18 +29,12 @@ class OrderController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $choice = $request->query->get('choice');
+        $choice = $request->query->get('choice') ?? "accepted";
         
-        if(empty($choice)) {
-            $choice = "accepted";
-        }
-
-        $orders = [];
-
         if("accepted" == $choice) {
-            // $orders = $this->orderSDK->getActiveCreatedOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
+            $orders = $this->orderSDK->getActiveCreatedOrders('c8383535-7eab-43dd-a38b-4b9a6fcd858b');
         } else {
-            // $orders = $this->orderSDK->getCancelOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
+            $orders = $this->orderSDK->getCancelOrders('c8383535-7eab-43dd-a38b-4b9a6fcd858b');
         }
 
         return $this->render('back/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
