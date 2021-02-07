@@ -5,9 +5,7 @@
 {% block body %}
     <h1 class="title">{% trans %}category.list{% endtrans %}</h1>
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('admin_productcategory_new') }}" 
-            class="dd-btn dd-btn-add">{% trans %}button.add{% endtrans %}
-        </a>
+        <a href="{{ path('admin_productcategory_new') }}" class="add"><i class="material-icons">control_point</i></a>
     {% endif %}
 
     <div class="col s12 m12 l6 offset-l2 center">
@@ -23,15 +21,15 @@
                     <tr>
                         <td>{{ productCategory.name }}</td>
                         <td>
-                            <a href="{{ path('admin_productcategory_show', {id: productCategory.id}) }}" 
-                                class="dd-btn dd-btn-primary">{% trans %}button.see{% endtrans %}
+                            <a href="{{ path('admin_productcategory_show', {id: productCategory.id}) }}" >
+                                <i class="material-icons">remove_red_eye</i>
                             </a>
                             {% if is_granted('ROLE_RESTAURATEUR') %}
-                                <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}" 
-                                    class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}
+                                <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}">
+                                    <i class="material-icons">mode</i>
                                 </a>
-                                <a href="{{ path('admin_productcategory_delete', {id: productCategory.id, token: csrf_token('delete_productcategory' ~ productCategory.name)}) }}" 
-                                    class="dd-btn dd-btn-remove">{% trans %}button.delete{% endtrans %}
+                                <a href="{{ path('admin_productcategory_delete', {id: productCategory.id, token: csrf_token('delete_productcategory' ~ productCategory.name)}) }}">
+                                    <i class="material-icons">delete</i>
                                 </a>
                             {% endif %}
                         </td>
