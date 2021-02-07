@@ -11,22 +11,20 @@
         <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
                 <tr>
-                    <th>Menu</th>
-                    <th>{% trans %}product.starter{% endtrans %}</th>
-                    <th>{% trans %}product.main{% endtrans %}</th>
-                    <th>{% trans %}product.dessert{% endtrans %}</th>
-                    <th>{% trans %}product.drink{% endtrans %}</th>
+                    <th>{% trans %}item.title{% endtrans %}</th>
+                    <th>{% trans %}item.categories{% endtrans %}</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for menu in menus %}
                     <tr>
-                        <td>{{ menu.name }}</td>
-                        <td>{{ menu.entree ? menu.entree.name : "" }}</td>
-                        <td>{{ menu.main.name }}</td>
-                        <td>{{ menu.dessert ? menu.dessert.name : ""}}</td>
-                        <td>{{ menu.drink.name }}</td>
+                        <td>{{ menu.title }}</td>
+                        <td>
+                            {% for category in menu.categories %}
+                                {{ category.title }}<br>
+                            {% endfor %}
+                        </td>
                         <td>
                             <a href="{{ path('admin_menu_show', {id: menu.id}) }}">
                                 <i class="material-icons">remove_red_eye</i>
@@ -35,7 +33,7 @@
                                 <a href="{{ path('admin_menu_edit', {id: menu.id}) }}">
                                     <i class="material-icons">mode</i>
                                 </a>
-                                <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.name)}) }}">
+                                <a href="{{ path('admin_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.title)}) }}">
                                     <i class="material-icons">delete</i>
                                 </a>
                             {% endif %}

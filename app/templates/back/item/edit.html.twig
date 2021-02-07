@@ -1,15 +1,16 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}{% trans with {'%menu_name%': menu.title} %}menu.edit{% endtrans %}{% endblock %}
+{% block title %}{% trans with {'%item_name%': item.title} %}item.edit{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans with {'%menu_name%': menu.title} %}menu.edit{% endtrans %}</h1>
+    <h1>{% trans with {'%item_name%': item.title} %}item.edit{% endtrans %}</h1>
 
     {{ form_start(form) }}
         {{ form_errors(form) }}
-        
+
         {{ form_row(form.title) }}
-        {{ form_row(form.categories, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.priceInfo) }}
+        {{ form_row(form.category, { 'attr': {'class': 'browser-default'} }) }}
         <br>
         <input type="submit" value="{% trans %}button.update{% endtrans %}" class="dd-btn dd-btn-edit">
     {{ form_end(form) }}

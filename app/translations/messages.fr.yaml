@@ -1,5 +1,5 @@
 name: Nom
-prix: Prix
+price: Prix
 home: Accueil
 here: ici
 my-restaurant: Mon Restaurant
@@ -26,14 +26,14 @@ menu:
     back: Retour aux menus
 category:
     word: Catégorie
-    list: Liste des catégories de produits
+    list: Liste des catégories
     edit: Edition de la categorie %category_name%
-    new: Création d'une nouvelle catégorie de produit
-product:
-    word: Produit
-    list: Liste des produits
-    edit: Edition du produit %product_name%
-    new: Création d'un nouveau produit
+    new: Création d'une nouvelle catégorie
+item:
+    word: Item
+    list: Liste des items
+    edit: Edition de l'item %item_name%
+    new: Création d'un nouvel item
     starter: Entrée
     main: Plat
     dessert: Dessert

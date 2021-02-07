@@ -43,6 +43,7 @@ class MenuController extends AbstractController
     public function new(Request $request)
     {
         $menu = new Menu();
+
         $form = $this->createForm(MenuType::class, $menu);
 
         $form->handleRequest($request);
@@ -90,7 +91,7 @@ class MenuController extends AbstractController
      */
     public function delete(Menu $menu, $token)
     {
-        if (!$this->isCsrfTokenValid('delete_menu' . $menu->getName(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_menu' . $menu->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 

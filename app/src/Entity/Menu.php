@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MenuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,92 +22,59 @@ class Menu
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class)
+     * @ORM\ManyToMany(targetEntity=Category::class)
      */
-    private $entree;
+    private $categories;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Product::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $main;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Product::class)
-     */
-    private $dessert;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Product::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $drink;
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getEntree(): ?Product
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
     {
-        return $this->entree;
+        return $this->categories;
     }
 
-    public function setEntree(?Product $entree): self
+    public function addCategory(Category $category): self
     {
-        $this->entree = $entree;
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
 
         return $this;
     }
 
-    public function getMain(): ?Product
+    public function removeCategory(Category $category): self
     {
-        return $this->main;
-    }
-
-    public function setMain(?Product $main): self
-    {
-        $this->main = $main;
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
 
         return $this;
     }
 
-    public function getDessert(): ?Product
-    {
-        return $this->dessert;
-    }
-
-    public function setDessert(?Product $dessert): self
-    {
-        $this->dessert = $dessert;
-
-        return $this;
-    }
-
-    public function getDrink(): ?Product
-    {
-        return $this->drink;
-    }
-
-    public function setDrink(?Product $drink): self
-    {
-        $this->drink = $drink;
-
-        return $this;
-    }
 }

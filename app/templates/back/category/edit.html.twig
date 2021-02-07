@@ -1,9 +1,9 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}{% trans with {'%category_name%': productCategory.name} %}category.edit{% endtrans %}{% endblock %}
+{% block title %}{% trans with {'%category_title%': category.title} %}category.edit{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans with {'%category_name%': productCategory.name} %}category.edit{% endtrans %}</h1>
+    <h1>{% trans with {'%category_title%': category.title} %}category.edit{% endtrans %}</h1>
 
     {{ form_start(form) }}
         {{ form_rest(form) }}

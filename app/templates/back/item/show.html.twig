@@ -1,0 +1,13 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}{% trans %}item.word{% endtrans %} {{ item.title }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('admin_item_edit', {id: item.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
+    <br>
+    {% trans %}category.word{% endtrans %} : {{ item.category.title }} <br>
+    {% trans %}name{% endtrans %} : {{ item.title }} <br>
+    {% trans %}priceInfo{% endtrans %} : {{ item.priceInfo }} <br>
+    <br>
+    <a href="{{ path('admin_item_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+{% endblock %}
