@@ -2,39 +2,39 @@
 
 namespace App\Repository;
 
-use App\Entity\Product;
+use App\Entity\Item;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Product|null find($id, $lockMode = null, $lockVersion = null)
- * @method Product|null findOneBy(array $criteria, array $orderBy = null)
- * @method Product[]    findAll()
- * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Item|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Item|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Item[]    findAll()
+ * @method Item[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProductRepository extends ServiceEntityRepository
+class ItemRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($registry, Item::class);
     }
 
     /**
-     * @return Product[] Returns an array of Product objects
+     * @return Item[] Returns an array of Item objects
      */
     public function findByCategory($category)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.productCategory = :category')
+            ->andWhere('p.category = :category')
             ->setParameter('category', $category)
-            ->orderBy('p.productCategory', 'ASC')
+            ->orderBy('p.category', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
 
     // /**
-    //  * @return Product[] Returns an array of Product objects
+    //  * @return Item[] Returns an array of Item objects
     //  */
     /*
     public function findByExampleField($value)
@@ -51,7 +51,7 @@ class ProductRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Product
+    public function findOneBySomeField($value): ?Item
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

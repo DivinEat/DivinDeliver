@@ -5,30 +5,32 @@
 {% block body %}
     <h1 class="title">{% trans %}category.list{% endtrans %}</h1>
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('admin_productcategory_new') }}" class="add"><i class="material-icons">control_point</i></a>
+        <a href="{{ path('admin_category_new') }}" class="add"><i class="material-icons">control_point</i></a>
     {% endif %}
 
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
                 <tr>
-                    <th>{% trans %}name{% endtrans %}</th>
+                    <th>{% trans %}title{% endtrans %}</th>
+                    <th>{% trans %}subtitle{% endtrans %}</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {% for productCategory in productCategories %}
+                {% for category in categories %}
                     <tr>
-                        <td>{{ productCategory.name }}</td>
+                        <td>{{ category.title }}</td>
+                        <td>{{ category.subtitle }}</td>
                         <td>
-                            <a href="{{ path('admin_productcategory_show', {id: productCategory.id}) }}" >
+                            <a href="{{ path('admin_category_show', {id: category.id}) }}" >
                                 <i class="material-icons">remove_red_eye</i>
                             </a>
                             {% if is_granted('ROLE_RESTAURATEUR') %}
-                                <a href="{{ path('admin_productcategory_edit', {id: productCategory.id}) }}">
+                                <a href="{{ path('admin_category_edit', {id: category.id}) }}">
                                     <i class="material-icons">mode</i>
                                 </a>
-                                <a href="{{ path('admin_productcategory_delete', {id: productCategory.id, token: csrf_token('delete_productcategory' ~ productCategory.name)}) }}">
+                                <a href="{{ path('admin_category_delete', {id: category.id, token: csrf_token('delete_category' ~ category.title)}) }}">
                                     <i class="material-icons">delete</i>
                                 </a>
                             {% endif %}

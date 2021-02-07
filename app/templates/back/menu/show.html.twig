@@ -1,15 +1,16 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Menu {{ menu.name }}{% endblock %}
+{% block title %}Menu {{ menu.title }}{% endblock %}
 
 {% block body %}
     <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
     <br>
-    Menu : {{ menu.name }} <br>
-    {% trans %}product.starter{% endtrans %} : {{ menu.entree ? menu.entree.name : "" }} <br>
-    {% trans %}product.main{% endtrans %} : {{ menu.main.name }} <br>
-    {% trans %}product.dessert{% endtrans %} : {{ menu.dessert ? menu.dessert.name : ""}} <br>
-    {% trans %}product.drink{% endtrans %} : {{ menu.drink.name }} <br>
+    Menu : {{ menu.title }} <br>
+    {% trans %}item.title{% endtrans %} : {{ menu.title }} <br>
+    Categories :
+    {% for category in menu.categories %}
+        {{ category.title }}
+    {% endfor %}
     <br>
     <a href="{{ path('admin_menu_index') }}" class="dd-btn dd-btn-default">{% trans %}menu.back{% endtrans %}</a>
 {% endblock %}
