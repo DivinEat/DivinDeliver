@@ -29,9 +29,8 @@ class OrderController extends AbstractController
     public function index(): Response
     {
         $orders = $this->orderSDK->getActiveCreatedOrders('2b04ce24-1aad-4ea7-91ef-844de630a923');
-        dd($orders);
-        
-//        return $this->render('back/order/index.html.twig');
+
+        return $this->render('back/order/index.html.twig', ['orders' => $orders]);
     }
 
     /**
