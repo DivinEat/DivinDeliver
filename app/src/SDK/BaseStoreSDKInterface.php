@@ -4,7 +4,6 @@
 namespace App\SDK;
 
 
-class BaseStoreSDKInterface
+interface BaseStoreSDKInterface
 {
-    public function
 }
