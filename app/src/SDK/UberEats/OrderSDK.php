@@ -28,7 +28,12 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
     {
         $response = $this->client->request(
             'GET',
-            $this->getUrlWithParams('storeActiveOrdersUrl', ['storeID' => $storeID])
+            $this->getUrlWithParams('storeActiveOrdersUrl', ['storeID' => $storeID]),
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                ],
+            ]
         );
 
         if ($response->getStatusCode() !== 200)
