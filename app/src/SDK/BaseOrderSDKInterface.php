@@ -6,13 +6,15 @@ namespace App\SDK;
 
 interface BaseOrderSDKInterface
 {
-    public function getOrderDetails(string $id);
+    public function getOrderDetails(string $orderID);
 
-    public function getActiveCreatedOrders();
+    public function getActiveCreatedOrders(string $storeID);
 
-    public function acceptOrder(string $id);
+    public function getCancelOrders(string $storeID);
 
-    public function denyOrder(string $id);
+    public function acceptOrder(string $orderID);
 
-    public function cancelOrder(string $id);
+    public function denyOrder(string $orderID);
+
+    public function cancelOrder(string $orderID);
 }

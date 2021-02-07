@@ -9,26 +9,24 @@ use App\SDK\BaseSDK;
 
 class MenuSDK extends BaseSDK implements BaseMenuSDKInterface
 {
-    public function getMenus(): ?array
+    use UberEatsUrl;
+
+    public function getMenus(string $storeID): ?array
     {
         $response = $this->client->request(
             'GET',
-            'https://api.uber.com/v2/eats/stores/{store_id}/menus'
+             $this->getUrlWithParams('menusUrl', ['storeID' => $storeID])
         );
 
         return $response->getStatusCode() !== 200 ? null : $response->toArray();
     }
 
-    public function uploadMenu(): void
+    public function uploadMenu(string $storeID, array $params): void
     {
-        $response = $this->client->request(
+        $this->client->request(
             'PUT',
-            'https://api.uber.com/v2/eats/stores/{store_id}/menus'
+            $this->getUrlWithParams('menusUrl', ['storeID' => $storeID]),
+            $params
         );
-    }
-
-    public function updateMenu()
-    {
-        // TODO: Implement updateMenu() method.
     }
 }

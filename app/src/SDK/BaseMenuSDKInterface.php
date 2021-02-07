@@ -4,9 +4,9 @@ namespace App\SDK;
 
 interface BaseMenuSDKInterface
 {
-    public function getMenus(): ?array;
+    public function getMenus(string $storeID): ?array;
 
-    public function uploadMenu();
+    public function uploadMenu(string $storeID, array $params);
 
-    public function updateMenu();
+//    public function updateMenu();
 }
