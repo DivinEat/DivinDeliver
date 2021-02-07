@@ -20,7 +20,15 @@ trait UberEatsUrl
 
     private string $cancelOrderUrl = 'http://host.docker.internal:8000/eats/orders/{orderID}/cancel';
 
-    protected function getUrlWithParams(string $urlName, array $params): ?string
+    private string $storeDetailsUrl = 'https://api.uber.com/v1/eats/stores/{storeId}';
+
+    private string $allStoreUrl = 'http://host.docker.internal:8000/eats/stores';
+
+    private string $restaurantStatusUrl = 'http://host.docker.internal:8000/eats/store/{store_id}/status';
+
+    private string $storeHolidayHoursUrl = 'http://host.docker.internal:8000/eats/stores/{store_id}/holiday-hours';
+
+    protected function getUrlWithParams(string $urlName, array $params =  []): ?string
     {
         if (! isset($this->$urlName))
             return null;
