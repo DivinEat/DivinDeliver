@@ -1,0 +1,59 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}{% trans %}order.list{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
+
+    <form action"{{ path('admin_order_index') }}" method="get">
+        <select name="choice" id="choice" class="browser-default" onchange="this.form.submit()">
+            <option value="accepted">Accepted</option>
+            <option value="canceled">Canceled</option>
+        </select>
+    </form>
+
+    <div class="col s12 m12 l6 offset-l2 center">
+        <table cellpadding="1" cellspacing="1" class="admin-table">
+            <thead>
+                <tr>
+                    <th>{% trans %}order.id{% endtrans %}</th>
+                    <th>{% trans %}order.state{% endtrans %}</th>
+                    <th>{% trans %}order.type{% endtrans %}</th>
+                    <th>{% trans %}order.store{% endtrans %}</th>
+                    <th>{% trans %}order.eater{% endtrans %}</th>
+                    <th>{% trans %}order.payment{% endtrans %}</th>
+                    <th>{% trans %}order.placed_at{% endtrans %}</th>
+                    <th>{% trans %}order.estimated_ready_for_pickup_at{% endtrans %}</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.display_id }}</td>
+                        <td>{{ order.current_state }}</td>
+                        <td>{{ order.type }}</td>
+                        <td>{{ order.store.name }}</td>
+                        <td>{{ order.eater.first_name }}</td>
+                        <td>{{ order.payment.charges.total_fee.formatted_amount }}</td>
+                        <td>{{ order.placed_at }}</td>
+                        <td>{{ order.estimated_ready_for_pickup_at }}</td>
+                        <td>
+                            <a href="{{ path('admin_order_show', {id: order.display_id}) }}"><i class="material-icons">remove_red_eye</i></a>
+                            <a href="{{ path('admin_order_edit', {id: order.display_id}) }}"><i class="material-icons">mode</i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        let choice = params.get("choice") ?? "accepted";
+
+        document.getElementById("choice").value = choice;
+    </script>
+{% endblock %}

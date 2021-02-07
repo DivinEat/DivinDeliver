@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Product;
-use App\Form\ProductType;
+use App\Form\AuthAppType;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,7 +43,7 @@ class ProductController extends AbstractController
     public function new(Request $request)
     {
         $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(AuthAppType::class, $product);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,7 +67,7 @@ class ProductController extends AbstractController
      */
     public function edit(Product $product, Request $request)
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(AuthAppType::class, $product);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
