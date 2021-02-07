@@ -37,7 +37,7 @@ class UserShouldExistValidator extends ConstraintValidator
             $this->context->buildViolation(
                 $this->translator->trans(
                     $constraint->message,
-                    ['%email%' => $email],
+                    ['{{ email }}' => $email],
                     'validators'
                 ))
                 ->addViolation();

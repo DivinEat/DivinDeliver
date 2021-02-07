@@ -38,6 +38,8 @@ product:
     main: Main course
     dessert: Dessert
     drink: Drink
+store: 
+    new: Create a restaurant
 user:
     word: User
     list: Users list

@@ -1,1 +1,7 @@
-user.email.user_should_exist: Aucun utilisateur n'est enregistré avec l'email %email%. Vous devez vous enregistrer.
+user:
+    email:
+        user_should_exist: Aucun utilisateur n'est enregistré avec l'email {{ email }}. Vous devez vous enregistrer.
+store:
+    name.unique: Le nom {{ value }} est déjà utilisé.
+    slug.unique: Le slug {{ value }} est déjà utilisé.
+    restaurateur.has.no.store: Désolé, vous ne pouvez pas avoir plusieurs restaurants.
