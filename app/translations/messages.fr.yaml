@@ -37,7 +37,9 @@ product:
     starter: Entrée
     main: Plat
     dessert: Dessert
-    drink: Boissin
+    drink: Boisson
+store: 
+    new: Create a restaurant
 user:
     word: Utilisateur
     list: Liste des utilisateurs

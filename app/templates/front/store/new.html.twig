@@ -1,0 +1,14 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}{% trans %}store.new{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h2>{% trans %}store.new{% endtrans %}</h2>
+
+        {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+            {{ form_rest(form) }}
+            <input type="submit" class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50" value="{% trans %}button.create{% endtrans %}">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
