@@ -8,7 +8,7 @@ trait UberEatsUrl
 {
     private string $menusUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeID}/menus';
 
-    private string $ordersUrl = 'http://93.90.203.240/FakeUberEats/eats/order/{orderID}';
+    private string $ordersUrl = 'http://93.90.203.240/FakeUberEats/eats/orders/{orderID}';
 
     private string $storeActiveOrdersUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeID}/created-orders';
 
@@ -20,7 +20,7 @@ trait UberEatsUrl
 
     private string $cancelOrderUrl = 'http://93.90.203.240/FakeUberEats/eats/orders/{orderID}/cancel';
 
-    private string $storeDetailsUrl = 'https://api.uber.com/v1/eats/stores/{storeId}';
+    private string $storeDetailsUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeId}';
 
     private string $allStoreUrl = 'http://93.90.203.240/FakeUberEats/eats/stores';
 
