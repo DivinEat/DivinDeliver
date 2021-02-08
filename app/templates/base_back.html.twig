@@ -53,5 +53,14 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {                
+                {% for label, messages in app.flashes() %}                    
+                    {% for message in messages %}
+                        M.toast({html: '{{ message }}', classes: '{{ label }}'});
+                    {% endfor %}
+                {% endfor %}
+            });	  
+        </script>
     </body>
 </html>
