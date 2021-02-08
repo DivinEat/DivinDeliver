@@ -6,7 +6,7 @@
     <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
     <br>
     Menu : {{ menu.title }} <br>
-    {% trans %}item.title{% endtrans %} : {{ menu.title }} <br>
+    {% trans %}title{% endtrans %} : {{ menu.title }} <br>
     Categories :
     {% for category in menu.categories %}
         {{ category.title }}
