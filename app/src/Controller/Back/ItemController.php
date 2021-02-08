@@ -54,6 +54,8 @@ class ItemController extends AbstractController
             $em->persist($item);
             $em->flush();
 
+            $this->addFlash('green', 'Produit créé.');
+
             return $this->redirectToRoute('admin_item_show', [
                 'id' => $item->getId()
             ]);
@@ -76,6 +78,8 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('green', 'Produit modifié.');
+
             return $this->redirectToRoute('admin_item_edit', [
                 'id' => $item->getId()
             ]);
@@ -96,6 +100,8 @@ class ItemController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_item' . $item->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+
+        $this->addFlash('red', 'Produit supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($item);

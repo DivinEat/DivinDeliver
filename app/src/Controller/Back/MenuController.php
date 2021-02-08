@@ -52,6 +52,8 @@ class MenuController extends AbstractController
             $em->persist($menu);
             $em->flush();
 
+            $this->addFlash('green', 'Menu créé.');
+
             return $this->redirectToRoute('admin_menu_show', [
                 'id' => $menu->getId()
             ]);
@@ -74,6 +76,8 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('green', 'Menu modifié.');
+
             return $this->redirectToRoute('admin_menu_edit', [
                 'id' => $menu->getId()
             ]);
@@ -94,6 +98,8 @@ class MenuController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_menu' . $menu->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+
+        $this->addFlash('red', 'Menu supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($menu);

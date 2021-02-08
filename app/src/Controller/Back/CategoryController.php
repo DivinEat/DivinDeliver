@@ -52,6 +52,8 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
+            $this->addFlash('green', 'Catégorie créée.');
+
             return $this->redirectToRoute('admin_category_show', [
                 'id' => $category->getId()
             ]);
@@ -74,6 +76,8 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('green', 'Catégorie modifiée.');
+
             return $this->redirectToRoute('admin_category_edit', [
                 'id' => $category->getId()
             ]);
@@ -94,6 +98,8 @@ class CategoryController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_category' . $category->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+
+        $this->addFlash('red', 'Catégorie supprimée.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
