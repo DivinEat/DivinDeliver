@@ -12,14 +12,10 @@
             <nav class="nav-front">
                 <a href="{{ path('default_index') }}" style="height:100%"><img src="images/logo.png" class="logo"></img></a>
                 <ul>        
-                    {% if is_granted('ROLE_WAITER') %}
-                        <li><a href="{{ path('admin_default_index') }}">{% trans %}my-restaurant{% endtrans %}</a></li>
-                    {% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a></li>
                     {% else %}
                         <li><a href="{{ path('app_login') }}">{% trans %}user.login{% endtrans %}</a></li>
-                        <li><a href="{{ path('app_register') }}">{% trans %}user.register{% endtrans %}</a></li>
                     {% endif %}
                 </ul>
             </nav>

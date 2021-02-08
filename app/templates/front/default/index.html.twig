@@ -4,5 +4,9 @@
 
 {% block body %}
     <h1>Divin Deliver</h1>
-    <a href="{{ path(('new_store')) }}" class="create-button">Créer votre restaurant</a>
+    {% if not app.user %}
+        <a href="{{ path(('app_register')) }}" class="create-button">{% trans %}store.create{% endtrans %}</a>
+    {% else %}
+        <a href="{{ path('admin_default_index') }}" class="create-button">{% trans %}my-restaurant{% endtrans %}</a>
+    {% endif %}
 {% endblock %}

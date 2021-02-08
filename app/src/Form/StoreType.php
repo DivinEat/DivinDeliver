@@ -16,9 +16,6 @@ class StoreType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'name'
             ])
-            ->add('slug', TextType::class, [
-                'label' => 'form.slug'
-            ])
         ;
     }
 

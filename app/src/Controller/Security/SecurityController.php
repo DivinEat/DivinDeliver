@@ -2,13 +2,14 @@
 
 namespace App\Controller\Security;
 
-use App\Entity\ResetPasswordRequest;
 use Exception;
 use App\Entity\User;
+use App\Entity\Store;
 use App\Form\RegisterType;
 use App\Service\MailService;
 use App\Form\ResetPasswordType;
 use App\Form\ForgotPasswordType;
+use App\Entity\ResetPasswordRequest;
 use App\Service\User\ResetPasswordService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,17 +33,11 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser() && in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
-            return $this->redirectToRoute('admin_default_index');
-        } elseif ($this->getUser()) {
-            return $this->redirectToRoute('default_index');
-        }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
+         
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
@@ -55,11 +50,12 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register", methods={"GET", "POST"})
+     * @Route("/new-account", name="app_register", methods={"GET", "POST"})
      */
     public function new(Request $request)
     {
         $user = new User();
+        $user->addStore(new Store());
        
         $form = $this->createForm(RegisterType::class, $user);
 
@@ -67,11 +63,12 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $user->setRoles(['ROLE_RESTAURATEUR']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('admin_default_index');
         }
 
         return $this->render('security/register.html.twig', [

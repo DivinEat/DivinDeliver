@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use App\Validator\RestaurateurHasNoStore;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -29,7 +30,7 @@ class RestaurateurHasNoStoreValidator extends ConstraintValidator
 
         $user = $this->security->getUser();  
 
-        $storeExist = !$user->getStores()->isEmpty();
+        $storeExist = $user && !$user->getStores()->isEmpty();
 
         if ($storeExist)
             $this->context->buildViolation(

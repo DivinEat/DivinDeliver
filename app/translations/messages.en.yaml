@@ -17,8 +17,8 @@ button:
     send: Send
     reset: Reset
 form:
-    email: Your email
-    password: Your password
+    email: Email
+    password: Password
     password_confirm: Confirm password
     slug: Slug
 menu:
@@ -41,7 +41,7 @@ item:
     dessert: Dessert
     drink: Drink
 store: 
-    new: Create a restaurant
+    create: Create a store
 user:
     word: User
     list: Users list
@@ -51,6 +51,9 @@ user:
     login: Login
     logout: Logout
     register: Register
+    register_title: Register
+    login_title: Login
+    new_account: New Account
 order:
     word: Order
     list: Orders list
