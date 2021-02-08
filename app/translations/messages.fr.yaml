@@ -1,8 +1,10 @@
 name: Nom
 price: Prix
 home: Accueil
-here: ici
+here: Ici
 my-restaurant: Mon Restaurant
+title: Titre
+subtitle: Sous titre
 
 button:
     add: Ajouter

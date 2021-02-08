@@ -1,8 +1,10 @@
 name: Name
 price: Price
 home: Home
-here: here
+here: Here
 my-restaurant: My Restaurant
+title: Title
+subtitle: Subtitle
 
 button:
     add: Add
