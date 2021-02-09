@@ -54,7 +54,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('green', 'Catégorie créée.');
 
-            return $this->redirectToRoute('admin_category_show', [
+            return $this->redirectToRoute('admin_category_index', [
                 'id' => $category->getId()
             ]);
         }
