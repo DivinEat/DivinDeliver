@@ -55,7 +55,8 @@ class SecurityController extends AbstractController
     public function new(Request $request)
     {
         $user = new User();
-        $user->addStore(new Store());
+        $store = new Store();
+        $user->addStore($store);
        
         $form = $this->createForm(RegisterType::class, $user);
 
@@ -65,7 +66,10 @@ class SecurityController extends AbstractController
         {
             $user->setRoles(['ROLE_RESTAURATEUR']);
             $em = $this->getDoctrine()->getManager();
+            
             $em->persist($user);
+            $em->persist($store);
+
             $em->flush();
 
             return $this->redirectToRoute('admin_default_index');

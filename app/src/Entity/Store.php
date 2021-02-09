@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use App\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\StoreRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Validator\RestaurateurHasNoStore;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -19,6 +20,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Store
 {
+
+    use EntityTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -54,6 +58,10 @@ class Store
         $this->users = new ArrayCollection();
     }
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $storeIdFakeUberEat;
 
     public function getId(): ?int
     {
@@ -120,6 +128,17 @@ class Store
             $this->users->removeElement($user);
             $user->removeStore($this);
         }
+        return $this;
+    }
+
+    public function getStoreIdFakeUberEat(): ?String
+    {
+        return $this->storeIdFakeUberEat;
+    }
+
+    public function setStoreIdFakeUberEat(String $storeIdFakeUberEat): self
+    {
+        $this->storeIdFakeUberEat = $storeIdFakeUberEat;
 
         return $this;
     }

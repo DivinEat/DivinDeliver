@@ -56,7 +56,7 @@ class ItemController extends AbstractController
 
             $this->addFlash('green', 'Produit créé.');
 
-            return $this->redirectToRoute('admin_item_show', [
+            return $this->redirectToRoute('admin_item_index', [
                 'id' => $item->getId()
             ]);
         }
