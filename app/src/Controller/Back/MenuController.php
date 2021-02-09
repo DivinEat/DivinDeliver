@@ -55,7 +55,7 @@ class MenuController extends AbstractController
 
             $this->addFlash('green', 'Menu créé.');
 
-            return $this->redirectToRoute('admin_menu_show', [
+            return $this->redirectToRoute('admin_menu_index', [
                 'id' => $menu->getId()
             ]);
         }
