@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\Menu;
 use App\Form\MenuType;
 use App\Repository\MenuRepository;
+use App\Service\MenuUberEatsService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -104,6 +105,16 @@ class MenuController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($menu);
         $em->flush();
+
+        return $this->redirectToRoute('admin_menu_index');
+    }
+
+    /**
+     * @Route("/push/ubereats", methods={"GET"})
+     */
+    public function pushUberEatsMenu(MenuUberEatsService $menuUberEatsService)
+    {
+        $menuUberEatsService->upload();
 
         return $this->redirectToRoute('admin_menu_index');
     }

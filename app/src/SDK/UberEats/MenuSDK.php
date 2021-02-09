@@ -23,10 +23,10 @@ class MenuSDK extends BaseSDK implements BaseMenuSDKInterface
 
     public function uploadMenu(string $storeID, array $params): void
     {
-        $this->client->request(
+        $response = $this->client->request(
             'PUT',
             $this->getUrlWithParams('menusUrl', ['storeID' => $storeID]),
-            $params
+            ['body' => $params]
         );
     }
 }
