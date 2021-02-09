@@ -43,6 +43,12 @@
         background-color: $btn-primary-background-color;
         border-color: $btn-primary-border-color;
         color: $white;
+        
+        &-send {
+            position: absolute;
+            top: 88px;
+            right: 25px;
+        }
     }
 
     &-account {

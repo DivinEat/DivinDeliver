@@ -4,9 +4,12 @@
 
 {% block body %}
     <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
+
     {% if is_granted('ROLE_RESTAURATEUR') %}
+        <a href="{{ path('admin_menu_push_ubereats') }}" class="dd-btn dd-btn-primary dd-btn-primary-send">{% trans %}menu.send_ubereats{% endtrans %}</a>
         <a href="{{ path('admin_menu_new') }}" class="add"><i class="material-icons">control_point</i></a>
     {% endif %}
+    
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>

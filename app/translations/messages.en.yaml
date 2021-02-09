@@ -26,6 +26,7 @@ menu:
     edit: Edit menu %menu_name%
     new: Create new menu
     back: Back to menus
+    send_ubereats: Send to Uber Eats
 category:
     word: Category
     list: Categories list

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Store;
+use App\Traits\EntityTrait;
+use App\Validator as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
@@ -17,6 +19,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
+
+    use EntityTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AuthAppRepository;
 
@@ -10,6 +11,9 @@ use App\Repository\AuthAppRepository;
  */
 class AuthApp
 {
+
+    use EntityTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

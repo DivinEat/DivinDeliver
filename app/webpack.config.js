@@ -40,5 +40,14 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
 ;
+if (Encore.isProduction()) {
+  Encore.setPublicPath('http://93.90.203.240/DivinDeliver/build/');
+
+  // guarantee that the keys in manifest.json are *still*
+  // prefixed with build/
+  // (e.g. "build/dashboard.js": "https://my-cool-app.com.global.prod.fastly.net/dashboard.js")
+  Encore.setManifestKeyPrefix('build/');
+}
+
 
 module.exports = Encore.getWebpackConfig();
