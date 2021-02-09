@@ -1,0 +1,18 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}{% trans %}user.new{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans %}user.new{% endtrans %}</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.roles, { 'attr': {'class': 'browser-default'} }) }}
+        <br>
+        <input type="submit" class="btn green" value="{% trans %}button.create{% endtrans %}">
+    {{ form_end(form) }}
+{% endblock %}
