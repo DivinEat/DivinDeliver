@@ -4,6 +4,7 @@ namespace App\Controller\Back;
 
 use App\Form\ProfileType;
 use App\Form\EditPasswordType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,14 +63,20 @@ class ProfileController extends AbstractController
     	$form = $this->createForm(EditPasswordType::class, $user);
 
     	$form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newEncodedPassword = $this->encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($newEncodedPassword);
+        if($form->isSubmitted() && $form->isValid()) {
+            $oldPassword = $request->request->get('edit_password')['oldPassword'];
 
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('admin_profile_index');
+            if($this->encoder->isPasswordValid($user, $oldPassword)) {
+                $newEncodedPassword = $this->encoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($newEncodedPassword);
+    
+                $em->persist($user);
+                $em->flush();
+    
+                return $this->redirectToRoute('admin_profile_index');
+            } else {
+                $form->addError(new FormError("Ancien mot de passe incorrect"));
+            }
         }
 
     	return $this->render('back/profile/editPassword.html.twig', array(
