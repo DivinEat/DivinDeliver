@@ -56,9 +56,15 @@ class User implements UserInterface
      */
     private $stores;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Store::class, inversedBy="users")
+     */
+    private $store;
+
     public function __construct()
     {
         $this->stores = new ArrayCollection();
+        $this->store = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -171,6 +177,23 @@ class User implements UserInterface
         if (!$this->stores->contains($store)) {
             $this->stores[] = $store;
             $store->setRestaurateur($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Store[]
+     */
+    public function getStore(): Collection
+    {
+        return $this->store;
+    }
+
+    public function removeStore(Store $store): self
+    {
+        if ($this->store->contains($store)) {
+            $this->store->removeElement($store);
         }
 
         return $this;
