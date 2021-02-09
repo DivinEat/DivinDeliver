@@ -47,6 +47,7 @@ user:
     word: User
     list: Users list
     edit: Edit user %user_firstname% %user_lastname%
+    new: Add user
     last_name: Lastname
     first_name: Firstname
     login: Login
@@ -69,6 +70,7 @@ order:
 settings:
     word: Settings
 password:
+    set_pwd_title: Set your password
     reset_pwd_title: Reset your password
     reset_link: Click here to reset your password
     reset_link_expired_title: Reset password link expired

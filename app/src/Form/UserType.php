@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Service\User\UserService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,8 +14,16 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserType extends AbstractType
 {
+    private $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $rolesList = $this->userService->getRolesList();
+
         $builder
             ->add('firstname', TextType::class, [
                 'label' => 'user.first_name'
@@ -27,7 +36,7 @@ class UserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'multiple' => false,
-                'choices'  => $options['roles_list']
+                'choices'  => $rolesList
             ])
         ;
 

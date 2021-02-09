@@ -47,6 +47,7 @@ user:
     word: Utilisateur
     list: Liste des utilisateurs
     edit: Edition de l'utilisateur %user_firstname% %user_lastname%
+    new: Ajouter un utilisateur
     last_name: Nom
     first_name: Prénom
     login: Se connecter
@@ -69,6 +70,7 @@ settings:
     placed_at: Commandé à
     estimated_ready_for_pickup_at: Prêt pour l'envoie à
 password:
+    set_pwd_title: Définissez votre mot de passe
     reset_pwd_title: Réinitialiser votre mot de passe
     reset_link: Cliquez ici pour réinitialiser votre mot de passe
     reset_link_expired_title: Lien de réinitialisation de mot de passe expiré
