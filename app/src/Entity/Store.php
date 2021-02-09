@@ -58,6 +58,10 @@ class Store
         $this->users = new ArrayCollection();
     }
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $storeIdFakeUberEat;
 
     public function getId(): ?int
     {
@@ -124,6 +128,17 @@ class Store
             $this->users->removeElement($user);
             $user->removeStore($this);
         }
+        return $this;
+    }
+
+    public function getStoreIdFakeUberEat(): ?String
+    {
+        return $this->storeIdFakeUberEat;
+    }
+
+    public function setStoreIdFakeUberEat(String $storeIdFakeUberEat): self
+    {
+        $this->storeIdFakeUberEat = $storeIdFakeUberEat;
 
         return $this;
     }
