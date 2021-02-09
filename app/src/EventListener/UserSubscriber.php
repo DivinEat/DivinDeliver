@@ -43,6 +43,7 @@ class UserSubscriber implements EventSubscriber
             return;
         }
 
-        $entity->setPassword($this->encoder->encodePassword($entity, $entity->getPassword()));
+        if ($this->encoder->needsRehash($entity))
+            $entity->setPassword($this->encoder->encodePassword($entity, $entity->getPassword()));
     }
 }

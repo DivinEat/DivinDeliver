@@ -9,10 +9,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="user_account", schema="iw")
+ * @UniqueEntity("email", message="user.email.unique")
  */
 class User implements UserInterface
 {
@@ -50,7 +52,7 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\OneToMany(targetEntity=Store::class, mappedBy="restaurateur")
+     * @ORM\OneToMany(targetEntity=Store::class, mappedBy="restaurateur", cascade={"persist"})
      */
     private $stores;
 
@@ -92,8 +94,6 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -168,8 +168,8 @@ class User implements UserInterface
 
     public function addStore(Store $store): self
     {
-        if (!$this->products->contains($store)) {
-            $this->products[] = $store;
+        if (!$this->stores->contains($store)) {
+            $this->stores[] = $store;
             $store->setRestaurateur($this);
         }
 

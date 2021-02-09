@@ -11,22 +11,15 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        {% if app.user %}
-            Impossible de tomber ici, du fait d'avoir une redirection au sein du controller security:login
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-
-        <label for="inputEmail">Email</label>
+        <label for="inputEmail">{% trans %}form.email{% endtrans %}</label>
         <input type="email" value="{{ last_username }}" name="email" class="form-control form-control-user" required autofocus>
         
-        <label for="inputPassword">Password</label>
+        <label for="inputPassword">{% trans %}form.password{% endtrans %}</label>
         <input type="password" name="password" class="form-control form-control-user" required>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50" type="submit">Sign in</button>
+        <button class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50" type="submit">{% trans %}user.login{% endtrans %}</button>
 
         <a href="{{ path('forgot_password') }}" class="dd-btn dd-btn-account dd-btn-account-red">{% trans %}password.forgot_password{% endtrans %}</a>
     </form>

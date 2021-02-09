@@ -1,6 +1,7 @@
 user:
     email:
         user_should_exist: Aucun utilisateur n'est enregistré avec l'email {{ email }}. Vous devez vous enregistrer.
+        unique: L'adresse mail {{ value }} est déjà utilisée.
 store:
     name.unique: Le nom {{ value }} est déjà utilisé.
     slug.unique: Le slug {{ value }} est déjà utilisé.

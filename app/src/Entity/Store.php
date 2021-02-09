@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\StoreRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
 use App\Validator\RestaurateurHasNoStore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -32,6 +33,7 @@ class Store
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
      */
     private $slug;
 

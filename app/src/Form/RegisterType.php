@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RegisterType extends AbstractType
 {
@@ -17,9 +18,6 @@ class RegisterType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'form.email',
-                'attr'   =>  [
-                    'class'   => 'form-control form-control-user'
-                ]
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -29,10 +27,11 @@ class RegisterType extends AbstractType
                 'second_options' => [
                     'label' => 'form.password_confirm'
                 ],
-                'attr'   =>  [
-                    'class'   => 'form-control form-control-user'
-                ]
             ])
+            ->add('stores', CollectionType::class, [
+                'entry_type' => StoreType::class,
+                'entry_options' => ['label' => false],
+            ]);
         ;
     }
 

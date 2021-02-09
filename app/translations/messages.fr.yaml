@@ -17,8 +17,8 @@ button:
     send: Envoyer
     reset: Réinitialiser
 form:
-    email: Votre email
-    password: Votre mot de passe
+    email: Email
+    password: Mot de passe
     password_confirm: Confirmez votre mot de passe
     slug: Slug
 menu:
@@ -41,7 +41,7 @@ item:
     dessert: Dessert
     drink: Boisson
 store: 
-    new: Create a restaurant
+    create: Créer un restaurant
 user:
     word: Utilisateur
     list: Liste des utilisateurs
@@ -51,6 +51,9 @@ user:
     login: Se connecter
     logout: Se déconnecter
     register: S'enregistrer
+    register_title: Inscription
+    login_title: Connexion
+    new_account: Nouveau compte
 order:
     word: Commande
 settings:
