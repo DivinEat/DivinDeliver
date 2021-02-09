@@ -5,8 +5,10 @@ namespace App\Controller\Back;
 use Exception;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\MailService;
 use App\Service\User\UserService;
 use App\Repository\UserRepository;
+use App\Service\User\ResetPasswordService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,10 +22,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     private $userService;
+    private $resetPasswordService;
+    private $mailService;
     
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, ResetPasswordService $resetPasswordService, MailService $mailService)
     {
         $this->userService = $userService;
+        $this->resetPasswordService = $resetPasswordService;        
+        $this->mailService = $mailService;     
     }
 
     /**
@@ -47,13 +53,42 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/new", name="new", methods={"GET","POST"})
+     * @IsGranted("ROLE_RESTAURATEUR")
+     */
+    public function new(Request $request): Response
+    {
+        $user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword(random_bytes(20));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('green', 'Utilisateur ajouté.');
+
+            $token = $this->resetPasswordService->generateResetPasswordRequest($user->getEmail());
+            $this->mailService->sendNewUserMail($user->getEmail(), $token, $user->getId());
+
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('back/user/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response
     {
-        $rolesList = $this->userService->getRolesList();
-        
-        $form = $this->createForm(UserType::class, $user, ['roles_list' => $rolesList]);
+        $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

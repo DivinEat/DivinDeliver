@@ -30,6 +30,19 @@ class MailService
     
         $this->sendMail($from, $to, $subject, $htmlTemplate, $context);
     }
+
+    /**
+     * Send a reset password mail to new user
+     */
+    public function sendNewUserMail(String $to, String $token, int $userid)
+    {
+        $subject = $this->translator->trans('password.set_pwd_title');
+        $from = 'noreply@divindeliver.com';
+        $htmlTemplate = 'emails/password/new_user_password.html.twig';
+        $context = ['token' => $token, 'userid' => $userid];
+    
+        $this->sendMail($from, $to, $subject, $htmlTemplate, $context);
+    }
     
     /**
      * Send a mail
