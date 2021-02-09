@@ -2,20 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ItemRepository;
+use App\Entity\Category;
+use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ItemRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
  */
 class Item
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use EntityTrait;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -32,11 +29,6 @@ class Item
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getTitle(): ?string
     {

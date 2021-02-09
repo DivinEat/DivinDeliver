@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 class Order
 {
+    
+    use EntityTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

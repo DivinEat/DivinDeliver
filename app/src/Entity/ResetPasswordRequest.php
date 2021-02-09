@@ -5,6 +5,7 @@ namespace App\Entity;
 use DateTime;
 use App\Entity\User;
 use DateTimeInterface;
+use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ResetPasswordRequestRepository;
 
@@ -13,6 +14,9 @@ use App\Repository\ResetPasswordRequestRepository;
  */
 class ResetPasswordRequest
 {
+
+    use EntityTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
