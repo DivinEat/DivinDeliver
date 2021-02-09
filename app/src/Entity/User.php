@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Entity\Store;
-use App\Validator as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="user_account", schema="iw")
+ * @ORM\Table(name="user_account")
  * @UniqueEntity("email", message="user.email.unique")
  */
 class User implements UserInterface
@@ -52,19 +51,13 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\OneToMany(targetEntity=Store::class, mappedBy="restaurateur", cascade={"persist"})
-     */
-    private $stores;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Store::class, inversedBy="users")
      */
-    private $store;
+    private $stores;
 
     public function __construct()
     {
         $this->stores = new ArrayCollection();
-        $this->store = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,33 +160,28 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Store[]
+     */
     public function getStores(): Collection
     {
         return $this->stores;
+    }
+
+    public function removeStore(Store $store): self
+    {
+        if ($this->stores->contains($store)) {
+            $this->stores->removeElement($store);
+        }
+
+        return $this;
     }
 
     public function addStore(Store $store): self
     {
         if (!$this->stores->contains($store)) {
             $this->stores[] = $store;
-            $store->setRestaurateur($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Store[]
-     */
-    public function getStore(): Collection
-    {
-        return $this->store;
-    }
-
-    public function removeStore(Store $store): self
-    {
-        if ($this->store->contains($store)) {
-            $this->store->removeElement($store);
+            $store->addUser($this);
         }
 
         return $this;

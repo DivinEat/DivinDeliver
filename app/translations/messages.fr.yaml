@@ -42,6 +42,7 @@ item:
     drink: Boisson
 store: 
     create: Créer un restaurant
+    id_fake_ubereat: Store Id pour FakeUberEat
 user:
     word: Utilisateur
     list: Liste des utilisateurs
