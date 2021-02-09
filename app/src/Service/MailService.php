@@ -24,10 +24,10 @@ class MailService
     public function sendResetPasswordMail(String $to, String $token, int $userid)
     {
         $subject = $this->translator->trans('password.reset_pwd_title');
-        $from = 'noreply@divindeliver.com';
+        $from = 'tao.berquer@gmail.com';
         $htmlTemplate = 'emails/password/reset_password.html.twig';
         $context = ['token' => $token, 'userid' => $userid];
-    
+
         $this->sendMail($from, $to, $subject, $htmlTemplate, $context);
     }
 
@@ -37,13 +37,13 @@ class MailService
     public function sendNewUserMail(String $to, String $token, int $userid)
     {
         $subject = $this->translator->trans('password.set_pwd_title');
-        $from = 'noreply@divindeliver.com';
+        $from = 'tao.berquer@gmail.com';
         $htmlTemplate = 'emails/password/new_user_password.html.twig';
         $context = ['token' => $token, 'userid' => $userid];
-    
+
         $this->sendMail($from, $to, $subject, $htmlTemplate, $context);
     }
-    
+
     /**
      * Send a mail
      */
