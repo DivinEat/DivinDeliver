@@ -110,11 +110,13 @@ class MenuController extends AbstractController
     }
 
     /**
-     * @Route("/push/ubereats", methods={"GET"})
+     * @Route("/push/ubereats", name="push_ubereats", methods={"GET"})
      */
     public function pushUberEatsMenu(MenuUberEatsService $menuUberEatsService)
     {
         $menuUberEatsService->upload();
+
+        $this->addFlash('green', 'Envoi effectué');
 
         return $this->redirectToRoute('admin_menu_index');
     }
