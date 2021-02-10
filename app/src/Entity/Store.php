@@ -44,12 +44,7 @@ class Store
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stores")
-     */
-    private $restaurateur;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="store")
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="stores", cascade={"persist"})
      */
     private $users;
 
@@ -88,18 +83,6 @@ class Store
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getRestaurateur(): ?User
-    {
-        return $this->restaurateur;
-    }
-
-    public function setRestaurateur(User $restaurateur): self
-    {
-        $this->restaurateur = $restaurateur;
 
         return $this;
     }
