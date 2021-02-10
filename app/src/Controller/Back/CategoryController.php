@@ -48,6 +48,7 @@ class CategoryController extends AbstractController
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $category->setStore($this->getUser()->getStores()->first());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();

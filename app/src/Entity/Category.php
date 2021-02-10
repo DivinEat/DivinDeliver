@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Store;
 use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
@@ -37,6 +38,11 @@ class Category
      * @ORM\Column(type="string", length=255)
      */
     private $subtitle;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="categories")
+     */
+    private $store;
 
     public function __construct()
     {
@@ -94,6 +100,18 @@ class Category
     public function setSubtitle(string $subtitle): self
     {
         $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    public function getStore(): ?Store
+    {
+        return $this->store;
+    }
+
+    public function setStore(Store $store): self
+    {
+        $this->store = $store;
 
         return $this;
     }
