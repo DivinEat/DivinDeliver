@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Store;
 use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MenuRepository;
@@ -32,6 +33,11 @@ class Menu
      * @ORM\ManyToMany(targetEntity=Category::class)
      */
     private $categories;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="menus")
+     */
+    private $store;
 
     public function __construct()
     {
@@ -72,13 +78,15 @@ class Menu
         return $this;
     }
 
-    public function removeCategory(Category $category): self
+    public function getStore(): ?Store
     {
-        if ($this->categories->contains($category)) {
-            $this->categories->removeElement($category);
-        }
+        return $this->store;
+    }
+    
+    public function setStore(Store $store): self
+    {
+        $this->store = $store;
 
         return $this;
     }
-
 }

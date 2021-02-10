@@ -2,9 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Store;
 use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderRepository;
 
+/**
+ * @ORM\Entity(repositoryClass=OrderRepository::class)
+ */
 class Order
 {
     
@@ -31,6 +36,11 @@ class Order
      * @ORM\Column(type="string", length=255)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="orders")
+     */
+    private $store;
 
     public function getId(): ?int
     {
@@ -69,6 +79,18 @@ class Order
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getStore(): ?Store
+    {
+        return $this->store;
+    }
+
+    public function setStore(Store $store): self
+    {
+        $this->store = $store;
 
         return $this;
     }
