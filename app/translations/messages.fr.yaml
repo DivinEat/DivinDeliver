@@ -27,6 +27,7 @@ menu:
     new: Création d'un nouveau menu
     back: Retour aux menus
     send_ubereats: Envoyer sur Uber Eats
+    fetch_ubereats: Import from Uber Eats
 category:
     word: Catégorie
     list: Liste des catégories

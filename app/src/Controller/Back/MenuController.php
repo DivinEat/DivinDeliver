@@ -116,9 +116,23 @@ class MenuController extends AbstractController
      */
     public function pushUberEatsMenu(MenuUberEatsService $menuUberEatsService)
     {
-        $menuUberEatsService->upload();
+        $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
+        $menuUberEatsService->upload($storeID);
 
         $this->addFlash('green', 'Envoi effectué');
+
+        return $this->redirectToRoute('admin_menu_index');
+    }
+
+    /**
+     * @Route("/fetch/ubereats", name="fetch_ubereats", methods={"GET"})
+     */
+    public function fetchUberEatsMenu(MenuUberEatsService $menuUberEatsService)
+    {
+        $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
+        $menuUberEatsService->fetch($storeID);
+
+        $this->addFlash('green', 'Récupération effectué');
 
         return $this->redirectToRoute('admin_menu_index');
     }

@@ -6,7 +6,10 @@
     <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
 
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('admin_menu_push_ubereats') }}" class="dd-btn dd-btn-primary dd-btn-primary-send">{% trans %}menu.send_ubereats{% endtrans %}</a>
+        <div class="row right-align">
+            <a href="{{ path('admin_menu_push_ubereats') }}" class="dd-btn dd-btn-primary ">{% trans %}menu.send_ubereats{% endtrans %}</a>
+            <a href="{{ path('admin_menu_fetch_ubereats') }}" class="dd-btn dd-btn-primary ">{% trans %}menu.fetch_ubereats{% endtrans %}</a>
+        </div>
         <a href="{{ path('admin_menu_new') }}" class="add"><i class="material-icons">control_point</i></a>
     {% endif %}
     
