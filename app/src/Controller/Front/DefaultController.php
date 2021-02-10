@@ -17,7 +17,6 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        dump($this->getUser());
         return $this->render('front/default/index.html.twig');
     }
 
