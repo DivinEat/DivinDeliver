@@ -49,6 +49,8 @@ class MenuController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $menu->setStore($this->getUser()->getStores()->first());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($menu);
             $em->flush();

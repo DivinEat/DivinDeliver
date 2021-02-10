@@ -68,8 +68,6 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             
             $em->persist($user);
-            $em->persist($store);
-
             $em->flush();
 
             return $this->redirectToRoute('admin_default_index');

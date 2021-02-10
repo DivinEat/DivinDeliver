@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Store;
 use App\Entity\Category;
 use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,6 +30,11 @@ class Item
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="items")
+     */
+    private $store;
 
     public function getTitle(): ?string
     {
@@ -66,5 +72,15 @@ class Item
         return $this;
     }
 
-    
+    public function getStore(): ?Store
+    {
+        return $this->store;
+    }
+
+    public function setStore(Store $store): self
+    {
+        $this->store = $store;
+
+        return $this;
+    } 
 }

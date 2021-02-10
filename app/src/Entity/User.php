@@ -55,7 +55,7 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Store::class, inversedBy="users")
+     * @ORM\ManyToMany(targetEntity=Store::class, mappedBy="users", cascade={"persist"})
      */
     private $stores;
 

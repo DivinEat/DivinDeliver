@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Item;
+use App\Entity\Menu;
 use App\Entity\User;
+use App\Entity\Category;
+use App\Entity\Order;
 use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\StoreRepository;
@@ -44,18 +48,37 @@ class Store
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stores")
-     */
-    private $restaurateur;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="store")
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="stores", cascade={"persist"})
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="stores", cascade={"persist"})
+     */
+    private $items;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="stores", cascade={"persist"})
+     */
+    private $categories;
+    
+    /**
+     * @ORM\OneToMany(targetEntity=Menu::class, mappedBy="stores", cascade={"persist"})
+     */
+    private $menus;
+    
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="stores", cascade={"persist"})
+     */
+    private $orders;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->items = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->menus = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     /**
@@ -88,18 +111,6 @@ class Store
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getRestaurateur(): ?User
-    {
-        return $this->restaurateur;
-    }
-
-    public function setRestaurateur(User $restaurateur): self
-    {
-        $this->restaurateur = $restaurateur;
 
         return $this;
     }
@@ -139,6 +150,66 @@ class Store
     public function setStoreIdFakeUberEat(String $storeIdFakeUberEat): self
     {
         $this->storeIdFakeUberEat = $storeIdFakeUberEat;
+
+        return $this;
+    }
+
+    public function getItems(): ?Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->setStore($this);
+        }
+
+        return $this;
+    }
+    
+    public function getCategories(): ?Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setStore($this);
+        }
+
+        return $this;
+    }
+
+    public function getMenus(): ?Collection
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setStore($this);
+        }
+
+        return $this;
+    }
+
+    public function getOrders(): ?Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setStore($this);
+        }
 
         return $this;
     }
