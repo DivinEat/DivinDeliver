@@ -48,19 +48,32 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}", name="show", methods={"GET"})
+     * @Route("/accept/{id}", name="accept", methods={"GET"})
      */
-    public function show(): Response
+    public function accept(Request $request): Response
     {
-        return $this->render('back/order/show.html.twig');
+        $this->orderSDK->acceptOrder($request->get('id'));
+
+        return $this->redirectToRoute('admin_order_index');
     }
 
     /**
-     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_RESTAURATEUR")
+     * @Route("/deny/{id}", name="deny", methods={"GET"})
      */
-    public function edit(): Response
+    public function deny(Request $request): Response
     {
-        return $this->render('back/order/edit.html.twig');
+        $this->orderSDK->denyOrder($request->get('id'));
+
+        return $this->redirectToRoute('admin_order_index');
+    }
+
+    /**
+     * @Route("/cancel/{id}", name="cancel", methods={"GET"})
+     */
+    public function cancel(Request $request): Response
+    {
+        $this->orderSDK->cancelOrder($request->get('id'));
+
+        return $this->redirectToRoute('admin_order_index');
     }
 }

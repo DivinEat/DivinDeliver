@@ -38,10 +38,13 @@
                         <td>{{ order.payment.charges.total_fee.formatted_amount }}</td>
                         <td>{{ order.placed_at }}</td>
                         <td>{{ order.estimated_ready_for_pickup_at }}</td>
+                        {% if order.current_state is not same as('CANCELED') %}
                         <td>
-                            <a href="{{ path('admin_order_show', {id: order.display_id}) }}"><i class="material-icons">remove_red_eye</i></a>
-                            <a href="{{ path('admin_order_edit', {id: order.display_id}) }}"><i class="material-icons">mode</i></a>
+                            <a href="{{ path('admin_order_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
+                            <a href="{{ path('admin_order_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
+                            <a href="{{ path('admin_order_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
                         </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
