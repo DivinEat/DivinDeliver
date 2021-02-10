@@ -7,9 +7,11 @@ namespace App\Service;
 use App\Entity\Category;
 use App\Entity\Item;
 use App\Entity\Menu;
+use App\Entity\Store;
 use App\Repository\CategoryRepository;
 use App\Repository\ItemRepository;
 use App\Repository\MenuRepository;
+use App\Repository\StoreRepository;
 use App\SDK\UberEats\MenuSDK;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
@@ -38,14 +40,19 @@ class MenuUberEatsService
      * @var EntityManagerInterface
      */
     private EntityManagerInterface $entityManager;
+    /**
+     * @var StoreRepository
+     */
+    private StoreRepository $storeRepository;
 
-    public function __construct(MenuSDK $menuSDK, MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
+    public function __construct(MenuSDK $menuSDK, StoreRepository $storeRepository,MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
     {
         $this->menuRepository = $menuRepository;
         $this->categoryRepository = $categoryRepository;
         $this->itemRepository = $itemRepository;
         $this->menuSDK = $menuSDK;
         $this->entityManager = $entityManager;
+        $this->storeRepository = $storeRepository;
     }
 
     public function upload(string $storeID)
@@ -61,18 +68,20 @@ class MenuUberEatsService
     public function fetch(string $storeID)
     {
         $menu = $this->menuSDK->getMenus($storeID);
-        $returned = $this->createCategories($menu['categories']);
-        $this->createItems($menu['items'], $returned[1]);
-        $this->createMenus($menu['menus'], $returned[0]);
+        $store = $this->storeRepository->findBy(['store_id_fake_uber_eat', $storeID]);
+        $returned = $this->createCategories($menu['categories'], $store);
+        $this->createItems($menu['items'], $returned[1], $store);
+        $this->createMenus($menu['menus'], $returned[0], $store);
     }
 
-    public function createItems(array $items, array $idToAdd): void
+    public function createItems(array $items, array $idToAdd, Store $store): void
     {
-        array_map(function (array $item) use ($idToAdd){
+        array_map(function (array $item) use ($idToAdd, $store){
             $createdItem = new Item();
             $createdItem->setTitle($item['title']);
             $createdItem->setPriceInfo($item['price_info']);
             $createdItem->setCategory($this->categoryRepository->find($idToAdd[$item['id']]));
+            $createdItem->setStore($store);
 
             $this->entityManager->persist($createdItem);
         }, $items);
@@ -80,14 +89,15 @@ class MenuUberEatsService
         $this->entityManager->flush();
     }
 
-    public function createCategories(array $categories): array
+    public function createCategories(array $categories, Store $store): array
     {
         $convertedIDs = [];
         $idToAdd = [];
-        array_map(function (array $category) use (&$idToAdd, &$convertedIDs) {
+        array_map(function (array $category) use ($store, &$idToAdd, &$convertedIDs) {
             $createdCategory = new Category();
             $createdCategory->setTitle($category['title']);
             $createdCategory->setSubtitle($category['title']);
+            $createdCategory->setStore($store);
 
             $this->entityManager->persist($createdCategory);
             $convertedIDs[$category['id']] = $createdCategory->getId();
@@ -100,11 +110,12 @@ class MenuUberEatsService
         return [$convertedIDs, $idToAdd];
     }
 
-    public function createMenus(array $menus, array $convertedId): void
+    public function createMenus(array $menus, array $convertedId, Store $store): void
     {
-        array_map(function (array $menu) use ($convertedId) {
+        array_map(function (array $menu) use ($convertedId, $store) {
             $createdMenu = new Menu();
             $createdMenu->setTitle($menu['title']);
+            $createdMenu->setStore($store);
 
             foreach ($menu['category_ids'] as $entity)
                 $createdMenu->addCategory($this->categoryRepository->find($convertedId[$entity]));
