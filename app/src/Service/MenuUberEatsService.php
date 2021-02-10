@@ -68,8 +68,8 @@ class MenuUberEatsService
     public function fetch(string $storeID)
     {
         $menu = $this->menuSDK->getMenus($storeID);
-        $store = $this->storeRepository->findBy(['store_id_fake_uber_eat', $storeID]);
-        $returned = $this->createCategories($menu['categories'], $store);
+        $store = $this->storeRepository->findBy(['storeIdFakeUberEat' => $storeID]);
+        $returned = $this->createCategories($menu['categories'], $store)[0];
         $this->createItems($menu['items'], $returned[1], $store);
         $this->createMenus($menu['menus'], $returned[0], $store);
     }
