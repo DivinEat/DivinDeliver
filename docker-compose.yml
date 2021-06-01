@@ -33,6 +33,15 @@ services:
       #- app-front:/srv/app/public/build
       - app-sf-cache:/srv/app/var
 
+  mercure:
+    image: dunglas/mercure
+    environment:
+      - SERVER_NAME=:3000
+      - MERCURE_PUBLISHER_JWT_KEY=’!ChangeMe!’
+      - MERCURE_SUBSCRIBER_JWT_KEY=’!ChangeMe!’
+    ports:
+      - "9090:3000"
+
   nginx:
     image: ${NGINX_IMAGE:-iw/nginx}
     build:
