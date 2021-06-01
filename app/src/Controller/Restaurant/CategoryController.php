@@ -22,7 +22,7 @@ class CategoryController extends AbstractController
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
-        return $this->render('back/category/index.html.twig', [
+        return $this->render('restaurant/category/index.html.twig', [
             'categories' => $categoryRepository->getCategoriesByUser($this->getUser()),
         ]);
     }
@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $category->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        return $this->render('back/category/show.html.twig', [
+        return $this->render('restaurant/category/show.html.twig', [
             'category' => $category,
         ]);
     }
@@ -63,7 +63,7 @@ class CategoryController extends AbstractController
             ]);
         }
 
-        return $this->render('back/category/new.html.twig', [
+        return $this->render('restaurant/category/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -90,7 +90,7 @@ class CategoryController extends AbstractController
             ]);
         }
 
-        return $this->render('back/category/edit.html.twig', [
+        return $this->render('restaurant/category/edit.html.twig', [
             'form' => $form->createView(),
             'category' => $category
         ]);

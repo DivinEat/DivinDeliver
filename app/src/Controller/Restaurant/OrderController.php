@@ -44,7 +44,7 @@ class OrderController extends AbstractController
             $orders = $this->orderSDK->getCancelOrders($storeID);
         }
 
-        return $this->render('back/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
+        return $this->render('restaurant/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
     }
 
     /**

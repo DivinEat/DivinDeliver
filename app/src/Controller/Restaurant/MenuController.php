@@ -22,7 +22,7 @@ class MenuController extends AbstractController
      */
     public function index(MenuRepository $menuRepository)
     {
-        return $this->render('back/menu/index.html.twig', [
+        return $this->render('restaurant/menu/index.html.twig', [
             'menus' => $menuRepository->getMenusByUser($this->getUser())
         ]);
     }
@@ -35,7 +35,7 @@ class MenuController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $menu->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        return $this->render('back/menu/show.html.twig', [
+        return $this->render('restaurant/menu/show.html.twig', [
             'menu' => $menu
         ]);
     }
@@ -65,7 +65,7 @@ class MenuController extends AbstractController
             ]);
         }
 
-        return $this->render('back/menu/new.html.twig', [
+        return $this->render('restaurant/menu/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -92,7 +92,7 @@ class MenuController extends AbstractController
             ]);
         }
 
-        return $this->render('back/menu/edit.html.twig', [
+        return $this->render('restaurant/menu/edit.html.twig', [
             'form' => $form->createView(),
             'menu' => $menu
         ]);

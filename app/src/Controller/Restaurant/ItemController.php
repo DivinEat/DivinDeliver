@@ -24,7 +24,7 @@ class ItemController extends AbstractController
      */
     public function index(ItemRepository $itemRepository)
     {
-        return $this->render('back/item/index.html.twig', [
+        return $this->render('restaurant/item/index.html.twig', [
             'items' => $itemRepository->getCategoriesByUser($this->getUser())
         ]);
     }
@@ -37,7 +37,7 @@ class ItemController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $item->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        return $this->render('back/item/show.html.twig', [
+        return $this->render('restaurant/item/show.html.twig', [
             'item' => $item
         ]);
     }
@@ -66,7 +66,7 @@ class ItemController extends AbstractController
             ]);
         }
 
-        return $this->render('back/item/new.html.twig', [
+        return $this->render('restaurant/item/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -93,7 +93,7 @@ class ItemController extends AbstractController
             ]);
         }
 
-        return $this->render('back/item/edit.html.twig', [
+        return $this->render('restaurant/item/edit.html.twig', [
             'form' => $form->createView(),
             'item' => $item
         ]);

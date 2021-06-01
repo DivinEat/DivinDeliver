@@ -32,7 +32,7 @@ class LinkAppController extends AbstractController
             $em->flush();
         }
 
-        return $this->render('back/link/index.html.twig', [
+        return $this->render('restaurant/link/index.html.twig', [
             'form' => $form->createView(),
             'apps' => $authAppRepository->findAll()
         ]);

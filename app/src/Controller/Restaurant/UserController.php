@@ -38,7 +38,7 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('back/user/index.html.twig', [
+        return $this->render('restaurant/user/index.html.twig', [
             'users' => $userRepository->getUsersByUser($this->getUser()),
         ]);
     }
@@ -52,7 +52,7 @@ class UserController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $user->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        return $this->render('back/user/show.html.twig', [
+        return $this->render('restaurant/user/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -83,7 +83,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('restaurant_user_index');
         }
 
-        return $this->render('back/user/new.html.twig', [
+        return $this->render('restaurant/user/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -108,7 +108,7 @@ class UserController extends AbstractController
             ]);
         }
 
-        return $this->render('back/user/edit.html.twig', [
+        return $this->render('restaurant/user/edit.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);

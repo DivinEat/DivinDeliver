@@ -12,6 +12,6 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        return $this->render('back/default/index.html.twig');
+        return $this->render('restaurant/default/index.html.twig');
     }
 }
