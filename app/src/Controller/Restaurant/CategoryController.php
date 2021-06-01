@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller\Restaurant;
 
 use Exception;
 use App\Entity\Category;
@@ -58,7 +58,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('green', 'Catégorie créée.');
 
-            return $this->redirectToRoute('admin_category_index', [
+            return $this->redirectToRoute('restaurant_category_index', [
                 'id' => $category->getId()
             ]);
         }
@@ -85,7 +85,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('green', 'Catégorie modifiée.');
 
-            return $this->redirectToRoute('admin_category_edit', [
+            return $this->redirectToRoute('restaurant_category_edit', [
                 'id' => $category->getId()
             ]);
         }
@@ -115,6 +115,6 @@ class CategoryController extends AbstractController
         $em->remove($category);
         $em->flush();
 
-        return $this->redirectToRoute('admin_category_index');
+        return $this->redirectToRoute('restaurant_category_index');
     }
 }

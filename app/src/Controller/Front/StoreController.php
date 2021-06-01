@@ -30,7 +30,7 @@ class StoreController extends AbstractController
             $em->persist($store);
             $em->flush();
 
-            return $this->redirectToRoute('admin_default_index');
+            return $this->redirectToRoute('restaurant_default_index');
         }
 
         return $this->render('front/store/new.html.twig', [

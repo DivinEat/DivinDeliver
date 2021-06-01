@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="title">{% trans %}item.list{% endtrans %}</h1>
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('admin_item_new') }}" class="add"><i class="material-icons">control_point</i></a>
+        <a href="{{ path('restaurant_item_new') }}" class="add"><i class="material-icons">control_point</i></a>
     {% endif %}
 
     <div class="col s12 m12 l6 offset-l2 center">
@@ -25,14 +25,14 @@
                         <td>{{ item.title }}</td>
                         <td>{{ item.priceInfo }}</td>
                         <td>
-                            <a href="{{ path('admin_item_show', {id: item.id}) }}">
+                            <a href="{{ path('restaurant_item_show', {id: item.id}) }}">
                                 <i class="material-icons">remove_red_eye</i>
                             </a>
                             {% if is_granted('ROLE_RESTAURATEUR') %}
-                                <a href="{{ path('admin_item_edit', {id: item.id}) }}">
+                                <a href="{{ path('restaurant_item_edit', {id: item.id}) }}">
                                     <i class="material-icons">mode</i>
                                 </a>
-                                <a href="{{ path('admin_item_delete', {id: item.id, token: csrf_token('delete_item' ~ item.title)}) }}">
+                                <a href="{{ path('restaurant_item_delete', {id: item.id, token: csrf_token('delete_item' ~ item.title)}) }}">
                                     <i class="material-icons">delete</i>
                                 </a>
                             {% endif %}

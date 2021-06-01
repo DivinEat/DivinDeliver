@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller\Restaurant;
 
 use App\Entity\Item;
 use App\Form\ItemType;
@@ -61,7 +61,7 @@ class ItemController extends AbstractController
 
             $this->addFlash('green', 'Produit créé.');
 
-            return $this->redirectToRoute('admin_item_index', [
+            return $this->redirectToRoute('restaurant_item_index', [
                 'id' => $item->getId()
             ]);
         }
@@ -88,7 +88,7 @@ class ItemController extends AbstractController
 
             $this->addFlash('green', 'Produit modifié.');
 
-            return $this->redirectToRoute('admin_item_edit', [
+            return $this->redirectToRoute('restaurant_item_edit', [
                 'id' => $item->getId()
             ]);
         }
@@ -118,6 +118,6 @@ class ItemController extends AbstractController
         $em->remove($item);
         $em->flush();
 
-        return $this->redirectToRoute('admin_item_index');
+        return $this->redirectToRoute('restaurant_item_index');
     }
 }

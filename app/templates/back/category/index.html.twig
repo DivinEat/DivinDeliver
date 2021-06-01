@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="title">{% trans %}category.list{% endtrans %}</h1>
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('admin_category_new') }}" class="add"><i class="material-icons">control_point</i></a>
+        <a href="{{ path('restaurant_category_new') }}" class="add"><i class="material-icons">control_point</i></a>
     {% endif %}
 
     <div class="col s12 m12 l6 offset-l2 center">
@@ -23,14 +23,14 @@
                         <td>{{ category.title }}</td>
                         <td>{{ category.subtitle }}</td>
                         <td>
-                            <a href="{{ path('admin_category_show', {id: category.id}) }}" >
+                            <a href="{{ path('restaurant_category_show', {id: category.id}) }}" >
                                 <i class="material-icons">remove_red_eye</i>
                             </a>
                             {% if is_granted('ROLE_RESTAURATEUR') %}
-                                <a href="{{ path('admin_category_edit', {id: category.id}) }}">
+                                <a href="{{ path('restaurant_category_edit', {id: category.id}) }}">
                                     <i class="material-icons">mode</i>
                                 </a>
-                                <a href="{{ path('admin_category_delete', {id: category.id, token: csrf_token('delete_category' ~ category.title)}) }}">
+                                <a href="{{ path('restaurant_category_delete', {id: category.id, token: csrf_token('delete_category' ~ category.title)}) }}">
                                     <i class="material-icons">delete</i>
                                 </a>
                             {% endif %}

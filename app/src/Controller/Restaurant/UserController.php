@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller\Restaurant;
 
 use Exception;
 use App\Entity\User;
@@ -80,7 +80,7 @@ class UserController extends AbstractController
             $token = $this->resetPasswordService->generateResetPasswordRequest($user->getEmail());
             $this->mailService->sendNewUserMail($user->getEmail(), $token, $user->getId());
 
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('restaurant_user_index');
         }
 
         return $this->render('back/user/new.html.twig', [
@@ -103,7 +103,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_user_edit', [
+            return $this->redirectToRoute('restaurant_user_edit', [
                 'id' => $user->getId()
             ]);
         }
@@ -131,6 +131,6 @@ class UserController extends AbstractController
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('admin_user_index');
+        return $this->redirectToRoute('restaurant_user_index');
     }
 }

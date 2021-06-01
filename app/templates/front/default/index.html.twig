@@ -7,6 +7,6 @@
     {% if not app.user %}
         <a href="{{ path(('app_register')) }}" class="create-button">{% trans %}store.create{% endtrans %}</a>
     {% else %}
-        <a href="{{ path('admin_default_index') }}" class="create-button">{% trans %}my-restaurant{% endtrans %}</a>
+        <a href="{{ path('restaurant_default_index') }}" class="create-button">{% trans %}my-restaurant{% endtrans %}</a>
     {% endif %}
 {% endblock %}

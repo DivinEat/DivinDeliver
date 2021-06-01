@@ -6,10 +6,22 @@ controllers_front:
     resource: ../../src/Controller/Front
     type: annotation
 
-controllers_back:
-    resource: ../../src/Controller/Back
+controllers_admin:
+    resource: ../../src/Controller/Admin
     name_prefix: admin_
     prefix: /admin
+    type: annotation
+
+controllers_restaurant:
+    resource: ../../src/Controller/Restaurant
+    name_prefix: restaurant_
+    prefix: /restaurant
+    type: annotation
+
+controllers_back:
+    resource: ../../src/Controller/Back/
+    name_prefix: back_
+    prefix: /
     type: annotation
 
 kernel:

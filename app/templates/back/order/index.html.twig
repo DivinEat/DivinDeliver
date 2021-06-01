@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
 
-    <form action"{{ path('admin_order_index') }}" method="get">
+    <form action"{{ path('restaurant_order_index') }}" method="get">
         <select name="choice" id="choice" class="browser-default" onchange="this.form.submit()">
             <option value="accepted">Accepted</option>
             <option value="canceled">Canceled</option>
@@ -40,9 +40,9 @@
                         <td>{{ order.estimated_ready_for_pickup_at }}</td>
                         {% if order.current_state is not same as('CANCELED') %}
                         <td>
-                            <a href="{{ path('admin_order_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
-                            <a href="{{ path('admin_order_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
-                            <a href="{{ path('admin_order_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
+                            <a href="{{ path('restaurant_order_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
+                            <a href="{{ path('restaurant_order_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
+                            <a href="{{ path('restaurant_order_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
                         </td>
                         {% endif %}
                     </tr>

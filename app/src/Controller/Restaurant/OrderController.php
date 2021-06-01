@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller\Restaurant;
 
 use App\Repository\UserRepository;
 use App\SDK\UberEats\OrderSDK;
@@ -54,7 +54,7 @@ class OrderController extends AbstractController
     {
         $this->orderSDK->acceptOrder($request->get('id'));
 
-        return $this->redirectToRoute('admin_order_index');
+        return $this->redirectToRoute('restaurant_order_index');
     }
 
     /**
@@ -64,7 +64,7 @@ class OrderController extends AbstractController
     {
         $this->orderSDK->denyOrder($request->get('id'));
 
-        return $this->redirectToRoute('admin_order_index');
+        return $this->redirectToRoute('restaurant_order_index');
     }
 
     /**
@@ -74,6 +74,6 @@ class OrderController extends AbstractController
     {
         $this->orderSDK->cancelOrder($request->get('id'));
 
-        return $this->redirectToRoute('admin_order_index');
+        return $this->redirectToRoute('restaurant_order_index');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller\Back;
+namespace App\Controller\Restaurant;
 
 
 use App\Entity\AuthApp;

@@ -15,7 +15,7 @@
             <nav class="navbar white">
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{ path('admin_profile_index') }}"><i class="material-icons">person</i></a></li>
+                        <li><a href="{{ path('back_profile_index') }}"><i class="material-icons">person</i></a></li>
                         <li><a href="{{ path('app_logout') }}"><i class="material-icons">exit_to_app</i></a></li>
                     </ul>
                     <i class="material-icons black-text">dashboard</i>
@@ -24,19 +24,19 @@
         </header>
 
         <ul id="sidenav-left" class="sidenav grey" style="transform: translateX(0px);">
-            <li><a href="{{ path('admin_default_index') }}" class="logo-container">Admin</a></li>
+            <li><a href="{{ path('restaurant_default_index') }}" class="logo-container">Admin</a></li>
             
             {% if is_granted('ROLE_RESTAURATEUR') %}
-                <li><a href="{{ path('admin_default_index') }}">Dashboard</a></li>
+                <li><a href="{{ path('restaurant_default_index') }}">Dashboard</a></li>
             {% endif %}
 
-            <li><a href="{{ path('admin_menu_index') }}">Menu</a></li>
-            <li><a href="{{ path('admin_item_index') }}">{% trans %}item.word{% endtrans %}</a></li>
-            <li><a href="{{ path('admin_category_index') }}">{% trans %}category.word{% endtrans %}</a></li>
-            <li><a href="{{ path('admin_order_index') }}">{% trans %}order.word{% endtrans %}</a></li>
+            <li><a href="{{ path('restaurant_menu_index') }}">Menu</a></li>
+            <li><a href="{{ path('restaurant_item_index') }}">{% trans %}item.word{% endtrans %}</a></li>
+            <li><a href="{{ path('restaurant_category_index') }}">{% trans %}category.word{% endtrans %}</a></li>
+            <li><a href="{{ path('restaurant_order_index') }}">{% trans %}order.word{% endtrans %}</a></li>
             
             {% if is_granted('ROLE_RESTAURATEUR') %}
-                <li><a href="{{ path('admin_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
+                <li><a href="{{ path('restaurant_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
                 <li><a href="">Images</a></li>
                 <li><a href="">{% trans %}settings.word{% endtrans %}</a></li>
             {% endif %}

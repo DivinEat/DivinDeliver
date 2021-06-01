@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller\Restaurant;
 
 use App\Entity\Menu;
 use App\Form\MenuType;
@@ -60,7 +60,7 @@ class MenuController extends AbstractController
 
             $this->addFlash('green', 'Menu créé.');
 
-            return $this->redirectToRoute('admin_menu_index', [
+            return $this->redirectToRoute('restaurant_menu_index', [
                 'id' => $menu->getId()
             ]);
         }
@@ -87,7 +87,7 @@ class MenuController extends AbstractController
 
             $this->addFlash('green', 'Menu modifié.');
 
-            return $this->redirectToRoute('admin_menu_edit', [
+            return $this->redirectToRoute('restaurant_menu_edit', [
                 'id' => $menu->getId()
             ]);
         }
@@ -117,7 +117,7 @@ class MenuController extends AbstractController
         $em->remove($menu);
         $em->flush();
 
-        return $this->redirectToRoute('admin_menu_index');
+        return $this->redirectToRoute('restaurant_menu_index');
     }
 
     /**
@@ -130,7 +130,7 @@ class MenuController extends AbstractController
 
         $this->addFlash('green', 'Envoi effectué');
 
-        return $this->redirectToRoute('admin_menu_index');
+        return $this->redirectToRoute('restaurant_menu_index');
     }
 
     /**
@@ -143,6 +143,6 @@ class MenuController extends AbstractController
 
         $this->addFlash('green', 'Récupération effectué');
 
-        return $this->redirectToRoute('admin_menu_index');
+        return $this->redirectToRoute('restaurant_menu_index');
     }
 }

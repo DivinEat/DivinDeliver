@@ -44,7 +44,7 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_profile_index');
+            return $this->redirectToRoute('back_profile_index');
         }
 
         return $this->render('back/profile/edit.html.twig', [

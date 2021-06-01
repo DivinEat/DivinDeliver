@@ -3,7 +3,7 @@
 {% block title %}Menu {{ menu.title }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('admin_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
+    <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
     <br>
     Menu : {{ menu.title }} <br>
     {% trans %}title{% endtrans %} : {{ menu.title }} <br>
@@ -12,5 +12,5 @@
         {{ category.title }}
     {% endfor %}
     <br>
-    <a href="{{ path('admin_menu_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+    <a href="{{ path('restaurant_menu_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
 {% endblock %}
