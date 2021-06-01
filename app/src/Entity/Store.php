@@ -53,22 +53,22 @@ class Store
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="stores", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="store", cascade={"persist"})
      */
     private $items;
 
     /**
-     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="stores", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="store", cascade={"persist"})
      */
     private $categories;
     
     /**
-     * @ORM\OneToMany(targetEntity=Menu::class, mappedBy="stores", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Menu::class, mappedBy="store", cascade={"persist"})
      */
     private $menus;
     
     /**
-     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="stores", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="store", cascade={"persist"})
      */
     private $orders;
 

@@ -23,7 +23,7 @@ class MenuController extends AbstractController
     public function index(MenuRepository $menuRepository)
     {
         return $this->render('back/menu/index.html.twig', [
-            'menus' => $menuRepository->findAll()
+            'menus' => $menuRepository->getMenusByUser($this->getUser())
         ]);
     }
 
@@ -32,6 +32,9 @@ class MenuController extends AbstractController
      */
     public function show(Menu $menu)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $menu->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         return $this->render('back/menu/show.html.twig', [
             'menu' => $menu
         ]);
@@ -73,6 +76,9 @@ class MenuController extends AbstractController
      */
     public function edit(Menu $menu, Request $request)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $menu->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(MenuType::class, $menu);
 
         $form->handleRequest($request);
@@ -98,6 +104,9 @@ class MenuController extends AbstractController
      */
     public function delete(Menu $menu, $token)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $menu->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         if (!$this->isCsrfTokenValid('delete_menu' . $menu->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }

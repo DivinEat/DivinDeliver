@@ -25,7 +25,7 @@ class ItemController extends AbstractController
     public function index(ItemRepository $itemRepository)
     {
         return $this->render('back/item/index.html.twig', [
-            'items' => $itemRepository->findAll()
+            'items' => $itemRepository->getCategoriesByUser($this->getUser())
         ]);
     }
 
@@ -34,6 +34,9 @@ class ItemController extends AbstractController
      */
     public function show(Item $item)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $item->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         return $this->render('back/item/show.html.twig', [
             'item' => $item
         ]);
@@ -74,6 +77,9 @@ class ItemController extends AbstractController
      */
     public function edit(Item $item, Request $request)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $item->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(ItemType::class, $item);
 
         $form->handleRequest($request);
@@ -99,6 +105,9 @@ class ItemController extends AbstractController
      */
     public function delete(Item $item, $token)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $item->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         if (!$this->isCsrfTokenValid('delete_item' . $item->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }

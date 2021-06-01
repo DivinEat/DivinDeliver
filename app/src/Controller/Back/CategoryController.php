@@ -23,7 +23,7 @@ class CategoryController extends AbstractController
     public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('back/category/index.html.twig', [
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->getCategoriesByUser($this->getUser()),
         ]);
     }
 
@@ -32,6 +32,9 @@ class CategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $category->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         return $this->render('back/category/show.html.twig', [
             'category' => $category,
         ]);
@@ -71,6 +74,9 @@ class CategoryController extends AbstractController
      */
     public function edit(Request $request, Category $category): Response
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $category->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
@@ -96,6 +102,9 @@ class CategoryController extends AbstractController
      */
     public function delete(Category $category, $token)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $category->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         if (!$this->isCsrfTokenValid('delete_category' . $category->getTitle(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }

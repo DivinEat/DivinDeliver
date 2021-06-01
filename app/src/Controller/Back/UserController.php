@@ -34,19 +34,24 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('back/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->getUsersByUser($this->getUser()),
         ]);
     }
 
     /**
      * @Route("/show/{id}", name="show", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function show(User $user): Response
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $user->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         return $this->render('back/user/show.html.twig', [
             'user' => $user,
         ]);
@@ -85,9 +90,13 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function edit(Request $request, User $user): Response
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $user->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
@@ -107,9 +116,13 @@ class UserController extends AbstractController
 
     /**
      * @Route("/delete/{id}/{token}", name="delete", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function delete(User $user, $token)
     {
+        if ($this->getUser()->getStores()->first()->getId() !== $user->getStore()->getId())
+            throw $this->createAccessDeniedException();
+
         if (!$this->isCsrfTokenValid('delete_user' . $user->getLastname(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
