@@ -24,6 +24,7 @@
                     <th>{% trans %}order.payment{% endtrans %}</th>
                     <th>{% trans %}order.placed_at{% endtrans %}</th>
                     <th>{% trans %}order.estimated_ready_for_pickup_at{% endtrans %}</th>
+                    <th>{% trans %}order.deliver{% endtrans %}</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -38,11 +39,19 @@
                         <td>{{ order.payment.charges.total_fee.formatted_amount }}</td>
                         <td>{{ order.placed_at }}</td>
                         <td>{{ order.estimated_ready_for_pickup_at }}</td>
+                        <td>{{ order.deliver }}</td>
                         {% if order.current_state is not same as('CANCELED') %}
                         <td>
-                            <a href="{{ path('restaurant_order_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
-                            <a href="{{ path('restaurant_order_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
-                            <a href="{{ path('restaurant_order_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
+                            {% if order.deliver is same as('ubereats') %}
+                                <a href="{{ path('restaurant_order_ubereats_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
+                                <a href="{{ path('restaurant_order_ubereats_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
+                                <a href="{{ path('restaurant_order_ubereats_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
+                            {% else %}
+                                <a href="{{ path('restaurant_order_deliveroo_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
+                                <a href="{{ path('restaurant_order_deliveroo_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
+                                <a href="{{ path('restaurant_order_deliveroo_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
+                            {% endif %}
+                            {{ endif }}
                         </td>
                         {% endif %}
                     </tr>

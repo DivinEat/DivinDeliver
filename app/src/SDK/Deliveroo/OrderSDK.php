@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\SDK\UberEats;
+namespace App\SDK\Deliveroo;
 
 
 use App\SDK\BaseOrderSDKInterface;
@@ -9,7 +9,7 @@ use App\SDK\BaseSDK;
 
 class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
 {
-    use UberEatsUrl;
+    use DeliverooUrl;
 
     public function getOrderDetails(string $orderID): ?array
     {
@@ -21,7 +21,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         if ($response->getStatusCode() !== 200)
             return [];
 
-        return setTypeToOrders($response->toArray(), 'ubereats');
+        return setTypeToOrders($response->toArray(), 'deliveroo');
     }
 
     public function getActiveCreatedOrders(string $storeID): ?array
@@ -39,7 +39,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         if ($response->getStatusCode() !== 200)
             return [];
 
-        return setTypeToOrders($response->toArray(), 'ubereats');
+        return setTypeToOrders($response->toArray(), 'deliveroo');
     }
 
     public function getCancelOrders(string $storeID)
@@ -52,7 +52,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         if ($response->getStatusCode() !== 200)
             return [];
 
-        return setTypeToOrders($response->toArray(), 'ubereats');
+        return setTypeToOrders($response->toArray(), 'deliveroo');
     }
 
     public function acceptOrder(string $orderID): bool
