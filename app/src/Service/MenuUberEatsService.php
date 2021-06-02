@@ -44,8 +44,9 @@ class MenuUberEatsService
      * @var StoreRepository
      */
     private StoreRepository $storeRepository;
+    private \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK;
 
-    public function __construct(MenuSDK $menuSDK, StoreRepository $storeRepository,MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
+    public function __construct(\App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK, MenuSDK $menuSDK, StoreRepository $storeRepository,MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
     {
         $this->menuRepository = $menuRepository;
         $this->categoryRepository = $categoryRepository;
@@ -53,21 +54,26 @@ class MenuUberEatsService
         $this->menuSDK = $menuSDK;
         $this->entityManager = $entityManager;
         $this->storeRepository = $storeRepository;
+        $this->deliverooMenuSDK = $deliverooMenuSDK;
     }
 
-    public function upload(string $storeID)
+    public function upload(string $storeUberEatsId, string $storeDeliverooId)
     {
-        $this->menuSDK->uploadMenu($storeID, [
+        $menu = [
             'menus' => $this->getMenus(),
             'categories' => $this->getCategories(),
             'items' => $this->getItems(),
             'menu_type' => 'MENU_TYPE_FULFILLMENT_DELIVERY'
-        ]);
+        ];
+
+        $this->deliverooMenuSDK->uploadMenu($storeDeliverooId, $menu);
+        $this->menuSDK->uploadMenu($storeUberEatsId, $menu);
     }
 
-    public function fetch(string $storeID)
+    public function fetch(string $storeID, string $deliver)
     {
-        $menu = $this->menuSDK->getMenus($storeID);
+        $menuSDK = $deliver === 'ubereats' ? $this->menuSDK : $this->deliverooMenuSDK;
+        $menu = $menuSDK->getMenus($storeID);
         $store = $this->storeRepository->findBy(['storeIdFakeUberEat' => $storeID])[0];
         $returned = $this->createCategories($menu['categories'], $store);
         $this->createItems($menu['items'], $returned[1], $store);
