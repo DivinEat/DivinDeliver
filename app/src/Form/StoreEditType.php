@@ -3,13 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Store;
-use App\Validator\RestaurateurHasNoStore;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class StoreType extends AbstractType
+class StoreEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,7 +26,6 @@ class StoreType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Store::class,
-            'validation_groups' => new RestaurateurHasNoStore(),
         ]);
     }
 }

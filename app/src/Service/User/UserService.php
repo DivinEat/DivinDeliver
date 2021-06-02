@@ -37,7 +37,7 @@ class UserService
         }
         
         if ($this->security->isGranted('ROLE_ADMIN')) {
-            return ['plouf' => 'plouf'];
+            return ['Restaurateur' => 'ROLE_RESTAURATEUR', "Waiter" => "ROLE_WAITER"];
             return $rolesCodeLibelle;
         }
 

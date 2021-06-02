@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/flag-icon.min.css?v=10757425894848348376" rel="stylesheet">
+        <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/admin-materialize.min.css?v=8850535670742419153" rel="stylesheet">
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar white">
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{{ path('back_profile_index') }}"><i class="material-icons">person</i></a></li>
+                        <li><a href="{{ path('app_logout') }}"><i class="material-icons">exit_to_app</i></a></li>
+                    </ul>
+                    <i class="material-icons black-text">dashboard</i>
+                </div>
+            </nav>
+        </header>
+
+        <ul id="sidenav-left" class="sidenav grey" style="transform: translateX(0px);">
+            <li><a href="{{ path('restaurant_default_index') }}" class="logo-container">Admin</a></li>
+            
+            <li><a href="{{ path('admin_default_index') }}">Dashboard</a></li>
+
+            <li><a href="{{ path('admin_store_index') }}">{% trans %}store.word{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
+        </ul>
+
+        <main style="padding-left: 300px;">
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
+        </main>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {                
+                {% for label, messages in app.flashes() %}                    
+                    {% for message in messages %}
+                        M.toast({html: '{{ message }}', classes: '{{ label }}'});
+                    {% endfor %}
+                {% endfor %}
+            });	  
+        </script>
+    </body>
+</html>

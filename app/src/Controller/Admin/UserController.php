@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Restaurant;
+namespace App\Controller\Admin;
 
 use Exception;
 use App\Entity\User;
@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/user", name="user_")
- * @IsGranted("ROLE_RESTAURATEUR")
+ * @IsGranted("ROLE_ADMIN")
  */
 class UserController extends AbstractController
 {
@@ -34,81 +34,41 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('restaurant/user/index.html.twig', [
-            'users' => $userRepository->getUsersByUser($this->getUser()),
+        return $this->render('admin/user/index.html.twig', [
+            'users' => $userRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("/show/{id}", name="show", methods={"GET"})
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function show(User $user): Response
     {
-        if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
-            throw $this->createAccessDeniedException();
-
-        return $this->render('restaurant/user/show.html.twig', [
+        return $this->render('admin/user/show.html.twig', [
             'user' => $user,
         ]);
     }
 
     /**
-     * @Route("/new", name="new", methods={"GET","POST"})
-     * @IsGranted("ROLE_RESTAURATEUR")
-     */
-    public function new(Request $request): Response
-    {
-        $user = new User();
-
-        $form = $this->createForm(UserType::class, $user);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(random_bytes(20));
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            $this->addFlash('green', 'Utilisateur ajouté.');
-
-            $token = $this->resetPasswordService->generateResetPasswordRequest($user->getEmail());
-            $this->mailService->sendNewUserMail($user->getEmail(), $token, $user->getId());
-
-            return $this->redirectToRoute('restaurant_user_index');
-        }
-
-        return $this->render('restaurant/user/new.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function edit(Request $request, User $user): Response
     {
-        if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
-            throw $this->createAccessDeniedException();
-
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('restaurant_user_edit', [
+            return $this->redirectToRoute('admin_user_edit', [
                 'id' => $user->getId()
             ]);
         }
 
-        return $this->render('restaurant/user/edit.html.twig', [
+        return $this->render('admin/user/edit.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);
@@ -116,13 +76,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/delete/{id}/{token}", name="delete", methods={"GET"})
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function delete(User $user, $token)
     {
-        if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
-            throw $this->createAccessDeniedException();
-
         if (!$this->isCsrfTokenValid('delete_user' . $user->getLastname(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
@@ -131,6 +87,6 @@ class UserController extends AbstractController
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('restaurant_user_index');
+        return $this->redirectToRoute('admin_user_index');
     }
 }

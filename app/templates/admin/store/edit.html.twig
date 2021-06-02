@@ -1,0 +1,17 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{ store.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ store.name }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.storeIdFakeUberEat) }}
+        <br>
+        <a href="{{ path('admin_store_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+        <input type="submit" value="{% trans %}button.update{% endtrans %}" class="dd-btn dd-btn-edit">
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,13 +1,10 @@
-{% extends 'base_restaurant.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}{% trans %}user.list{% endtrans %}{% endblock %}
 
 {% block body %}
     <h1 class="title">{% trans %}user.list{% endtrans %}</h1>
-    {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('restaurant_user_new') }}" class="add"><i class="material-icons">control_point</i></a>
-    {% endif %}
-
+    
     <div class="col s12 m12 l6 offset-l2 center">
         <table cellpadding="1" cellspacing="1" class="admin-table">
             <thead>
@@ -16,6 +13,7 @@
                     <th>{% trans %}user.last_name{% endtrans %}</th>
                     <th>Email</th>
                     <th>Roles</th>
+                    <th>Restaurant</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -26,10 +24,11 @@
                         <td>{{ user.lastname }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                        <td>{{ user.stores.first().name }}</td>
                         <td>
-                            <a href="{{ path('restaurant_user_show', {id: user.id}) }}"><i class="material-icons">remove_red_eye</i></a>
-                            <a href="{{ path('restaurant_user_edit', {id: user.id}) }}"><i class="material-icons">mode</i></a>
-                            <a href="{{ path('restaurant_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}"><i class="material-icons">delete</i></a>
+                            <a href="{{ path('admin_user_show', {id: user.id}) }}"><i class="material-icons">remove_red_eye</i></a>
+                            <a href="{{ path('admin_user_edit', {id: user.id}) }}"><i class="material-icons">mode</i></a>
+                            <a href="{{ path('admin_user_delete', {id: user.id, token: csrf_token('delete_user' ~ user.lastname)}) }}"><i class="material-icons">delete</i></a>
                         </td>
                     </tr>
                 {% endfor %}

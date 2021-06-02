@@ -11,7 +11,6 @@ use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\StoreRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\Validator\RestaurateurHasNoStore;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -37,7 +36,6 @@ class Store
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @RestaurateurHasNoStore
      */
     private $name;
 

@@ -1,4 +1,4 @@
-{% extends 'base_restaurant.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}{% trans with {'%user_firstname%': user.firstname, '%user_lastname%': user.lastname} %}user.edit{% endtrans %}{% endblock %}
 
@@ -13,6 +13,7 @@
         {{ form_row(form.email) }}
         {{ form_row(form.roles, { 'attr': {'class': 'browser-default'} }) }}
         <br>
+        <a href="{{ path('admin_user_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
         <input type="submit" value="{% trans %}button.update{% endtrans %}" class="dd-btn dd-btn-edit">
     {{ form_end(form) }}
 {% endblock %}

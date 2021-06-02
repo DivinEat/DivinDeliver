@@ -1,0 +1,34 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{% trans %}store.list{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1 class="title">{% trans %}store.list{% endtrans %}</h1>
+    
+    <div class="col s12 m12 l6 offset-l2 center">
+        <table cellpadding="1" cellspacing="1" class="admin-table">
+            <thead>
+                <tr>
+                    <th>{% trans %}name{% endtrans %}</th>
+                    <th>{% trans %}store.storeIdFakeUberEat{% endtrans %}</th>
+                    <th>{% trans %}store.storeIdFakeDeliveroo{% endtrans %}</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for store in stores %}
+                    <tr>
+                        <td>{{ store.name }}</td>
+                        <td>{{ store.storeIdFakeUberEat }}</td>
+                        <td></td>
+                        <td>
+                            <a href="{{ path('admin_store_show', {id: store.id}) }}"><i class="material-icons">remove_red_eye</i></a>
+                            <a href="{{ path('admin_store_edit', {id: store.id}) }}"><i class="material-icons">mode</i></a>
+                            <a href="{{ path('admin_store_delete', {id: store.id, token: csrf_token('delete_store' ~ store.name)}) }}"><i class="material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
