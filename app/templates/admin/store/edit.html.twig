@@ -3,15 +3,24 @@
 {% block title %}{{ store.name }}{% endblock %}
 
 {% block body %}
-    <h1>{{ store.name }}</h1>
+    <h1>Restaurant : {{ store.name }}</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.name) }}
-        {{ form_row(form.storeIdFakeUberEat) }}
+        {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.storeIdFakeUberEat, {'attr': {'class': 'form-control'}}) }}
+        
         <br>
-        <a href="{{ path('admin_store_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
-        <input type="submit" value="{% trans %}button.update{% endtrans %}" class="dd-btn dd-btn-edit">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('admin_store_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>
+            <div>
+                <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                <input type="submit" class="dd-bt-edit" value="Éditer">
+            </div>
+        </div>
     {{ form_end(form) }}
 {% endblock %}

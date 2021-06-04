@@ -67,3 +67,15 @@ h1 {
 .icon {
 	height: 22px;
 }
+
+.rotate-180 {
+	transform: rotate(180deg);
+}
+
+.t-d-none {
+	text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

@@ -65,7 +65,7 @@ class StoreController extends AbstractController
      */
     public function delete(Store $store, $token)
     {
-        if (!$this->isCsrfTokenValid('delete_store' . $store->getName(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_store' . $store->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 
