@@ -5,12 +5,23 @@
 {% block body %}
     <h1>{% trans %}item.new{% endtrans %}</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.title) }}
-        {{ form_row(form.priceInfo) }}
-        {{ form_row(form.category, { 'attr': {'class': 'browser-default'} }) }}
-        <input type="submit" class="btn green" value="{% trans %}button.create{% endtrans %}">
+        {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.priceInfo, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.category, {'attr': {'class': 'form-control browser-default'}}) }}
+        
+        <br>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>
+            <div>
+                <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                <input type="submit" class="dd-bt-edit" value="Ajouter">
+            </div>
+        </div>
     {{ form_end(form) }}
 {% endblock %}

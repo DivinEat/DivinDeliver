@@ -3,9 +3,20 @@
 {% block title %}{% trans %}item.word{% endtrans %} {{ category.title }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('restaurant_category_edit', {id: category.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
-    <br>
-    {% trans %}title{% endtrans %} : {{ category.title }} <br>
-    <br>
-    <a href="{{ path('restaurant_category_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+    <div class="w-100">
+        {% trans %}title{% endtrans %} : {{ category.title }} <br>
+        {% trans %}subtitle{% endtrans %} : {{ category.subtitle }} <br>
+
+        <br>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('restaurant_category_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>    
+            <a href="{{ path('restaurant_category_edit', {id: category.id}) }}" class="text-dark mt-3">
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Éditer
+            </a>
+        </div>
+    </div>
 {% endblock %}

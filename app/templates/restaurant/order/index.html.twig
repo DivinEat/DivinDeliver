@@ -3,53 +3,60 @@
 {% block title %}{% trans %}order.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
+    <h1 class="title">Liste des commandes</h1>
 
-    <form action"{{ path('restaurant_order_index') }}" method="get">
-        <select name="choice" id="choice" class="browser-default" onchange="this.form.submit()">
+    <form action"{{ path('restaurant_order_index') }}" method="get" class="w-100 mb-2 mt-3">
+        <select name="choice" id="choice" class="browser-default form-control" onchange="this.form.submit()">
             <option value="accepted">Accepted</option>
             <option value="canceled">Canceled</option>
         </select>
     </form>
 
-    <div class="col s12 m12 l6 offset-l2 center">
-        <table cellpadding="1" cellspacing="1" class="admin-table">
-            <thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{% trans %}order.id{% endtrans %}</th>
+                <th>{% trans %}order.state{% endtrans %}</th>
+                <th>{% trans %}order.type{% endtrans %}</th>
+                <th>{% trans %}order.store{% endtrans %}</th>
+                <th>{% trans %}order.eater{% endtrans %}</th>
+                <th>{% trans %}order.payment{% endtrans %}</th>
+                <th>{% trans %}order.placed_at{% endtrans %}</th>
+                <th>{% trans %}order.estimated_ready_for_pickup_at{% endtrans %}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
                 <tr>
-                    <th>{% trans %}order.id{% endtrans %}</th>
-                    <th>{% trans %}order.state{% endtrans %}</th>
-                    <th>{% trans %}order.type{% endtrans %}</th>
-                    <th>{% trans %}order.store{% endtrans %}</th>
-                    <th>{% trans %}order.eater{% endtrans %}</th>
-                    <th>{% trans %}order.payment{% endtrans %}</th>
-                    <th>{% trans %}order.placed_at{% endtrans %}</th>
-                    <th>{% trans %}order.estimated_ready_for_pickup_at{% endtrans %}</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for order in orders %}
-                    <tr>
-                        <td>{{ order.display_id }}</td>
-                        <td>{{ order.current_state }}</td>
-                        <td>{{ order.type }}</td>
-                        <td>{{ order.store.name }}</td>
-                        <td>{{ order.eater.first_name }}</td>
-                        <td>{{ order.payment.charges.total_fee.formatted_amount }}</td>
-                        <td>{{ order.placed_at }}</td>
-                        <td>{{ order.estimated_ready_for_pickup_at }}</td>
+                    <td>{{ order.display_id }}</td>
+                    <td>{{ order.current_state }}</td>
+                    <td>{{ order.type }}</td>
+                    <td>{{ order.store.name }}</td>
+                    <td>{{ order.eater.first_name }}</td>
+                    <td>{{ order.payment.charges.total_fee.formatted_amount }}</td>
+                    <td>{{ order.placed_at }}</td>
+                    <td>{{ order.estimated_ready_for_pickup_at }}</td>
+                    <td>
                         {% if order.current_state is not same as('CANCELED') %}
-                        <td>
-                            <a href="{{ path('restaurant_order_accept', {id: order._id}) }}"><i class="material-icons">done</i></a>
-                            <a href="{{ path('restaurant_order_deny', {id: order._id}) }}"><i class="material-icons">close</i></a>
-                            <a href="{{ path('restaurant_order_cancel', {id: order._id}) }}"><i class="material-icons">do_disturb</i></a>
-                        </td>
+                            <a href="{{ path('restaurant_order_accept', {id: order._id}) }}" class="text-dark mt-3">
+                                <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                Accepter
+                            </a>
+                            <a href="{{ path('restaurant_order_deny', {id: order._id}) }}" class="text-dark mt-3">
+                                <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                Refuser
+                            </a>
+                            <a href="{{ path('restaurant_order_cancel', {id: order._id}) }}" class="text-dark mt-3">
+                                <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                Annuler
+                            </a>
                         {% endif %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
 {% block javascripts %}

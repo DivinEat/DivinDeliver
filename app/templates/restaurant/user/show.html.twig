@@ -3,12 +3,22 @@
 {% block title %}{% trans %}user.word{% endtrans %} {{ user.firstname }} {{ user.lastname }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('restaurant_user_edit', {id: user.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
-    <br>
-    Name : {{ user.firstname }} <br>
-    Lastname : {{ user.lastname }} <br>
-    Email : {{ user.email }} <br>
-    Roles : {{ user.roles ? user.roles|json_encode : '' }} <br>
-    <br>
-    <a href="{{ path('restaurant_user_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+    <div class="w-100">
+        Name : {{ user.firstname }} <br>
+        Lastname : {{ user.lastname }} <br>
+        Email : {{ user.email }} <br>
+        Roles : {{ user.roles ? user.roles|json_encode : '' }} <br>
+
+        <br>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>    
+            <a href="{{ path('restaurant_user_edit', {id: user.id}) }}" class="text-dark mt-3">
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Éditer
+            </a>
+        </div>
+    </div>
 {% endblock %}

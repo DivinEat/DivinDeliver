@@ -3,50 +3,52 @@
 {% block title %}{% trans %}menu.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
+    <h1 class="title">Liste des menus</h1>
 
     {% if is_granted('ROLE_RESTAURATEUR') %}
         <div class="row right-align">
-            <a href="{{ path('restaurant_menu_push_ubereats') }}" class="dd-btn dd-btn-primary ">{% trans %}menu.send_ubereats{% endtrans %}</a>
-            <a href="{{ path('restaurant_menu_fetch_ubereats') }}" class="dd-btn dd-btn-primary ">{% trans %}menu.fetch_ubereats{% endtrans %}</a>
+            <a href="{{ path('restaurant_menu_push_ubereats') }}" class="dd-btn dd-btn-primary">{% trans %}menu.send_ubereats{% endtrans %}</a>
+            <a href="{{ path('restaurant_menu_fetch_ubereats') }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</a>
         </div>
-        <a href="{{ path('restaurant_menu_new') }}" class="add"><i class="material-icons">control_point</i></a>
+        <a href="{{ path('restaurant_menu_new') }}" class="text-dark mt-3">
+            <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
+            Ajouter
+        </a>
     {% endif %}
-    
-    <div class="col s12 m12 l6 offset-l2 center">
-        <table cellpadding="1" cellspacing="1" class="admin-table">
-            <thead>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{% trans %}item.word{% endtrans %}</th>
+                <th>{% trans %}category.word{% endtrans %}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for menu in menus %}
                 <tr>
-                    <th>{% trans %}item.word{% endtrans %}</th>
-                    <th>{% trans %}category.word{% endtrans %}</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for menu in menus %}
-                    <tr>
-                        <td>{{ menu.title }}</td>
-                        <td>
-                            {% for category in menu.categories %}
-                                {{ category.title }}<br>
-                            {% endfor %}
-                        </td>
-                        <td>
-                            <a href="{{ path('restaurant_menu_show', {id: menu.id}) }}">
-                                <i class="material-icons">remove_red_eye</i>
+                    <td>{{ menu.title }}</td>
+                    <td>
+                        {% for category in menu.categories %}
+                            {{ category.title }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a class="t-d-none" href="{{ path('restaurant_menu_show', {id: menu.id}) }}">
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+
+                        {% if is_granted('ROLE_RESTAURATEUR') %}
+                            <a class="t-d-none" href="{{ path('restaurant_menu_edit', {id: menu.id}) }}">
+                                <img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}">
                             </a>
-                            {% if is_granted('ROLE_RESTAURATEUR') %}
-                                <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}">
-                                    <i class="material-icons">mode</i>
-                                </a>
-                                <a href="{{ path('restaurant_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.title)}) }}">
-                                    <i class="material-icons">delete</i>
-                                </a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                            <a class="t-d-none" href="{{ path('restaurant_menu_delete', {id: menu.id, token: csrf_token('delete_menu' ~ menu.id)}) }}">
+                                <img class="icon" src="{{ asset('images/icons/icon-x-hack.png') }}">
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

@@ -5,14 +5,24 @@
 {% block body %}
     <h1>{% trans %}user.new{% endtrans %}</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.firstname) }}
-        {{ form_row(form.lastname) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.roles, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.lastname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.roles, {'attr': {'class': 'form-control browser-default'}}) }}
+        
         <br>
-        <input type="submit" class="btn green" value="{% trans %}button.create{% endtrans %}">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>
+            <div>
+                <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                <input type="submit" class="dd-bt-edit" value="Ajouter">
+            </div>
+        </div>
     {{ form_end(form) }}
 {% endblock %}

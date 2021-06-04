@@ -1,12 +1,23 @@
-{% extends 'base_restaurant.html.twig' %}
+{% extends is_granted('ROLE_ADMIN')
+    ? 'base_admin.html.twig' 
+    : 'base_restaurant.html.twig' %}
 
-{% block title %}Mon profil{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
-    Name : {{ app.user.firstname }} <br>
-    Lastname : {{ app.user.lastname }} <br>
-    Email : {{ app.user.email }} <br>
-    <br>
-    <a href="{{ path('back_profile_edit') }}" class="dd-btn dd-btn-edit">Modifier</a>
-    <a href="{{ path('back_profile_edit-password') }}" class="dd-btn dd-btn-edit">Mot de passe</a>
+    <h1>Modifier mon profil</h1>
+
+    {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.lastname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+        
+        <br>
+        <div>
+            <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+            <input type="submit" class="dd-bt-edit" value="Éditer">
+        </div>
+    {{ form_end(form) }}
 {% endblock %}
