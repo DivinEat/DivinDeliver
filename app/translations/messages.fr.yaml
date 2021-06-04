@@ -25,9 +25,10 @@ menu:
     list: Liste des menus
     edit: Edition du menu %menu_name%
     new: Création d'un nouveau menu
-    back: Retour aux menus
-    send_ubereats: Envoyer sur Uber Eats
-    fetch_ubereats: Import from Uber Eats
+    back: Retour
+    push: Envoyer sur les APIs
+    fetch_ubereats: Importer depuis Uber Eats
+    fetch_deliveroo: Importer depuis Deliveroo
 category:
     word: Catégorie
     list: Liste des catégories

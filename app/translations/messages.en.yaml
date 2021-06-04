@@ -26,7 +26,9 @@ menu:
     edit: Edit menu %menu_name%
     new: Create new menu
     back: Back to menus
-    send_ubereats: Send to Uber Eats
+    push: Push to API
+    fetch_ubereats: Import from Uber Eats
+    fetch_deliveroo: Import from Deliveroo
 category:
     word: Category
     list: Categories list
