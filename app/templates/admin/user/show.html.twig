@@ -9,7 +9,7 @@
     Lastname : {{ user.lastname }} <br>
     Email : {{ user.email }} <br>
     Roles : {{ user.roles ? user.roles|json_encode : '' }} <br>
-    Restaurant : {{ user.stores.first().name }} <br>
+    Restaurant : {{ user.stores.first() ? user.stores.first().name : '' }} <br>
     <br>
     <a href="{{ path('admin_user_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
 {% endblock %}

@@ -24,7 +24,7 @@
                         <td>{{ user.lastname }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                        <td>{{ user.stores.first().name }}</td>
+                        <td>{{ user.stores.first() ? user.stores.first().name : '' }}</td>
                         <td>
                             <a href="{{ path('admin_user_show', {id: user.id}) }}"><i class="material-icons">remove_red_eye</i></a>
                             <a href="{{ path('admin_user_edit', {id: user.id}) }}"><i class="material-icons">mode</i></a>
