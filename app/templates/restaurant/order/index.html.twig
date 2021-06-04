@@ -23,6 +23,7 @@
                 <th>{% trans %}order.payment{% endtrans %}</th>
                 <th>{% trans %}order.placed_at{% endtrans %}</th>
                 <th>{% trans %}order.estimated_ready_for_pickup_at{% endtrans %}</th>
+                <th>{% trans %}order.deliver{% endtrans %}</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,20 +38,36 @@
                     <td>{{ order.payment.charges.total_fee.formatted_amount }}</td>
                     <td>{{ order.placed_at }}</td>
                     <td>{{ order.estimated_ready_for_pickup_at }}</td>
+                    <td>{{ order.deliver }}</td>
                     <td>
                         {% if order.current_state is not same as('CANCELED') %}
-                            <a href="{{ path('restaurant_order_accept', {id: order._id}) }}" class="text-dark mt-3">
-                                <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                Accepter
-                            </a>
-                            <a href="{{ path('restaurant_order_deny', {id: order._id}) }}" class="text-dark mt-3">
-                                <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                Refuser
-                            </a>
-                            <a href="{{ path('restaurant_order_cancel', {id: order._id}) }}" class="text-dark mt-3">
-                                <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                Annuler
-                            </a>
+                            {% if order.deliver is same as('ubereats') %}
+                                <a href="{{ path('restaurant_order_ubereats_accept', {id: order._id}) }}" class="text-dark mt-3">
+                                  <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                  Accepter
+                                </a>
+                                <a href="{{ path('restaurant_order_ubereats_deny', {id: order._id}) }}" class="text-dark mt-3">
+                                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                    Refuser
+                                </a>
+                                <a href="{{ path('restaurant_order_ubereats_cancel', {id: order._id}) }}" class="text-dark mt-3">
+                                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                    Annuler
+                                </a>
+                            {% else %}
+                                <a href="{{ path('restaurant_order_deliveroo_accept', {id: order._id}) }}" class="text-dark mt-3">
+                                  <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                  Accepter
+                                </a>
+                                <a href="{{ path('restaurant_order_deliveroo_deny', {id: order._id}) }}" class="text-dark mt-3">
+                                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                    Refuser
+                                </a>
+                                <a href="{{ path('restaurant_order_deliveroo_cancel', {id: order._id}) }}" class="text-dark mt-3">
+                                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                    Annuler
+                                </a>
+                            {% endif %}
                         {% endif %}
                     </td>
                 </tr>

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\Restaurant;
+namespace App\Controller\Restaurant\Order;
 
 use App\Repository\UserRepository;
-use App\SDK\UberEats\OrderSDK;
+use App\SDK\Deliveroo\OrderSDK;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,14 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * @Route("/orders", name="order_")
+ * @Route("/orders/ubereats", name="order_ubereats_")
  */
-class OrderController extends AbstractController
+class UberEatsOrderController extends AbstractController
 {
     /**
      * @var OrderSDK
      */
-    protected OrderSDK $orderSDK;
+    protected Order $orderSDK;
     /**
      * @var UserRepository
      */
@@ -28,23 +28,6 @@ class OrderController extends AbstractController
     public function __construct(OrderSDK $orderSDK)
     {
         $this->orderSDK = $orderSDK;
-    }
-
-    /**
-     * @Route("/", name="index", methods={"GET"})
-     */
-    public function index(Request $request): Response
-    {
-        $choice = $request->query->get('choice') ?? "accepted";
-        $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
-
-        if("accepted" == $choice) {
-            $orders = $this->orderSDK->getActiveCreatedOrders($storeID);
-        } else {
-            $orders = $this->orderSDK->getCancelOrders($storeID);
-        }
-
-        return $this->render('restaurant/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
     }
 
     /**

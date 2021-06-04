@@ -121,12 +121,12 @@ class MenuController extends AbstractController
     }
 
     /**
-     * @Route("/push/ubereats", name="push_ubereats", methods={"GET"})
+     * @Route("/push", name="push_deliver", methods={"GET"})
      */
-    public function pushUberEatsMenu(MenuUberEatsService $menuUberEatsService)
+    public function pushMenu(MenuUberEatsService $menuUberEatsService)
     {
         $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
-        $menuUberEatsService->upload($storeID);
+        $menuUberEatsService->upload($storeID, $storeID);
 
         $this->addFlash('green', 'Envoi effectué');
 
@@ -134,9 +134,22 @@ class MenuController extends AbstractController
     }
 
     /**
+     * @Route("/fetch/{deliver}", name="fetch_deliver", methods={"GET"})
+     */
+    public function fetchUberEatsMenu(MenuUberEatsService $menuUberEatsService, string $deliver)
+    {
+        $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
+        $menuUberEatsService->fetch($storeID, $deliver);
+
+        $this->addFlash('green', 'Récupération effectué');
+
+        return $this->redirectToRoute('restaurant_menu_index');
+    }
+
+    /**
      * @Route("/fetch/ubereats", name="fetch_ubereats", methods={"GET"})
      */
-    public function fetchUberEatsMenu(MenuUberEatsService $menuUberEatsService)
+    public function fetchDeliverooMenu(MenuUberEatsService $menuUberEatsService)
     {
         $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
         $menuUberEatsService->fetch($storeID);
