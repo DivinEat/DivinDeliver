@@ -50,7 +50,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/new-account", name="app_register", methods={"GET", "POST"})
+     * @Route("/register", name="app_register", methods={"GET", "POST"})
      */
     public function new(Request $request)
     {
@@ -70,7 +70,7 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('restaurant_default_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/register.html.twig', [

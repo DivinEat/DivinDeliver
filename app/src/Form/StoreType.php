@@ -18,7 +18,12 @@ class StoreType extends AbstractType
                 'label' => 'name'
             ])
             ->add('storeIdFakeUberEat', TextType::class, [
-                'label' => 'store.id_fake_ubereat'
+                'label' => 'store.id_fake_ubereat',
+                'required'   => false
+            ])
+            ->add('storeIdFakeDeliveroo', TextType::class, [
+                'label' => 'store.id_fake_deliveroo',
+                'required'   => false
             ])
         ;
     }

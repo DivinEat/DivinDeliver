@@ -44,6 +44,7 @@ item:
 store: 
     create: Create a store
     id_fake_ubereat: Store Id for FakeUberEat
+    id_fake_deliveroo: Store Id for FakeDeliveroo
 user:
     word: User
     list: Users list

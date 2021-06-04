@@ -45,6 +45,7 @@ item:
 store: 
     create: Créer un restaurant
     id_fake_ubereat: Store Id pour FakeUberEat
+    id_fake_deliveroo: Store Id pour FakeDeliveroo
 user:
     word: Utilisateur
     list: Liste des utilisateurs
