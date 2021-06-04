@@ -3,7 +3,7 @@
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 TODO: Put more badges here.
 
-> Plateforme destiné aux restaurateurs cherchant à regrouper leur service de livraison.<br/> 
+> Plateforme destiné aux restaurateurs cherchant à regrouper leurs services de livraison.<br/> 
 > Permet la gestion des menus de son restaurant et des commandes
 
 
@@ -18,8 +18,6 @@ TODO: Put more badges here.
 
 ```
 git clone https://github.com/DivinEat/DivinDeliver.git
-- database connection
-- smtp connection
 - administrator profile
 ```
 
