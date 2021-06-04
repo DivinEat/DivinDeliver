@@ -7,7 +7,7 @@
         Name : {{ user.firstname }} <br>
         Lastname : {{ user.lastname }} <br>
         Email : {{ user.email }} <br>
-        Roles : {{ user.roles ? user.roles|json_encode : '' }} <br>
+        Roles : {{ user.roles ? user.roles|json_encode|replace({ ('["ROLE_'): '', '"]' : '' }) : '' }}<br>
         Restaurant : {{ user.stores.first() ? user.stores.first().name : '' }} <br>
 
         <br>

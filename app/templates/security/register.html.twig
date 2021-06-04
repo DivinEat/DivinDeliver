@@ -3,18 +3,19 @@
 {% block title %}{% trans %}user.new_account{% endtrans %}{% endblock %}
 
 {% block body %}
-    <div class="card">
+    <div class="card pt-5 pb-5">
 
         {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+
             <h2 class="title margin-0 text-align-center">{% trans %}user.register_title{% endtrans %}</h2>
-            {{ form_row(form.email) }}
+            {{ form_row(form.email, {'attr': {'class': 'form-control form-control-user'}}) }}
             {{ form_row(form.password) }}
 
             <h2 class="title text-align-center">{% trans %}store.create{% endtrans %}</h2>
             {{ form_widget(form.stores) }}
-            <button type="submit" 
-                class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50">
-                    {% trans %}user.new_account{% endtrans %}
+            
+            <button type="submit" class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50">
+                {% trans %}user.new_account{% endtrans %}
             </button>
         {{ form_end(form) }}
     </div>

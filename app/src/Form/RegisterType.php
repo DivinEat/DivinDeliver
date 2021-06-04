@@ -27,6 +27,7 @@ class RegisterType extends AbstractType
                 'second_options' => [
                     'label' => 'form.password_confirm'
                 ],
+                'options' => ['attr' => ['class' => 'form-control form-control-user']],
             ])
             ->add('stores', CollectionType::class, [
                 'entry_type' => StoreType::class,
