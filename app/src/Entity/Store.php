@@ -84,6 +84,11 @@ class Store
      */
     private $storeIdFakeUberEat;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $storeIdFakeDeliveroo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,6 +153,18 @@ class Store
     public function setStoreIdFakeUberEat(String $storeIdFakeUberEat): self
     {
         $this->storeIdFakeUberEat = $storeIdFakeUberEat;
+
+        return $this;
+    }
+
+    public function getStoreIdFakeDeliveroo(): ?String
+    {
+        return $this->storeIdFakeDeliveroo;
+    }
+
+    public function setStoreIdFakeDeliveroo(String $storeIdFakeDeliveroo): self
+    {
+        $this->storeIdFakeDeliveroo = $storeIdFakeDeliveroo;
 
         return $this;
     }

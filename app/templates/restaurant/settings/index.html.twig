@@ -1,0 +1,20 @@
+{% extends 'base_restaurant.html.twig' %}
+
+{% block title %}Paramètres{% endblock %}
+
+{% block body %}
+    <h1>Paramètres</h1>
+
+    {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.storeIdFakeUberEat, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
+        
+        <br>
+        <div>
+            <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+            <input type="submit" class="dd-bt-edit" value="Éditer">
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
