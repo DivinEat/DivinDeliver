@@ -9,6 +9,6 @@
 import $ from 'jquery';
 
 import './styles/app.scss';
-import 'materialize-css';
-import 'materialize-css/dist/css/materialize.min.css';
-import 'material-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+import 'bootstrap/js/dist/modal';

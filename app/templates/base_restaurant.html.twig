@@ -6,53 +6,113 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/flag-icon.min.css?v=10757425894848348376" rel="stylesheet">
-        <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/admin-materialize.min.css?v=8850535670742419153" rel="stylesheet">
     </head>
+    
     <body>
+        <header class="d-flex align-items-center justify-content-between header-back">
+            <div class="d-flex align-items-center flex-row ml-5">
+                <a href="{{ path('default_index') }}"><img src="{{ asset('images/logo.png') }}" style="height: 125px"></a>
+            </div>
 
-        <header>
-            <nav class="navbar white">
-                <div class="nav-wrapper">
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{ path('back_profile_index') }}"><i class="material-icons">person</i></a></li>
-                        <li><a href="{{ path('app_logout') }}"><i class="material-icons">exit_to_app</i></a></li>
-                    </ul>
-                    <i class="material-icons black-text">dashboard</i>
-                </div>
-            </nav>
+            <div class="mr-5">
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="text-dark">Déconnexion</a>
+                <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"> </span>
+            {% endif %}
+            </div>
         </header>
 
-        <ul id="sidenav-left" class="sidenav grey" style="transform: translateX(0px);">
-            <li><a href="{{ path('restaurant_default_index') }}" class="logo-container">Admin</a></li>
-            
-            {% if is_granted('ROLE_RESTAURATEUR') %}
-                <li><a href="{{ path('restaurant_default_index') }}">Dashboard</a></li>
-            {% endif %}
+        <div class="row">
+            <div class="col-3 sidenav">
+                <ul class="mt-2 d-flex flex-column align-items-center">
+                    <li class="w-100 pl-2 pr-2 mt-4">
+                        <a href="{{ path('default_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                            <span class="ml-3">Retour accueil</span>
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
 
-            <li><a href="{{ path('restaurant_menu_index') }}">Menu</a></li>
-            <li><a href="{{ path('restaurant_item_index') }}">{% trans %}item.word{% endtrans %}</a></li>
-            <li><a href="{{ path('restaurant_category_index') }}">{% trans %}category.word{% endtrans %}</a></li>
-            <li><a href="{{ path('restaurant_order_index') }}">{% trans %}order.word{% endtrans %}</a></li>
-            
-            {% if is_granted('ROLE_RESTAURATEUR') %}
-                <li><a href="{{ path('restaurant_user_index') }}">{% trans %}user.word{% endtrans %}</a></li>
-                <li><a href="">Images</a></li>
-                <li><a href="">{% trans %}settings.word{% endtrans %}</a></li>
-            {% endif %}
-        </ul>
+                    <li class="w-100 pl-2 pr-2 mt-2">
+                        <a class="t-d-none" href="{{ path('back_profile_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
+                            <img class="icon" src="{{ asset('images/icons/icon admin mobile-hack.png') }}">
+                            <span class="ml-3">Profil</span>
+                        </a>
+                    </li>
 
-        <main style="padding-left: 300px;">
-            <div class="container">
-                {% block body %}{% endblock %}
+                    <li class="w-100 pl-2 pr-2" style="margin-top: 5rem">
+                        <a href="{{ path('restaurant_default_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                            <span>Dashboard</span>
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
+
+                    <li class="w-100 pl-2 pr-2">
+                        <a href="{{ path('restaurant_menu_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                            <span>Menus</span>
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
+
+                    <li class="w-100 pl-2 pr-2">
+                        <a href="{{ path('restaurant_item_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                            <span>Produits</span>
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
+
+                    <li class="w-100 pl-2 pr-2">
+                        <a href="{{ path('restaurant_category_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                            <span>Catégories</span>
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
+
+                    <li class="w-100 pl-2 pr-2">
+                        <a href="{{ path('restaurant_order_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                            <span>Commandes</span>
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
+
+                    {% if is_granted('ROLE_RESTAURATEUR') %}
+                        <li class="w-100 pl-2 pr-2">
+                            <a href="{{ path('restaurant_user_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                                <span>Utilisateurs</span>
+                                <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                            </a>
+                        </li>
+                        <div class="ligne"></div>
+
+                        <li class="w-100 pl-2 pr-2">
+                            <a href="" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                                <span>Paramètres</span>
+                                <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
-        </main>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+            <div class="col-9">
+                <div class="container mt-5 d-flex flex-column align-items-center">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <footer class="d-flex justify-content-end">
+        </footer>
+        
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
         <script>
             document.addEventListener('DOMContentLoaded', function() {                
                 {% for label, messages in app.flashes() %}                    

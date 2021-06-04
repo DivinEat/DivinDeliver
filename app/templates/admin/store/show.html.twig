@@ -3,11 +3,20 @@
 {% block title %}{% trans %}store.word{% endtrans %} {{ store.name }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('admin_store_edit', {id: store.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
-    <br>
-    Name : {{ store.name }} <br>
-    storeIdFakeUberEat : {{ store.storeIdFakeUberEat }} <br>
+    <div class="w-100">
+        Name : {{ store.name }} <br>
+        storeIdFakeUberEat : {{ store.storeIdFakeUberEat }} <br>
 
-    <br>
-    <a href="{{ path('admin_store_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+        <br>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('admin_store_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>    
+            <a href="{{ path('admin_store_edit', {id: store.id}) }}" class="text-dark mt-3">
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Éditer
+            </a>
+        </div>
+    </div>
 {% endblock %}

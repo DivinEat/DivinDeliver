@@ -3,14 +3,24 @@
 {% block title %}Menu {{ menu.title }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
-    <br>
-    Menu : {{ menu.title }} <br>
-    {% trans %}title{% endtrans %} : {{ menu.title }} <br>
-    Categories :
-    {% for category in menu.categories %}
-        {{ category.title }}
-    {% endfor %}
-    <br>
-    <a href="{{ path('restaurant_menu_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+    <div class="w-100">
+        Menu : {{ menu.title }} <br>
+        {% trans %}title{% endtrans %} : {{ menu.title }} <br>
+        Categories :
+        {% for category in menu.categories %}
+            {{ category.title }}
+        {% endfor %}
+
+        <br>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('restaurant_menu_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>    
+            <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}" class="text-dark mt-3">
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Éditer
+            </a>
+        </div>
+    </div>
 {% endblock %}

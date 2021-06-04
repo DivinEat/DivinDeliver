@@ -3,11 +3,21 @@
 {% block title %}{% trans %}item.word{% endtrans %} {{ item.title }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('restaurant_item_edit', {id: item.id}) }}" class="dd-btn dd-btn-edit">{% trans %}button.edit{% endtrans %}</a> <br>
-    <br>
-    {% trans %}category.word{% endtrans %} : {{ item.category.title }} <br>
-    {% trans %}title{% endtrans %} : {{ item.title }} <br>
-    {% trans %}priceInfo{% endtrans %} : {{ item.priceInfo }} <br>
-    <br>
-    <a href="{{ path('restaurant_item_index') }}" class="dd-btn dd-btn-default">{% trans %}button.back{% endtrans %}</a>
+    <div class="w-100">
+        {% trans %}title{% endtrans %} : {{ item.title }} <br>
+        {% trans %}priceInfo{% endtrans %} : {{ item.priceInfo }} <br>
+        {% trans %}category.word{% endtrans %} : {{ item.category.title }} <br>
+
+        <br>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3">
+                <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Retour
+            </a>    
+            <a href="{{ path('restaurant_item_edit', {id: item.id}) }}" class="text-dark mt-3">
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                Éditer
+            </a>
+        </div>
+    </div>
 {% endblock %}

@@ -3,43 +3,46 @@
 {% block title %}{% trans %}item.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">{% trans %}item.list{% endtrans %}</h1>
+    <h1 class="title">Liste des produits</h1>
+
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('restaurant_item_new') }}" class="add"><i class="material-icons">control_point</i></a>
+        <a href="{{ path('restaurant_item_new') }}" class="text-dark mt-3">
+            <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
+            Ajouter
+        </a>
     {% endif %}
 
-    <div class="col s12 m12 l6 offset-l2 center">
-        <table cellpadding="1" cellspacing="1" class="admin-table">
-            <thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{% trans %}category.word{% endtrans %}</th>
+                <th>{% trans %}title{% endtrans %}</th>
+                <th>{% trans %}price{% endtrans %}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
                 <tr>
-                    <th>{% trans %}category.word{% endtrans %}</th>
-                    <th>{% trans %}title{% endtrans %}</th>
-                    <th>{% trans %}price{% endtrans %}</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>{{ item.category.title }}</td>
-                        <td>{{ item.title }}</td>
-                        <td>{{ item.priceInfo }}</td>
-                        <td>
-                            <a href="{{ path('restaurant_item_show', {id: item.id}) }}">
-                                <i class="material-icons">remove_red_eye</i>
+                    <td>{{ item.category.title }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.priceInfo }}</td>
+                    <td>
+                        <a class="t-d-none" href="{{ path('restaurant_item_show', {id: item.id}) }}">
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                        </a>
+
+                        {% if is_granted('ROLE_RESTAURATEUR') %}
+                            <a class="t-d-none" href="{{ path('restaurant_item_edit', {id: item.id}) }}">
+                                <img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}">
                             </a>
-                            {% if is_granted('ROLE_RESTAURATEUR') %}
-                                <a href="{{ path('restaurant_item_edit', {id: item.id}) }}">
-                                    <i class="material-icons">mode</i>
-                                </a>
-                                <a href="{{ path('restaurant_item_delete', {id: item.id, token: csrf_token('delete_item' ~ item.title)}) }}">
-                                    <i class="material-icons">delete</i>
-                                </a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                            <a class="t-d-none" href="{{ path('restaurant_item_delete', {id: item.id, token: csrf_token('delete_item' ~ item.id)}) }}">
+                                <img class="icon" src="{{ asset('images/icons/icon-x-hack.png') }}">
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

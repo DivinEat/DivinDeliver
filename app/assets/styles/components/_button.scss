@@ -15,40 +15,15 @@
     border-radius: 4px;
     text-decoration: none;
 
-    &-default {
-        background-color: $btn-default-background-color;
-        color: $text-color;
-        border-color: $btn-default-border-color;
-    }
-
-    &-add {
-        background-color: $btn-add-background-color;
-        border-color: $btn-add-border-color;
-        color: $white;
-    }
-
-    &-edit {
-        background-color: $btn-edit-background-color;
-        border-color: $btn-edit-border-color;
-        color: $white;
-    }
-
-    &-remove {
-        background-color: $btn-remove-background-color;
-        border-color: $btn-remove-border-color;
+    &:hover {
+        text-decoration: none;
         color: $white;
     }
 
     &-primary {
-        background-color: $btn-primary-background-color;
-        border-color: $btn-primary-border-color;
+        background-color: $purple;
+        border-color: $purple;
         color: $white;
-        
-        &-send {
-            position: absolute;
-            top: 88px;
-            right: 25px;
-        }
     }
 
     &-account {
@@ -82,5 +57,14 @@
             transform: scale(1.05);
             box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
         }
+    }
+}
+
+.dd-bt {
+    &-edit {
+        border: none;
+        background-color: transparent;
+        color: #212529;
+        text-decoration: underline;
     }
 }

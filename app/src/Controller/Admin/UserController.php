@@ -79,7 +79,7 @@ class UserController extends AbstractController
      */
     public function delete(User $user, $token)
     {
-        if (!$this->isCsrfTokenValid('delete_user' . $user->getLastname(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_user' . $user->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 
