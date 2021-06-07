@@ -4,19 +4,19 @@
 
 {% block body %}
     <div class="w-100">
-        {% trans %}title{% endtrans %} : {{ item.title }} <br>
-        {% trans %}priceInfo{% endtrans %} : {{ item.priceInfo }} <br>
+        {% trans %}item.title{% endtrans %} : {{ item.title }} <br>
+        {% trans %}item.price{% endtrans %} : {{ item.priceInfo }} <br>
         {% trans %}category.word{% endtrans %} : {{ item.category.title }} <br>
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Retour
+                {% trans %}back{% endtrans %}
             </a>    
             <a href="{{ path('restaurant_item_edit', {id: item.id}) }}" class="text-dark mt-3">
                 <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Éditer
+                {% trans %}edit{% endtrans %}
             </a>
         </div>
     </div>

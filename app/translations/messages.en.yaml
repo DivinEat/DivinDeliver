@@ -3,6 +3,7 @@ welcome: Welcome
 restaurant: Restaurant
 back: Back
 edit: Edit
+add: Add
 logout: Logout
 edit_profile: Update my profile
 
@@ -23,7 +24,7 @@ user:
     word: User
     register: Register
     login: Login
-
+    new: New user
 
 password:
     set_pwd_title: Set your password
@@ -49,69 +50,38 @@ nav:
     orders: Orders
     settings: Settings
 
-
-
-
-name: Name
-price: Price
-here: Here
-my-restaurant: My Restaurant
-title: Title
-subtitle: Subtitle
-
-button:
-    add: Add
-    see: See
-    edit: Edit
-    delete: Delete
-    back: Back
-    create: Create
-    update: Update
-    send: Send
-    reset: Reset
-form:
-    email: Email
-    password: Password
-    password_confirm: Confirm password
-    slug: Slug
-menu:
-    list: Menus list
-    edit: Edit menu %menu_name%
-    new: Create new menu
-    back: Back to menus
-    push: Push to API
-    fetch_ubereats: Import from Uber Eats
-    fetch_deliveroo: Import from Deliveroo
 category:
     word: Category
     list: Categories list
-    edit: Edit category %category_name%
-    new: Create new categorie
+    title: Title
+    subtitle: Subtitle
+    new: New category
+    
 item:
     word: Item
+    title: Title
+    price: Price
     list: Items list
-    edit: Edit item %item_name%
-    new: Create new item
+    new: Create item
     starter: Starter
     main: Main course
     dessert: Dessert
     drink: Drink
-userd:
-    word: User
-    list: Users list
-    edit: Edit user %user_firstname% %user_lastname%
-    new: Add user
-    last_name: Lastname
-    first_name: Firstname
-    login: Login
-    logout: Logout
-    register: Register
-    register_title: Register
-    login_title: Login
-    new_account: New Account
+
+menu:
+    list: Menus list
+    new: Create menu
+    push: Push to APIs
+    title: Title
+    word: Menu
+    fetch_ubereats: Import from Uber Eats
+    fetch_deliveroo: Import from Deliveroo
+
 order:
     word: Order
     list: Orders list
+    accepted: Accepted
+    canceled: Canceled
     id: Order id
     state: State
     type: Type
@@ -120,5 +90,16 @@ order:
     payment: Payment
     placed_at: Placed at
     estimated_ready_for_pickup_at: Ready for pickup at
+    deliver: Deliver
+    accept: Accept
+    deny: Deny
+    cancel: Cancel
+
 settings:
     word: Settings
+
+form:
+    email: Email
+    password: Password
+    password_confirm: Confirm password
+    slug: Slug

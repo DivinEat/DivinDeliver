@@ -3,6 +3,7 @@ welcome: Bienvenue
 restaurant: Restaurant
 back: Retour
 edit: Éditer
+add: Ajouter
 logout: Déconnexion
 edit_profile: Modifier mon profil
 
@@ -23,6 +24,7 @@ user:
     word: Utilisateur
     register: Inscription
     login: Connexion
+    new: Nouveau utilisateur
 
 password:
     set_pwd_title: Définissez votre mot de passe
@@ -48,79 +50,52 @@ nav:
     orders: Commandes
     settings: Paramètres
 
+category:
+    word: Catégorie
+    list: Liste des catégories
+    title: Titre
+    subtitle: Sous-titre
+    new: Nouvelle catégorie
 
+item:
+    word: Produit
+    title: Titre
+    price: Prix
+    list: Liste des produits
+    new: Nouveau produit
 
+menu:
+    list: Liste des menus
+    new: Nouveau menu
+    push: Envoyer sur les APIs
+    title: Titre
+    word: Menu
+    fetch_ubereats: Importer depuis Uber Eats
+    fetch_deliveroo: Importer depuis Deliveroo
 
+order:
+    word: Commande
+    list: Liste des commandes
+    accepted: Accepté
+    canceled: Refusé
+    id: Numéro de commande
+    state: État
+    type: Type
+    store: Restaurant
+    eater: Client
+    payment: Paiement
+    placed_at: Adresse
+    estimated_ready_for_pickup_at: Prêt pour livraison à
+    deliver: Livreur
+    accept: Accepter
+    deny: Refuser
+    cancel: Annuler
 
+settings:
+    word: Paramètres
 
-
-name: Nom
-price: Prix
-here: Ici
-my-restaurant: Mon Restaurant
-title: Titre
-subtitle: Sous titre
-
-button:
-    add: Ajouter
-    see: Voir
-    edit: Editer
-    delete: Supprimer
-    back: Retour
-    create: Créer
-    update: Modifier
-    send: Envoyer
-    reset: Réinitialiser
 form:
     email: Email
     password: Mot de passe
     password_confirm: Confirmez votre mot de passe
     slug: Slug
-menu:
-    list: Liste des menus
-    edit: Edition du menu %menu_name%
-    new: Création d'un nouveau menu
-    back: Retour
-    push: Envoyer sur les APIs
-    fetch_ubereats: Importer depuis Uber Eats
-    fetch_deliveroo: Importer depuis Deliveroo
-category:
-    word: Catégorie
-    list: Liste des catégories
-    edit: Edition de la categorie %category_name%
-    new: Création d'une nouvelle catégorie
-item:
-    word: Produit
-    list: Liste des produits
-    edit: Edition du produit %item_name%
-    new: Création d'un nouveau produit
-    starter: Entrée
-    main: Plat
-    dessert: Dessert
-    drink: Boisson
-userd:
-    word: Utilisateur
-    list: Liste des utilisateurs
-    edit: Edition de l'utilisateur %user_firstname% %user_lastname%
-    new: Ajouter un utilisateur
-    last_name: Nom
-    first_name: Prénom
-    login: Se connecter
-    logout: Se déconnecter
-    register: S'enregistrer
-    register_title: Inscription
-    login_title: Connexion
-    new_account: Nouveau compte
-order:
-    word: Commande
-settings:
-    word: Paramètres
-    list: Liste des commandes
-    id: Identifiant
-    state: Etat
-    type: Type
-    store: Restaurant
-    eater: Utilisateur
-    payment: Paiement
-    placed_at: Commandé à
-    estimated_ready_for_pickup_at: Prêt pour l'envoie à

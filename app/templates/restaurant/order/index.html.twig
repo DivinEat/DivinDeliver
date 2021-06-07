@@ -3,12 +3,12 @@
 {% block title %}{% trans %}order.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">Liste des commandes</h1>
+    <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
 
     <form action"{{ path('restaurant_order_index') }}" method="get" class="w-100 mb-2 mt-3">
         <select name="choice" id="choice" class="browser-default form-control" onchange="this.form.submit()">
-            <option value="accepted">Accepted</option>
-            <option value="canceled">Canceled</option>
+            <option value="accepted">{% trans %}order.accepted{% endtrans %}</option>
+            <option value="canceled">{% trans %}order.canceled{% endtrans %}</option>
         </select>
     </form>
 
@@ -43,29 +43,29 @@
                         {% if order.current_state is not same as('CANCELED') %}
                             {% if order.deliver is same as('ubereats') %}
                                 <a href="{{ path('restaurant_order_ubereats_accept', {id: order._id}) }}" class="text-dark mt-3">
-                                  <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                  Accepter
+                                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                    {% trans %}order.accept{% endtrans %}
                                 </a>
                                 <a href="{{ path('restaurant_order_ubereats_deny', {id: order._id}) }}" class="text-dark mt-3">
                                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                    Refuser
+                                    {% trans %}order.deny{% endtrans %}
                                 </a>
                                 <a href="{{ path('restaurant_order_ubereats_cancel', {id: order._id}) }}" class="text-dark mt-3">
                                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                    Annuler
+                                    {% trans %}order.cancel{% endtrans %}
                                 </a>
                             {% else %}
                                 <a href="{{ path('restaurant_order_deliveroo_accept', {id: order._id}) }}" class="text-dark mt-3">
-                                  <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                  Accepter
+                                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                                    {% trans %}order.accept{% endtrans %}
                                 </a>
                                 <a href="{{ path('restaurant_order_deliveroo_deny', {id: order._id}) }}" class="text-dark mt-3">
                                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                    Refuser
+                                    {% trans %}order.deny{% endtrans %}
                                 </a>
                                 <a href="{{ path('restaurant_order_deliveroo_cancel', {id: order._id}) }}" class="text-dark mt-3">
                                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                                    Annuler
+                                    {% trans %}order.cancel{% endtrans %}
                                 </a>
                             {% endif %}
                         {% endif %}

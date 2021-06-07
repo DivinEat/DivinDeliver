@@ -3,12 +3,12 @@
 {% block title %}{% trans %}item.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">Liste des produits</h1>
+    <h1 class="title">{% trans %}item.list{% endtrans %}</h1>
 
     {% if is_granted('ROLE_RESTAURATEUR') %}
         <a href="{{ path('restaurant_item_new') }}" class="text-dark mt-3">
             <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
-            Ajouter
+            {% trans %}add{% endtrans %}
         </a>
     {% endif %}
 
@@ -16,8 +16,8 @@
         <thead>
             <tr>
                 <th>{% trans %}category.word{% endtrans %}</th>
-                <th>{% trans %}title{% endtrans %}</th>
-                <th>{% trans %}price{% endtrans %}</th>
+                <th>{% trans %}item.title{% endtrans %}</th>
+                <th>{% trans %}item.price{% endtrans %}</th>
                 <th>Actions</th>
             </tr>
         </thead>

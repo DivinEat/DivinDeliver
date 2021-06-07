@@ -1,11 +1,11 @@
 {% extends 'base_restaurant.html.twig' %}
 
-{% block title %}Menu {{ menu.title }}{% endblock %}
+{% block title %}{% trans %}menu.word{% endtrans %} {{ menu.title }}{% endblock %}
 
 {% block body %}
     <div class="w-100">
-        Menu : {{ menu.title }} <br>
-        {% trans %}title{% endtrans %} : {{ menu.title }} <br>
+        {% trans %}menu.word{% endtrans %} : {{ menu.title }} <br>
+        {% trans %}menu.title{% endtrans %} : {{ menu.title }} <br>
         Categories :
         {% for category in menu.categories %}
             {{ category.title }}
@@ -15,11 +15,11 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('restaurant_menu_index') }}" class="text-dark mt-3">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Retour
+                {% trans %}back{% endtrans %}
             </a>    
             <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}" class="text-dark mt-3">
                 <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Éditer
+                {% trans %}edit{% endtrans %}
             </a>
         </div>
     </div>
