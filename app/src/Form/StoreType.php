@@ -15,7 +15,7 @@ class StoreType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'name',
+                'label' => 'store.name',
                 'attr' => ['class' => 'form-control form-control-user']
             ])
             ->add('storeIdFakeUberEat', TextType::class, [

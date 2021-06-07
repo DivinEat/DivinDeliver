@@ -10,8 +10,8 @@ edit_profile: Update my profile
 store:
     list: Stores list
     name: Name
-    storeIdFakeUberEat: Secret Key FakeUberEat
-    storeIdFakeDeliveroo: Secret Key FakeDeliveroo
+    id_fake_ubereat: Secret Key FakeUberEat
+    id_fake_deliveroo: Secret Key FakeDeliveroo
     create: Create store
 
 user:
