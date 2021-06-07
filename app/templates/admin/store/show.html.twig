@@ -1,21 +1,22 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}{% trans %}store.word{% endtrans %} {{ store.name }}{% endblock %}
+{% block title %}{% trans %}restaurant{% endtrans %} {{ store.name }}{% endblock %}
 
 {% block body %}
     <div class="w-100">
-        Name : {{ store.name }} <br>
-        storeIdFakeUberEat : {{ store.storeIdFakeUberEat }} <br>
+        {% trans %}store.name{% endtrans %} : {{ store.name }} <br>
+        {% trans %}store.storeIdFakeUberEat{% endtrans %} : {{ store.storeIdFakeUberEat }} <br>
+        {% trans %}store.storeIdFakeDeliveroo{% endtrans %} : {{ store.storeIdFakeDeliveroo }} <br>
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('admin_store_index') }}" class="text-dark mt-3">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Retour
+                {% trans %}back{% endtrans %}
             </a>    
             <a href="{{ path('admin_store_edit', {id: store.id}) }}" class="text-dark mt-3">
                 <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Éditer
+                {% trans %}edit{% endtrans %}
             </a>
         </div>
     </div>

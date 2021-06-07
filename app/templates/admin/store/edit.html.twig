@@ -3,7 +3,7 @@
 {% block title %}{{ store.name }}{% endblock %}
 
 {% block body %}
-    <h1>Restaurant : {{ store.name }}</h1>
+    <h1>{% trans %}restaurant{% endtrans %} : {{ store.name }}</h1>
 
     {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
         {{ form_errors(form) }}
@@ -15,11 +15,11 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('admin_store_index') }}" class="text-dark mt-3">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                Retour
+                {% trans %}back{% endtrans %}
             </a>
             <div>
                 <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                <input type="submit" class="dd-bt-edit" value="Éditer">
+                <input type="submit" class="dd-bt-edit" value="{% trans %}edit{% endtrans %}">
             </div>
         </div>
     {{ form_end(form) }}

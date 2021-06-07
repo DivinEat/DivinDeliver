@@ -2,10 +2,10 @@
     ? 'base_admin.html.twig' 
     : 'base_restaurant.html.twig' %}
 
-{% block title %}Profil{% endblock %}
+{% block title %}{% trans %}nav.profile{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Modifier mon profil</h1>
+    <h1>{% trans %}edit_profile{% endtrans %}</h1>
 
     {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
         {{ form_errors(form) }}
@@ -17,7 +17,7 @@
         <br>
         <div>
             <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-            <input type="submit" class="dd-bt-edit" value="Éditer">
+            <input type="submit" class="dd-bt-edit" value="{% trans %}edit{% endtrans %}">
         </div>
     {{ form_end(form) }}
 {% endblock %}

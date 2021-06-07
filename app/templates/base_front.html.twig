@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}DivinDeliver{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -16,10 +16,10 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <li style="margin-right: 10px"><a href="{{ path('admin_default_index') }}">Admin</a></li>
                         {% else %}
-                            <li style="margin-right: 10px"><a href="{{ path('restaurant_default_index') }}">My Restaurant</a></li>
+                            <li style="margin-right: 10px"><a href="{{ path('restaurant_default_index') }}">{% trans %}nav.my_restaurant{% endtrans %}</a></li>
                         {% endif %} 
                         
-                        <li><a href="{{ path('app_logout') }}">{% trans %}user.logout{% endtrans %}</a></li>
+                        <li><a href="{{ path('app_logout') }}">{% trans %}logout{% endtrans %}</a></li>
                     {% else %}
                         <li><a href="{{ path('app_login') }}">{% trans %}user.login{% endtrans %}</a></li>
                     {% endif %}

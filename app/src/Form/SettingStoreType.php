@@ -13,11 +13,14 @@ class SettingStoreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name', TextType::class, [
+                'label' => 'Name'
+            ])
             ->add('storeIdFakeUberEat', TextType::class, [
                 'label' => 'Secret Key UberEat'
             ])
             ->add('storeIdFakeDeliveroo', TextType::class, [
-                'label' => 'Secret Key UberEat'
+                'label' => 'Secret Key Deliveroo'
             ])
         ;
     }

@@ -1,6 +1,61 @@
+home: Accueil
+welcome: Bienvenue
+restaurant: Restaurant
+back: Retour
+edit: Éditer
+logout: Déconnexion
+edit_profile: Modifier mon profil
+
+store:
+    list: Liste des restaurants
+    name: Nom
+    id_fake_ubereat: Secret Key FakeUberEat
+    id_fake_deliveroo: Secret Key FakeDeliveroo
+    create: Créer un restaurant
+
+user:
+    list: Liste des utilisateurs
+    firstname: Prénom
+    lastname: Nom
+    email: Email
+    password: Mot de passe
+    roles: Roles
+    word: Utilisateur
+    register: Inscription
+    login: Connexion
+
+password:
+    set_pwd_title: Définissez votre mot de passe
+    reset_pwd_title: Réinitialiser votre mot de passe
+    reset_link: Cliquez ici pour réinitialiser votre mot de passe
+    reset_link_expired_title: Lien de réinitialisation de mot de passe expiré
+    reset_link_not_valid: Ce lien a expiré ou a déjà été utilisé
+    reset_link_conditions: Ce lien expore dans 60 minutes et n'est utilisable qu'une seule fois
+    reset_link_sent: Lien de réinitialisation de mot de passe envoyé
+    reset_link_will_receive: Vous allez recevoir un lien pour réinitialiser votre mot de passe à cette adresse
+    resend_link: Vous pouvez renvoyer ce lien
+    forgot_password: Mot de passe oublié ?
+
+nav:
+    back_home: Retour accueil
+    profile: Profil
+    users: Utilisateurs
+    restaurants: Restaurants
+    my_restaurant: Mon restaurant
+    menus: Menus
+    products: Produits
+    categories: Catégories
+    orders: Commandes
+    settings: Paramètres
+
+
+
+
+
+
+
 name: Nom
 price: Prix
-home: Accueil
 here: Ici
 my-restaurant: Mon Restaurant
 title: Titre
@@ -43,11 +98,7 @@ item:
     main: Plat
     dessert: Dessert
     drink: Boisson
-store: 
-    create: Créer un restaurant
-    id_fake_ubereat: Store Id pour FakeUberEat
-    id_fake_deliveroo: Store Id pour FakeDeliveroo
-user:
+userd:
     word: Utilisateur
     list: Liste des utilisateurs
     edit: Edition de l'utilisateur %user_firstname% %user_lastname%
@@ -73,14 +124,3 @@ settings:
     payment: Paiement
     placed_at: Commandé à
     estimated_ready_for_pickup_at: Prêt pour l'envoie à
-password:
-    set_pwd_title: Définissez votre mot de passe
-    reset_pwd_title: Réinitialiser votre mot de passe
-    reset_link: Cliquez ici pour réinitialiser votre mot de passe
-    reset_link_expired_title: Lien de réinitialisation de mot de passe expiré
-    reset_link_not_valid: Ce lien a expiré ou a déjà été utilisé
-    reset_link_conditions: Ce lien expore dans 60 minutes et n'est utilisable qu'une seule fois
-    reset_link_sent: Lien de réinitialisation de mot de passe envoyé
-    reset_link_will_receive: Vous allez recevoir un lien pour réinitialiser votre mot de passe à cette adresse
-    resend_link: Vous pouvez renvoyer ce lien
-    forgot_password: Mot de passe oublié ?

@@ -1,20 +1,20 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{% trans %}user.login{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="card">
-    <h2>Please sign in</h2>
+    <h2>{% trans %}user.login{% endtrans %}</h2>
 
     <form method="post" class="admin-form">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <label for="inputEmail">{% trans %}form.email{% endtrans %}</label>
+        <label for="inputEmail">{% trans %}user.email{% endtrans %}</label>
         <input type="email" value="{{ last_username }}" name="email" class="form-control form-control-user" required autofocus>
         
-        <label for="inputPassword">{% trans %}form.password{% endtrans %}</label>
+        <label for="inputPassword">{% trans %}user.password{% endtrans %}</label>
         <input type="password" name="password" class="form-control form-control-user" required>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

@@ -1,7 +1,7 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{% trans %}home{% endtrans %}{% endblock %}
 
 {% block body %}
-    Bienvenue {{ user.firstname }} {{ user.lastname }}
+    {% trans %}welcome{% endtrans %} {{ user.firstname }} {{ user.lastname }}
 {% endblock %}

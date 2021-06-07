@@ -3,12 +3,12 @@
 {% block title %}{% trans %}store.list{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="title">Liste des restaurants</h1>
+    <h1 class="title">{% trans %}store.list{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>{% trans %}name{% endtrans %}</th>
+                <th>{% trans %}store.name{% endtrans %}</th>
                 <th>{% trans %}store.storeIdFakeUberEat{% endtrans %}</th>
                 <th>{% trans %}store.storeIdFakeDeliveroo{% endtrans %}</th>
                 <th>Actions</th>
@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ store.name }}</td>
                     <td>{{ store.storeIdFakeUberEat }}</td>
-                    <td></td>
+                    <td>{{ store.storeIdFakeDeliveroo }}</td>
                     <td>
                         <a class="t-d-none" href="{{ path('admin_store_show', {id: store.id}) }}">
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}DivinDeliver{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -16,7 +16,7 @@
 
             <div class="mr-5">
             {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="text-dark">Déconnexion Admin</a>
+                <a href="{{ path('app_logout') }}" class="text-dark">{% trans %}logout{% endtrans %} Admin</a>
                 <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"> </span>
             {% endif %}
             </div>
@@ -28,7 +28,7 @@
                     <li class="w-100 pl-2 pr-2 mt-4">
                         <a href="{{ path('default_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
-                            <span class="ml-3">Retour accueil</span>
+                            <span class="ml-3">{% trans %}nav.back_home{% endtrans %}</span>
                         </a>
                     </li>
                     <div class="ligne"></div>
@@ -36,7 +36,7 @@
                     <li class="w-100 pl-2 pr-2 mt-2">
                         <a class="t-d-none" href="{{ path('back_profile_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
                             <img class="icon" src="{{ asset('images/icons/icon admin mobile-hack.png') }}">
-                            <span class="ml-3">Profil</span>
+                            <span class="ml-3">{% trans %}nav.profile{% endtrans %}</span>
                         </a>
                     </li>
 
@@ -50,7 +50,7 @@
 
                     <li class="w-100 pl-2 pr-2">
                         <a href="{{ path('admin_user_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
-                            <span>Utilisateurs</span>
+                            <span>{% trans %}nav.users{% endtrans %}</span>
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
                         </a>
                     </li>
@@ -58,7 +58,7 @@
 
                     <li class="w-100 pl-2 pr-2">
                         <a href="{{ path('admin_store_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
-                            <span>Restaurants</span>
+                            <span>{% trans %}nav.restaurants{% endtrans %}</span>
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
                         </a>
                     </li>
