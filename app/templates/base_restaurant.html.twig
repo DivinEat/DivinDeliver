@@ -10,35 +10,35 @@
     
     <body>
         <header class="d-flex align-items-center justify-content-between header-back">
-            <div class="d-flex align-items-center flex-row ml-5">
                 <a href="{{ path('default_index') }}"><img src="{{ asset('images/logo.png') }}" style="height: 125px"></a>
-            </div>
+                
+                <div class="alert-order" style="color:red;">Vous avez 5 nouvelles commandes</div>
 
-            <div class="mr-5">
-            {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="text-dark">{% trans %}logout{% endtrans %}</a>
-                <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"> </span>
-            {% endif %}
-            </div>
+                <div class="d-flex flex-row">
+                    {% if app.user %}
+                        <a href="{{ path('back_profile_index') }}" class="t-d-none text-dark" style="margin-right:15px;">
+                            <img class="icon" src="{{ asset('images/icons/icon admin mobile-hack.png') }}">
+                            <span class="ml-3">{% trans %}nav.profile{% endtrans %}</span>
+                        </a>
+
+                        <div>
+                            <a href="{{ path('app_logout') }}" class="text-dark">{% trans %}logout{% endtrans %}</a>
+                            <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"></span>
+                        </div>
+                    {% endif %}
+                </div>
         </header>
 
         <div class="row">
             <div class="col-3 sidenav">
                 <ul class="mt-2 d-flex flex-column align-items-center">
                     <li class="w-100 pl-2 pr-2 mt-4">
-                        <a href="{{ path('default_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
-                            <img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
-                            <span class="ml-3">{% trans %}nav.back_home{% endtrans %}</span>
+                        <a href="{{ path('restaurant_order_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
+                            <span style="font-size: 22px;">{% trans %}nav.orders{% endtrans %}</span>
+                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
                         </a>
                     </li>
                     <div class="ligne"></div>
-
-                    <li class="w-100 pl-2 pr-2 mt-2">
-                        <a class="t-d-none" href="{{ path('back_profile_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
-                            <img class="icon" src="{{ asset('images/icons/icon admin mobile-hack.png') }}">
-                            <span class="ml-3">{% trans %}nav.profile{% endtrans %}</span>
-                        </a>
-                    </li>
 
                     <li class="w-100 pl-2 pr-2" style="margin-top: 5rem">
                         <a href="{{ path('restaurant_default_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
@@ -67,14 +67,6 @@
                     <li class="w-100 pl-2 pr-2">
                         <a href="{{ path('restaurant_category_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
                             <span>{% trans %}nav.categories{% endtrans %}</span>
-                            <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
-                        </a>
-                    </li>
-                    <div class="ligne"></div>
-
-                    <li class="w-100 pl-2 pr-2">
-                        <a href="{{ path('restaurant_order_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
-                            <span>{% trans %}nav.orders{% endtrans %}</span>
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
                         </a>
                     </li>
