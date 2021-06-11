@@ -105,7 +105,7 @@ class CategoryController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $category->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        if (!$this->isCsrfTokenValid('delete_category' . $category->getTitle(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_category' . $category->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 

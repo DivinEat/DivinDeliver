@@ -108,7 +108,7 @@ class ItemController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $item->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        if (!$this->isCsrfTokenValid('delete_item' . $item->getTitle(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_item' . $item->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 

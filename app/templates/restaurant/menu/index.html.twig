@@ -20,6 +20,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>{% trans %}menu.title{% endtrans %}</th>
                 <th>{% trans %}category.word{% endtrans %}</th>
                 <th>Actions</th>
@@ -28,6 +29,7 @@
         <tbody>
             {% for menu in menus %}
                 <tr>
+                    <td><img src="{{ vich_uploader_asset(menu, 'imageFile') }}" class="thumbnail" alt="{{ menu.title }}"/></td>
                     <td>{{ menu.title }}</td>
                     <td>
                         {% for category in menu.categories %}

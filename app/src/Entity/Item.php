@@ -7,9 +7,12 @@ use App\Entity\Category;
 use App\Traits\EntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ItemRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
+ * @Vich\Uploadable()
  */
 class Item
 {
@@ -35,6 +38,22 @@ class Item
      * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="items")
      */
     private $store;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cover;
+
+    /**
+     * @Vich\UploadableField(mapping="cover_item", fileNameProperty="cover")
+     * @var File
+     */
+    private $imageFile;
+
+    public function __construct()
+    {
+        $this->updatedAt = new \DateTime('now');
+    }
 
     public function getTitle(): ?string
     {
@@ -83,4 +102,30 @@ class Item
 
         return $this;
     } 
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 }
