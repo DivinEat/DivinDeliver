@@ -107,7 +107,7 @@ class MenuController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $menu->getStore()->getId())
             throw $this->createAccessDeniedException();
 
-        if (!$this->isCsrfTokenValid('delete_menu' . $menu->getTitle(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_menu' . $menu->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 

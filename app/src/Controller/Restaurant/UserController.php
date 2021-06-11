@@ -123,7 +123,7 @@ class UserController extends AbstractController
         if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
             throw $this->createAccessDeniedException();
 
-        if (!$this->isCsrfTokenValid('delete_user' . $user->getLastname(), $token)) {
+        if (!$this->isCsrfTokenValid('delete_user' . $user->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
 

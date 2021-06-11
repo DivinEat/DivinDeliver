@@ -8,9 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
+ * @Vich\Uploadable()
  */
 class Menu
 {
@@ -39,9 +42,21 @@ class Menu
      */
     private $store;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cover;
+
+    /**
+     * @Vich\UploadableField(mapping="cover_item", fileNameProperty="cover")
+     * @var File
+     */
+    private $imageFile;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->updatedAt = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -88,5 +103,31 @@ class Menu
         $this->store = $store;
 
         return $this;
+    } 
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }

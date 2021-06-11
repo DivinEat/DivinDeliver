@@ -10,6 +10,7 @@
 
         {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
         {{ form_row(form.categories, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.imageFile, {'attr': {'class': 'form-control browser-default'}}) }}
         
         <br>
         <div class="d-flex align-items-center justify-content-between">
@@ -19,7 +20,7 @@
             </a>
             <div>
                 <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                <input type="submit" class="dd-bt-edit" value="{% trans %}edit{% endtrans %}">
+                <input type="submit" class="dd-bt-edit" value="{% trans %}add{% endtrans %}">
             </div>
         </div>
     {{ form_end(form) }}

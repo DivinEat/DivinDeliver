@@ -15,6 +15,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>{% trans %}category.word{% endtrans %}</th>
                 <th>{% trans %}item.title{% endtrans %}</th>
                 <th>{% trans %}item.price{% endtrans %}</th>
@@ -24,6 +25,7 @@
         <tbody>
             {% for item in items %}
                 <tr>
+                    <td><img src="{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/></td>
                     <td>{{ item.category.title }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.priceInfo }}</td>
