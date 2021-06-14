@@ -2,13 +2,16 @@
 
 namespace App\Repository;
 
-use App\Entity\Store;
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Store;
+use Doctrine\ORM\Query;
+use PhpParser\Node\Expr\Cast\Array_;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,6 +50,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    // marche pas sa grand mère
+    // public function findByRole(string $value): ?Array
+    // {
+    //     $query = $this->getEntityManager()->createQueryBuilder()
+    //     ->select('u')
+    //     ->from('App\Entity\User', 'u')
+    //     ->where('\'${value}\' IN u.roles')                      
+    //     ->getQuery();
+
+
+    //     return $query->getResult();
+    // }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
@@ -60,18 +76,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
         ;
     }
     */

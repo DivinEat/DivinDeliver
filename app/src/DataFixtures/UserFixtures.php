@@ -3,8 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class UserFixtures extends Fixture
 {
@@ -13,22 +13,33 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $object = (new User())
-            ->setEmail("res@technique")
-            ->setRoles(["ROLE_RESTAURATEUR"])
-            ->setPassword(self::PWD)
-        ;
-        $manager->persist($object);
+        $faker = \Faker\Factory::create();
 
-        $object = (new User())
-            ->setFirstname("Name")
-            ->setLastname("Lastname")
-            ->setEmail("wait@technique")
-            ->setRoles(["ROLE_WAITER"])
-            ->setPassword(self::PWD)
-        ;
-        $manager->persist($object);
+        for ($i = 1; $i <= 10; $i++) {
+            $object = (new User())
+                ->setEmail($faker->email)
+                ->setRoles(["ROLE_ADMIN"])
+                ->setPassword(self::PWD)
+            ;
+            $manager->persist($object);
 
-        $manager->flush();
+            $object = (new User())
+                ->setEmail($faker->email)
+                ->setRoles(["ROLE_RESTAURATEUR"])
+                ->setPassword(self::PWD)
+            ;
+            $manager->persist($object);
+
+            $object = (new User())
+                ->setFirstname($faker->firstName)
+                ->setLastname($faker->lastName)
+                ->setEmail($faker->email)
+                ->setRoles(["ROLE_WAITER"])
+                ->setPassword(self::PWD)
+            ;
+            $manager->persist($object);
+
+            $manager->flush();
+        }
     }
 }
