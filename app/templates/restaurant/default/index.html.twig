@@ -22,7 +22,7 @@
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.orders{% endtrans %}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Number of orders</h6>
-                <p class="card-text text-center" style="font-size: 3rem">12</p>
+                <p class="card-text text-center" style="font-size: 3rem">{{ orders }}</p>
                 <a href="{{ path('restaurant_order_index') }}" class="text-dark mt-3 text-decoration-none">
                     Go to orders
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
@@ -48,7 +48,7 @@
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.categories{% endtrans %}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Number of categories</h6>
-                <p class="card-text text-center" style="font-size: 3rem">{{ items }}</p>
+                <p class="card-text text-center" style="font-size: 3rem">{{ categories }}</p>
                 <a href="{{ path('restaurant_category_index') }}" class="text-dark mt-3 text-decoration-none">
                     Go to categories
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>

@@ -9,6 +9,7 @@ use App\Repository\OrderRepository;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
+ * @ORM\Table(name="delivery_order")
  */
 class Order
 {
@@ -25,7 +26,7 @@ class Order
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $deviver_order_id;
+    private $display_id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -52,14 +53,14 @@ class Order
         return $this->id;
     }
 
-    public function getDeliverOrderId(): ?string
+    public function getDisplayId(): ?string
     {
-        return $this->deviver_order_id;
+        return $this->display_id;
     }
 
-    public function setDeliverOrderId(string $deviver_order_id): self
+    public function setDisplayId(string $display_id): self
     {
-        $this->deviver_order_id = $deviver_order_id;
+        $this->display_id = $display_id;
 
         return $this;
     }
