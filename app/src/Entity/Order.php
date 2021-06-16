@@ -12,7 +12,7 @@ use App\Repository\OrderRepository;
  */
 class Order
 {
-    
+
     use EntityTrait;
 
     /**
@@ -23,9 +23,14 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=255)
      */
-    private $display_id;
+    private $deviver_order_id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $deliver;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,28 +38,40 @@ class Order
     private $current_state;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="orders")
      */
     private $store;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $content = [];
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDisplayId(): ?string
+    public function getDeliverOrderId(): ?string
     {
-        return $this->display_id;
+        return $this->deviver_order_id;
     }
 
-    public function setDisplayId(string $display_id): self
+    public function setDeliverOrderId(string $deviver_order_id): self
     {
-        $this->display_id = $display_id;
+        $this->deviver_order_id = $deviver_order_id;
+
+        return $this;
+    }
+
+    public function getDeliver(): ?string
+    {
+        return $this->deliver;
+    }
+
+    public function setDeliver(string $deliver): self
+    {
+        $this->deliver = $deliver;
 
         return $this;
     }
@@ -71,18 +88,6 @@ class Order
         return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getStore(): ?Store
     {
         return $this->store;
@@ -91,6 +96,18 @@ class Order
     public function setStore(Store $store): self
     {
         $this->store = $store;
+
+        return $this;
+    }
+
+    public function getContent(): ?array
+    {
+        return $this->content;
+    }
+
+    public function setContent(array $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }
