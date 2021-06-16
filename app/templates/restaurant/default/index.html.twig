@@ -4,4 +4,68 @@
 
 {% block body %}
     {% trans %}welcome{% endtrans %} {{ user.firstname }} {{ user.lastname }}
+
+    <div class="row d-flex mt-5 w-100 justify-content-around">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.users{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of registered users</h6>
+                <p class="card-text text-center" style="font-size: 3rem">{{ users }}</p>
+                <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to users
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.orders{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of orders</h6>
+                <p class="card-text text-center" style="font-size: 3rem">12</p>
+                <a href="{{ path('restaurant_order_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to orders
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.products{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of items</h6>
+                <p class="card-text text-center" style="font-size: 3rem">{{ items }}</p>
+                <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to items
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex mt-5 mb-5 w-100 justify-content-around">  
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.categories{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of categories</h6>
+                <p class="card-text text-center" style="font-size: 3rem">{{ items }}</p>
+                <a href="{{ path('restaurant_category_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to categories
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.menus{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of menus</h6>
+                <p class="card-text text-center" style="font-size: 3rem">{{ menus }}</p>
+                <a href="{{ path('restaurant_menu_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to menus
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

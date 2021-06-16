@@ -2,18 +2,26 @@
 
 namespace App\Controller\Restaurant;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ItemRepository;
+use App\Repository\MenuRepository;
+use App\Repository\UserRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
 {
     /**
      * @Route("/", name="default_index", methods={"GET"})
      */
-    public function index()
+    public function index(ItemRepository $itemRepository, UserRepository $userRepository, CategoryRepository $categoryRepository, MenuRepository $menuRepository)
     {
         return $this->render('restaurant/default/index.html.twig', [
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
+            'items' => count($itemRepository->findAll()),
+            'categories' => count($categoryRepository->findAll()),
+            'users' => count($userRepository->findAll()),
+            'menus' => count($menuRepository->findAll())
         ]);
     }
 }

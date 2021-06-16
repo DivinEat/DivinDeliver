@@ -4,4 +4,30 @@
 
 {% block body %}
     {% trans %}welcome{% endtrans %} {{ user.firstname }} {{ user.lastname }}
+
+    <div class="row d-flex flex-wrap mt-5 w-100 justify-content-around">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.users{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of registered users</h6>
+                <p class="card-text text-center" style="font-size: 3rem">{{ users }}</p>
+                <a href="{{ path('admin_user_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to users
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% trans %}nav.restaurants{% endtrans %}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Number of registered stores</h6>
+                <p class="card-text text-center" style="font-size: 3rem">{{ stores }}</p>
+                <a href="{{ path('admin_store_index') }}" class="text-dark mt-3 text-decoration-none">
+                    Go to stores
+                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-version: '3.6'
+version: "3.6"
 x-cache-from:
   - &app-cache-from
     cache_from:
@@ -9,7 +9,6 @@ x-cache-from:
       - ${NODE_IMAGE:-iw/node}
 
 services:
-
   db:
     image: postgres:9.6-alpine
     environment:
@@ -19,7 +18,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data:rw
     ports:
-      - '5432:5432'
+      - "5432:5432"
 
   php:
     image: ${PHP_IMAGE:-iw/php}
@@ -36,9 +35,13 @@ services:
   mercure:
     image: dunglas/mercure
     environment:
-      - SERVER_NAME=:3000
-      - MERCURE_PUBLISHER_JWT_KEY=’!ChangeMe!’
-      - MERCURE_SUBSCRIBER_JWT_KEY=’!ChangeMe!’
+      DEBUG: "debug"
+      SERVER_NAME: ":3000"
+      MERCURE_PUBLISHER_JWT_KEY: ’!ChangeMe!’
+      MERCURE_SUBSCRIBER_JWT_KEY: ’!ChangeMe!’
+      MERCURE_EXTRA_DIRECTIVES: |-
+        cors_origins "http://127.0.0.1"
+        anonymous
     ports:
       - "9090:3000"
 
@@ -69,12 +72,12 @@ services:
       - php
     volumes:
       - ./app:/home/node/app
-      
+
   mailhog:
     image: mailhog/mailhog:latest
     ports:
-        - 1025:1025 # smtp server
-        - 8025:8025 # web ui
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
 
 volumes:
   db-data: {}
