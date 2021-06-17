@@ -1,59 +1,53 @@
 .header-back {
-    background-color: #FFFFFF;
-    height: 150px; 
-    // box-shadow: rgb(128 128 128) 0px 4px 17px -5px;
+  background-color: #ffffff;
+  height: 150px;
+  // box-shadow: rgb(128 128 128) 0px 4px 17px -5px;
 }
 
 .sidenav {
-    background-color: #E9E9E9;
-    min-height: 70vh;
+  background-color: #e9e9e9;
+  min-height: 70vh;
 }
 
 .sidenav ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .sidenav ul li a {
-    color: #000000;
+  color: #000000;
 }
 
 .ligne {
-	width: 100%;
-	height: 1px;
-	background-color: black;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .admin-table {
-    background-color: #E9E9E9;
-    width: 80%;
-    min-height: 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: #e9e9e9;
+  width: 80%;
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .admin-table .admin-table-row {
-    background-color: #FFFFFF;
-}
-
-.header-front {
-    background-color: #FFFFFF; 
-    height:150px; 
-    // box-shadow: rgb(128 128 128) 0px 4px 17px -5px;
+  background-color: #ffffff;
 }
 
 nav a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 nav a span {
-    color: #212529;
+  color: #212529;
 }
 
 footer {
-	height: 100px;
-	background-color: $purple;
-	color: #ffffff;
+  height: 100px;
+  background-color: $purple;
+  color: #ffffff;
 }

@@ -3,10 +3,36 @@
 {% block title %}DivinDeliver | DivinDeliver{% endblock %}
 
 {% block body %}
-    <h1>DivinDeliver</h1>
-    {% if not app.user %}
-        <a href="{{ path(('app_register')) }}" class="create-button">{% trans %}store.create{% endtrans %}</a>
-    {% else %}
-        <a href="{{ path('restaurant_default_index') }}" class="create-button">{% trans %}nav.my_restaurant{% endtrans %}</a>
-    {% endif %}
+    <div class="row w-100">
+        <div class="col-6 d-flex flex-column justify-content-between" style="padding-left: 10rem">
+            <h1 class="p-0" style="color: black; font-size: 40px!important;">DivinDeliver</h1>
+
+            <p>
+                Wouha c'est bien beau d'avoir un restaurant populaire, 
+                mais ne pas pouvoir laisser tout le monde se sustenter, ça l'est moins. 
+                Mais attendez, on a ce qu'il vous faut. Divindeliver, 
+                c'est si simple qu'on dit adieu à l’infernale des sur commandes.
+            </p>
+
+            {% if not app.user %}
+                <a href="{{ path(('app_register')) }}" class="btn-create" style="width: 155px;">{% trans %}store.create{% endtrans %}</a>
+            {% else %}
+                <a href="{{ path('restaurant_default_index') }}" class="btn-create" style="width: 155px;">{% trans %}nav.my_restaurant{% endtrans %}</a>
+            {% endif %}
+        </div>
+
+        <div class="col-6">
+            <img src="{{ asset('images/background.jpg') }}" style="width: 100%">
+        </div>
+    </div>
+
+    <div class="row w-100 d-flex justify-content-center align-items-center" style="margin-top: 5rem; padding-bottom: 2rem">
+        <h2 class="text-center mb-5">Ils pourraient être nos partenaires</h2>
+
+        <ul class="d-flex w-75 flex-row justify-content-around" style="list-style-type: none;">
+            <li><img src="{{ asset('images/delivers/deliveroo.png') }}" style="width: 75px"></li>
+            <li><img src="{{ asset('images/delivers/ubereat.png') }}" style="width: 75px"></li>
+            <li><img src="{{ asset('images/delivers/justeat.png') }}" style="width: 75px"></li>
+        </ul>
+    </div>
 {% endblock %}
