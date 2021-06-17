@@ -3,25 +3,27 @@
 {% block title %}DivinDeliver | {% trans %}user.login{% endtrans %}{% endblock %}
 
 {% block body %}
-<div class="card">
-    <h2>{% trans %}user.login{% endtrans %}</h2>
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="card pt-5 pb-5">
+            <h2 class="title margin-0 text-align-center">{% trans %}user.login{% endtrans %}</h2>
 
-    <form method="post" class="admin-form">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+            <form method="post" class="admin-form mt-5">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-        <label for="inputEmail">{% trans %}user.email{% endtrans %}</label>
-        <input type="email" value="{{ last_username }}" name="email" class="form-control form-control-user" required autofocus>
-        
-        <label for="inputPassword">{% trans %}user.password{% endtrans %}</label>
-        <input type="password" name="password" class="form-control form-control-user" required>
+                <label for="inputEmail">{% trans %}user.email{% endtrans %}</label>
+                <input type="email" value="{{ last_username }}" name="email" class="form-control form-control-user" required autofocus>
+                
+                <label for="inputPassword">{% trans %}user.password{% endtrans %}</label>
+                <input type="password" name="password" class="form-control form-control-user" required>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="dd-btn dd-btn-account dd-btn-account-blue margin-top-50" type="submit">{% trans %}user.login{% endtrans %}</button>
+                <button class="dd-btn dd-btn-account dd-btn-account-blue mt-5" type="submit">{% trans %}user.login{% endtrans %}</button>
 
-        <a href="{{ path('forgot_password') }}" class="dd-btn dd-btn-account dd-btn-account-red">{% trans %}password.forgot_password{% endtrans %}</a>
-    </form>
-</div>
+                <a href="{{ path('forgot_password') }}" class="dd-btn dd-btn-account dd-btn-account-red">{% trans %}password.forgot_password{% endtrans %}</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -9,8 +9,6 @@
         <thead>
             <tr>
                 <th>{% trans %}store.name{% endtrans %}</th>
-                <th>{% trans %}store.id_fake_ubereat{% endtrans %}</th>
-                <th>{% trans %}store.id_fake_deliveroo{% endtrans %}</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,8 +16,6 @@
             {% for store in stores %}
                 <tr>
                     <td>{{ store.name }}</td>
-                    <td>{{ store.storeIdFakeUberEat }}</td>
-                    <td>{{ store.storeIdFakeDeliveroo }}</td>
                     <td>
                         <a class="t-d-none" href="{{ path('admin_store_show', {id: store.id}) }}">
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">

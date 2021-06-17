@@ -8,98 +8,101 @@ logout: Logout
 edit_profile: Update my profile
 
 store:
-    list: Stores list
-    name: Name
-    id_fake_ubereat: Secret Key FakeUberEat
-    id_fake_deliveroo: Secret Key FakeDeliveroo
-    create: Create store
+  list: Stores list
+  name: Name
+  id_fake_ubereat: Secret Key FakeUberEat
+  id_fake_deliveroo: Secret Key FakeDeliveroo
+  create: Create store
 
 user:
-    list: Users list
-    firstname: Fistname
-    lastname: Lastname
-    email: Email
-    password: Password
-    roles: Roles
-    word: User
-    register: Register
-    login: Login
-    new: New user
+  list: Users list
+  firstname: Fistname
+  lastname: Lastname
+  email: Email
+  password: Password
+  roles: Roles
+  word: User
+  register: Register
+  login: Login
+  new: New user
 
 password:
-    set_pwd_title: Set your password
-    reset_pwd_title: Reset your password
-    reset_link: Click here to reset your password
-    reset_link_expired_title: Reset password link expired
-    reset_link_not_valid: This link expired or has already been used
-    reset_link_conditions: This link expire in 60 minutes and can be used only one time
-    reset_link_sent: Reset password link sent
-    reset_link_will_receive: You will receive a link to reset your password on this mail adress
-    resend_link: You can resend a link
-    forgot_password: Forgot password ?
+  set_pwd_title: Set your password
+  reset_pwd_title: Reset your password
+  reset_link: Click here to reset your password
+  reset_link_expired_title: Reset password link expired
+  reset_link_not_valid: This link expired or has already been used
+  reset_link_conditions: This link expire in 60 minutes and can be used only one time
+  reset_link_sent: Reset password link sent
+  reset_link_will_receive: You will receive a link to reset your password on this mail adress
+  resend_link: You can resend a link
+  forgot_password: Forgot password ?
 
 nav:
-    back_home: Back to home
-    profile: Profile
-    users: Users
-    restaurants: Restaurants
-    my_restaurant: My restaurant
-    menus: Menus
-    products: Products
-    categories: Categories
-    orders: Orders
-    settings: Settings
+  back_home: Back to home
+  profile: Profile
+  users: Users
+  restaurants: Restaurants
+  my_restaurant: My restaurant
+  menus: Menus
+  products: Products
+  categories: Categories
+  orders: Orders
+  settings: Settings
 
 category:
-    word: Category
-    list: Categories list
-    title: Title
-    subtitle: Subtitle
-    new: New category
-    
+  word: Category
+  list: Categories list
+  title: Title
+  subtitle: Subtitle
+  new: New category
+
 item:
-    word: Item
-    title: Title
-    price: Price
-    list: Items list
-    new: Create item
-    starter: Starter
-    main: Main course
-    dessert: Dessert
-    drink: Drink
+  word: Item
+  title: Title
+  price: Price
+  list: Items list
+  new: Create item
+  starter: Starter
+  main: Main course
+  dessert: Dessert
+  drink: Drink
 
 menu:
-    list: Menus list
-    new: Create menu
-    push: Push to APIs
-    title: Title
-    word: Menu
-    fetch_ubereats: Import from Uber Eats
-    fetch_deliveroo: Import from Deliveroo
+  list: Menus list
+  new: Create menu
+  push: Push to APIs
+  title: Title
+  word: Menu
+  fetch_ubereats: Import from Uber Eats
+  fetch_deliveroo: Import from Deliveroo
 
 order:
-    word: Order
-    list: Orders list
-    accepted: Accepted
-    canceled: Canceled
-    id: Order id
-    state: State
-    type: Type
-    store: Store
-    eater: Eater
-    payment: Payment
-    placed_at: Placed at
-    estimated_ready_for_pickup_at: Ready for pickup at
-    deliver: Deliver
-    accept: Accept
-    deny: Deny
-    cancel: Cancel
+  word: Order
+  list: Orders list
+  accepted: Accepted
+  canceled: Canceled
+  id: Order id
+  state: State
+  type: Type
+  store: Store
+  eater: Eater
+  payment: Payment
+  placed_at: Placed at
+  estimated_ready_for_pickup_at: Ready for pickup at
+  deliver: Deliver
+  accept: Accept
+  deny: Deny
+  cancel: Cancel
 
 settings:
-    word: Settings
+  word: Settings
 
 form:
-    email: Email
-    password: Password
-    password_confirm: Confirm password
-    slug: Slug
+  email: Email
+  password: Password
+  password_confirm: Confirm password
+  slug: Slug
+
+button:
+  send: Send
