@@ -9,23 +9,26 @@ use App\Form\RegisterType;
 use App\Service\MailService;
 use App\Form\ResetPasswordType;
 use App\Form\ForgotPasswordType;
+use App\Entity\AccountValidation;
+use App\Form\AccountValidationType;
 use App\Entity\ResetPasswordRequest;
-use App\Service\User\ResetPasswordService;
+use App\Service\User\AccountService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\AccountValidationRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    private $resetPasswordService;
+    private $accountService;
     private $mailService;
 
-    public function __construct(ResetPasswordService $resetPasswordService, MailService $mailService) 
+    public function __construct(AccountService $accountService, MailService $mailService)
     {
-        $this->resetPasswordService = $resetPasswordService;        
-        $this->mailService = $mailService;        
+        $this->accountService = $accountService;
+        $this->mailService = $mailService;
     }
 
     /**
@@ -37,7 +40,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-         
+
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
@@ -57,24 +60,78 @@ class SecurityController extends AbstractController
         $user = new User();
         $store = new Store();
         $user->addStore($store);
-       
+
         $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user->setRoles(['ROLE_RESTAURATEUR']);
             $em = $this->getDoctrine()->getManager();
-            
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('app_login');
+            $token = $this->accountService->generateAccountValidation($user);
+            $this->mailService->sendAccountValidationMail($user->getEmail(), $token, $user->getId());
+
+            return $this->render('security/register_success.html.twig', [
+                'user' => $user
+            ]);
         }
 
         return $this->render('security/register.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/validate_account", name="validate_account", methods={"GET", "POST"})
+     */
+    public function validateAccount(Request $request)
+    {
+        $token = $request->get('token');
+        $userid = $request->get('userid');
+
+        // Checker avec une function du service que les requetes sont pas spamées (e.g. 3 requete à la journée)
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($userid);
+        $accountValidation = $em
+            ->getRepository(AccountValidation::class)
+            ->findOneBy([
+                'accountUser' => $user,
+                'token' => $token
+            ]);
+
+        if ($accountValidation == null) {
+            throw new Exception('Y a un blem avec le token ou le user'); //todo
+        }
+
+        $linkValidation = $this->accountService->accountValidationIsValid($accountValidation);
+
+        if (!$linkValidation['isValid']) {
+            return $this->render(
+                'security/account/account_already_valid.html.twig',
+                [
+                    'validation' => $linkValidation
+                ]
+            );
+        }
+
+        $form = $this->createForm(AccountValidationType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $user->setIsValid(true);
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('security/account/validate.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
@@ -90,10 +147,10 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-            
+
             $email = $user->getEmail();
             $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
-            $token = $this->resetPasswordService->generateResetPasswordRequest($email);
+            $token = $this->accountService->generateResetPasswordRequest($user);
 
             $this->mailService->sendResetPasswordMail($email, $token, $user->getId());
 
@@ -114,7 +171,7 @@ class SecurityController extends AbstractController
     {
         $token = $request->get('token');
         $userid = $request->get('userid');
-        
+
         // Checker avec une function du service que les requetes sont pas spamées (e.g. 3 requete à la journée)
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository(User::class)->find($userid);
@@ -126,12 +183,12 @@ class SecurityController extends AbstractController
             ]);
 
         if ($resetPwdRequest == null) {
-            throw new Exception('Y a un blem avec le token ou le user');
+            throw new Exception('Y a un blem avec le token ou le user'); //todo
         }
 
-        if (!$this->resetPasswordService->resetPassworsRequestIsValid($resetPwdRequest)) {
+        if (!$this->accountService->resetPassworsRequestIsValid($resetPwdRequest)) {
             return $this->render('security/password/password_already_reset.html.twig');
-        }        
+        }
 
         $form = $this->createForm(ResetPasswordType::class, $user);
 

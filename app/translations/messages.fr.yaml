@@ -102,3 +102,19 @@ form:
 
 button:
   send: Envoyer
+    email: Email
+    password: Mot de passe
+    password_confirm: Confirmez votre mot de passe
+    slug: Slug
+
+account:
+    validation:
+        account_already_valid: Ce compte est déjà validé. Utilisez votre mot de passe ou réinitialisez le.
+        token_expired: Ce lien a expiré (7 jours). Veuillez demander à votre administrateur un nouveau lien de validation de compte ou recréez votre compte.
+        failed_title: Désolé...
+        page:
+            title: Validation de votre compte
+            validate_button: Valider mon compte
+        mail:
+            subject: DivinDeliver - Validation du compte
+            title: Bienvenue chez DivinDeliver !

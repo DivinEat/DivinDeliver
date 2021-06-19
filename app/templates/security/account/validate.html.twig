@@ -1,0 +1,18 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}DivinDeliver | {% trans %}account.validation.page.title{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="card height-50">
+        <h2>{% trans %}account.validation.page.title{% endtrans %}</h2>
+        
+        <form method="post" class="admin-form">
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.password) }}
+                <input type="submit" value ="{% trans %}account.validation.page.validate_button{% endtrans %}" class="btn btn-lg btn-primary">
+            {{ form_end(form) }}
+        </form>
+    </div>
+{% endblock %}

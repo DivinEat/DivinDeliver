@@ -22,13 +22,6 @@ class User implements UserInterface
     use EntityTrait;
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -59,14 +52,19 @@ class User implements UserInterface
      */
     private $stores;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isValid = false;
+
+    /**
+     * @ORM\OneToOne(targetEntity=AccountValidation::class, mappedBy="accountUser", cascade={"persist", "remove"})
+     */
+    private $accountValidation;
+
     public function __construct()
     {
         $this->stores = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getEmail(): ?string
@@ -186,6 +184,35 @@ class User implements UserInterface
         if (!$this->stores->contains($store)) {
             $this->stores[] = $store;
             $store->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function isValid(): ?bool
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid): self
+    {
+        $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    public function getAccountValidation(): ?AccountValidation
+    {
+        return $this->accountValidation;
+    }
+
+    public function setToken(AccountValidation $accountValidation): self
+    {
+        $this->token = $accountValidation;
+
+        // set the owning side of the relation if necessary
+        if ($accountValidation->getAccountUser() !== $this) {
+            $accountValidation->setAccountUser($this);
         }
 
         return $this;

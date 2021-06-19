@@ -1,0 +1,15 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}DivinDeliver | {% trans %}account.validation.failed_title{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="card height-50">
+        <h2>{% trans %}account.validation.failed_title{% endtrans %}</h2>
+        
+        <p>{{ validation['message'] }}</p>
+
+        {% if validation['code'] == 'account_already_valid' %}
+            <a href="{{ path('forgot_password') }}" class="dd-btn dd-btn-account">{% trans %}password.forgot_password{% endtrans %}</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -51,11 +51,11 @@ nav:
   settings: Settings
 
 category:
-  word: Category
-  list: Categories list
-  title: Title
-  subtitle: Subtitle
-  new: New category
+    word: Category
+    list: Categories list
+    title: Title
+    subtitle: Subtitle
+    new: New category
 
 item:
   word: Item
@@ -106,3 +106,19 @@ form:
 
 button:
   send: Send
+    email: Email
+    password: Password
+    password_confirm: Confirm password
+    slug: Slug
+
+account:
+    validation:
+        account_already_valid: This account is already valid. Use your password or reset it.
+        token_expired: This link has expired (7 days). Please, ask your admin a new account validation link or recreate your account.
+        failed_title: Sorry...
+        page:
+            title: Account validation
+            validate_button: Validate my account
+        mail:
+            subject: DivinDeliver | Account validation
+            title: Welcome to DivinDeliver !
