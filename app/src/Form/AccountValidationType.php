@@ -16,19 +16,20 @@ class AccountValidationType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'form.email',
+                'label' => 'account.validation.form.confirm_email',
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'label' => 'form.password'
+                    'label' => 'account.validation.form.create_password'
                 ],
                 'second_options' => [
                     'label' => 'form.password_confirm'
                 ],
                 'attr'   =>  [
                     'class'   => 'form-control form-control-user'
-                ]
+                ],
+                'options' => ['attr' => ['class' => 'form-control form-control-user']]
             ]);
     }
 

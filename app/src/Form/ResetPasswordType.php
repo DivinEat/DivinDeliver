@@ -24,7 +24,8 @@ class ResetPasswordType extends AbstractType
                 ],
                 'attr'   =>  [
                     'class'   => 'form-control form-control-user'
-                ]
+                ],
+                'options' => ['attr' => ['class' => 'form-control form-control-user']]
             ]);
     }
 

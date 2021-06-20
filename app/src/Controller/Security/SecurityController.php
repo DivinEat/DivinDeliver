@@ -110,7 +110,7 @@ class SecurityController extends AbstractController
 
         if (!$linkValidation['isValid']) {
             return $this->render(
-                'security/account/account_already_valid.html.twig',
+                'security/account/account_validation_error.html.twig',
                 [
                     'validation' => $linkValidation
                 ]
@@ -130,7 +130,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('security/account/validate.html.twig', [
+        return $this->render('security/account/validation.html.twig', [
             'form' => $form->createView(),
         ]);
     }
