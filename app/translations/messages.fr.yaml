@@ -8,97 +8,121 @@ logout: Déconnexion
 edit_profile: Modifier mon profil
 
 store:
-  list: Liste des restaurants
-  name: Nom
-  id_fake_ubereat: Secret Key FakeUberEat
-  id_fake_deliveroo: Secret Key FakeDeliveroo
-  create: Créer un restaurant
+    list: Liste des restaurants
+    name: Nom
+    id_fake_ubereat: Secret Key FakeUberEat
+    id_fake_deliveroo: Secret Key FakeDeliveroo
+    create: Créer un restaurant
 
 user:
-  list: Liste des utilisateurs
-  firstname: Prénom
-  lastname: Nom
-  email: Email
-  password: Mot de passe
-  roles: Roles
-  word: Utilisateur
-  register: Inscription
-  login: Connexion
-  new: Nouveau utilisateur
+    list: Liste des utilisateurs
+    firstname: Prénom
+    lastname: Nom
+    email: Email
+    password: Mot de passe
+    roles: Roles
+    word: Utilisateur
+    register: Inscription
+    login: Connexion
+    new: Nouveau utilisateur
 
 password:
-  set_pwd_title: Définissez votre mot de passe
-  reset_pwd_title: Réinitialiser votre mot de passe
-  reset_link: Cliquez ici pour réinitialiser votre mot de passe
-  reset_link_expired_title: Lien de réinitialisation de mot de passe expiré
-  reset_link_not_valid: Ce lien a expiré ou a déjà été utilisé
-  reset_link_conditions: Ce lien expore dans 60 minutes et n'est utilisable qu'une seule fois
-  reset_link_sent: Lien de réinitialisation de mot de passe envoyé
-  reset_link_will_receive: Vous allez recevoir un lien pour réinitialiser votre mot de passe à cette adresse
-  resend_link: Vous pouvez renvoyer ce lien
-  forgot_password: Mot de passe oublié ?
+    set_pwd_title: Définissez votre mot de passe
+    reset_pwd_title: Réinitialiser votre mot de passe
+    reset_link: Cliquez ici pour réinitialiser votre mot de passe
+    reset_link_expired_title: Lien de réinitialisation de mot de passe expiré
+    reset_link_not_valid: Ce lien a expiré ou a déjà été utilisé
+    reset_link_conditions: Ce lien expore dans 60 minutes et n'est utilisable qu'une seule fois
+    reset_link_sent: Lien de réinitialisation de mot de passe envoyé
+    reset_link_will_receive: Vous allez recevoir un lien pour réinitialiser votre mot de passe à cette adresse
+    resend_link: Vous pouvez renvoyer ce lien
+    forgot_password: Mot de passe oublié ?
+    reset_button: Réinitialiser le mot de passe
+    here: ici
+    send_reset_pwd_mail: Envoyer un mail de réinitialisation de mot de passe
 
 nav:
-  back_home: Retour accueil
-  profile: Profil
-  users: Utilisateurs
-  restaurants: Restaurants
-  my_restaurant: Mon restaurant
-  menus: Menus
-  products: Produits
-  categories: Catégories
-  orders: Commandes
-  settings: Paramètres
+    back_home: Retour accueil
+    profile: Profil
+    users: Utilisateurs
+    restaurants: Restaurants
+    my_restaurant: Mon restaurant
+    menus: Menus
+    products: Produits
+    categories: Catégories
+    orders: Commandes
+    settings: Paramètres
 
 category:
-  word: Catégorie
-  list: Liste des catégories
-  title: Titre
-  subtitle: Sous-titre
-  new: Nouvelle catégorie
+    word: Catégorie
+    list: Liste des catégories
+    title: Titre
+    subtitle: Sous-titre
+    new: Nouvelle catégorie
 
 item:
-  word: Produit
-  title: Titre
-  price: Prix
-  list: Liste des produits
-  new: Nouveau produit
+    word: Produit
+    title: Titre
+    price: Prix
+    list: Liste des produits
+    new: Nouveau produit
 
 menu:
-  list: Liste des menus
-  new: Nouveau menu
-  push: Envoyer sur les APIs
-  title: Titre
-  word: Menu
-  fetch_ubereats: Importer depuis Uber Eats
-  fetch_deliveroo: Importer depuis Deliveroo
+    list: Liste des menus
+    new: Nouveau menu
+    push: Envoyer sur les APIs
+    title: Titre
+    word: Menu
+    fetch_ubereats: Importer depuis Uber Eats
+    fetch_deliveroo: Importer depuis Deliveroo
 
 order:
-  word: Commande
-  list: Liste des commandes
-  accepted: Accepté
-  canceled: Refusé
-  id: Numéro de commande
-  state: État
-  type: Type
-  store: Restaurant
-  eater: Client
-  payment: Paiement
-  placed_at: Adresse
-  estimated_ready_for_pickup_at: Prêt pour livraison à
-  deliver: Livreur
-  accept: Accepter
-  deny: Refuser
-  cancel: Annuler
+    word: Commande
+    list: Liste des commandes
+    accepted: Accepté
+    canceled: Refusé
+    id: Numéro de commande
+    state: État
+    type: Type
+    store: Restaurant
+    eater: Client
+    payment: Paiement
+    placed_at: Adresse
+    estimated_ready_for_pickup_at: Prêt pour livraison à
+    deliver: Livreur
+    accept: Accepter
+    deny: Refuser
+    cancel: Annuler
 
 settings:
-  word: Paramètres
+    word: Paramètres
 
 form:
-  email: Email
-  password: Mot de passe
-  password_confirm: Confirmez votre mot de passe
-  slug: Slug
+    email: Email
+    password: Mot de passe
+    password_confirm: Confirmez votre mot de passe
+    slug: Slug
+    firstname: Prénom
+    lastname: Nom
 
 button:
-  send: Envoyer
+    send: Envoyer
+    email: Email
+    password: Mot de passe
+    password_confirm: Confirmez votre mot de passe
+    slug: Slug
+
+account:
+    validation:
+        account_already_valid: Ce compte est déjà validé. Utilisez votre mot de passe ou réinitialisez le.
+        token_expired: Ce lien a expiré (7 jours). Veuillez demander à votre administrateur un nouveau lien de validation de compte ou recréez votre compte.
+        failed_title: Désolé...
+        page:
+            title: Validation de votre compte
+            validate_button: Valider mon compte
+        mail:
+            subject: DivinDeliver - Validation du compte
+            title: Bienvenue chez DivinDeliver !
+        form:
+            confirm_email: Confirmer votre email
+            create_password: Créez votre mot de passe

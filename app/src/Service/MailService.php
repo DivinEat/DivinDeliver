@@ -32,9 +32,9 @@ class MailService
     }
 
     /**
-     * Send a reset password mail to new user
+     * Send a create password mail to new user
      */
-    public function sendNewUserMail(String $to, String $token, int $userid)
+    public function sendCreatePasswordNewUserMail(String $to, String $token, int $userid)
     {
         $subject = $this->translator->trans('password.set_pwd_title');
         $from = 'tao.berquer@gmail.com';
@@ -45,12 +45,29 @@ class MailService
     }
 
     /**
+     * Send an account validation mail to new user
+     */
+    public function sendAccountValidationMail(String $to, String $token, int $userid)
+    {
+        $subject = $this->translator->trans('account.validation.mail.title');
+        $from = 'tao.berquer@gmail.com'; // todo : à configurer dans le restau
+        $htmlTemplate = 'emails/account/validation.html.twig';
+        $context = ['token' => $token, 'userid' => $userid];
+
+        $this->sendMail($from, $to, $subject, $htmlTemplate, $context);
+    }
+
+    /**
      * Send a mail
      */
-    public function sendMail(String $from, String $to, String $subject,
-                             String $htmlTemplate = null, array $context = null,
-                             String $text = null)
-    {
+    public function sendMail(
+        String $from,
+        String $to,
+        String $subject,
+        String $htmlTemplate = null,
+        array $context = null,
+        String $text = null
+    ) {
         $email = empty($htmlTemplate) ? (new Email()) : (new TemplatedEmail());
 
         $email->from($from)

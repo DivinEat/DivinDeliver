@@ -8,7 +8,7 @@ use App\Form\UserType;
 use App\Service\MailService;
 use App\Service\User\UserService;
 use App\Repository\UserRepository;
-use App\Service\User\ResetPasswordService;
+use App\Service\User\AccountService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,14 +22,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     private $userService;
-    private $resetPasswordService;
+    private $accountService;
     private $mailService;
-    
-    public function __construct(UserService $userService, ResetPasswordService $resetPasswordService, MailService $mailService)
+
+    public function __construct(UserService $userService, AccountService $accountService, MailService $mailService)
     {
         $this->userService = $userService;
-        $this->resetPasswordService = $resetPasswordService;        
-        $this->mailService = $mailService;     
+        $this->accountService = $accountService;
+        $this->mailService = $mailService;
     }
 
     /**

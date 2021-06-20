@@ -1,27 +1,5 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}DivinDeliver | {% trans %}password.reset_link_sent{% endtrans %}{% endblock %}
-
-{% block body %}
-    <div class="row d-flex align-items-center justify-content-center">
-        <div class="card pt-5 pb-5 mb-5">
-            <div class="admin-form">
-                <h2 class="title margin-0 text-align-center mb-5">
-                    {% trans %}password.reset_link_sent{% endtrans %}
-                </h2>
-                <div class="d-flex justify-content-center">
-                    <p>
-                        {% trans %}password.reset_link_will_receive{% endtrans %} : <i>{{ email }}</i>.
-                    </p>  
-                </div>              
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
-
-{% extends 'base_front.html.twig' %}
-
 {% block title %}DivinDeliver | {% trans %}account.validation.failed_title{% endtrans %}{% endblock %}
 
 {% block body %}

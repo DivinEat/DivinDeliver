@@ -6,9 +6,8 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RegisterType extends AbstractType
@@ -16,24 +15,19 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('firstname', TextType::class, [
+                'label' => 'form.firstname',
+            ])
+            ->add('lastname', TextType::class, [
+                'label' => 'form.lastname',
+            ])
             ->add('email', EmailType::class, [
                 'label' => 'form.email',
-            ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options' => [
-                    'label' => 'form.password'
-                ],
-                'second_options' => [
-                    'label' => 'form.password_confirm'
-                ],
-                'options' => ['attr' => ['class' => 'form-control form-control-user']],
             ])
             ->add('stores', CollectionType::class, [
                 'entry_type' => StoreType::class,
                 'entry_options' => ['label' => false],
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)
