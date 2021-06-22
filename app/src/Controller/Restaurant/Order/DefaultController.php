@@ -44,7 +44,7 @@ class DefaultController extends AbstractController
         $choice = $request->query->get('choice') ?? "accepted";
         $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
 
-        if("accepted" == $choice) {
+        if ("accepted" == $choice) {
             $orders = array_merge(
                 $this->uEOrderSDK->getActiveCreatedOrders($storeID),
                 $this->dOrderSDK->getActiveCreatedOrders($storeID)
@@ -57,5 +57,26 @@ class DefaultController extends AbstractController
         }
 
         return $this->render('restaurant/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
+    }
+
+    /**
+     * @Route("/show/{deliver}/{orderId}", name="show", methods={"GET"})
+     */
+    public function show(String $orderId, String $deliver)
+    {
+        switch ($deliver) {
+            case "ubereat":
+                $order = $this->uEOrderSDK->getOrderDetails($orderId);
+                break;
+            case "deliveroo":
+                $order = $this->dOrderSDK->getOrderDetails($orderId);
+                break;
+            default:
+                break;
+        }
+
+        return $this->render('restaurant/order/show.html.twig', [
+            'order' => $order
+        ]);
     }
 }

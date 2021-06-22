@@ -1,0 +1,17 @@
+{% extends 'base_restaurant.html.twig' %}
+
+{% block title %}DivinDeliver | {% trans %}order.word{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1 class="title">{% trans %}order.word{% endtrans %}</h1>
+
+    {% trans %}order.id{% endtrans %} : {{ order.display_id }} <br/>
+    {% trans %}order.state{% endtrans %} : {{ order.current_state }} <br/>
+    {% trans %}order.type{% endtrans %} {{ order.type }} <br/>
+    {% trans %}order.store{% endtrans %} {{ order.store.name }} <br/>
+    {% trans %}order.eater{% endtrans %} {{ order.eater.first_name }} <br/>
+    {% trans %}order.payment{% endtrans %} {{ order.payment.charges.total_fee.formatted_amount }} <br/>
+    {% trans %}order.placed_at{% endtrans %} {{ order.placed_at }} <br/>
+    {% trans %}order.estimated_ready_for_pickup_at{% endtrans %} {{ order.estimated_ready_for_pickup_at }} <br/>
+    {% trans %}order.deliver{% endtrans %} {{ order.deliver }} <br/>
+{% endblock %}
