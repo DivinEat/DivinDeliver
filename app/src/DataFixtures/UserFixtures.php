@@ -24,6 +24,7 @@ class UserFixtures extends Fixture
             ->setEmail($faker->email)
             ->setRoles(["ROLE_ADMIN"])
             ->setPassword(self::PWD)
+            ->setIsValid(true)
         ;
         $manager->persist($userAdmin);
         $manager->flush();
@@ -35,6 +36,7 @@ class UserFixtures extends Fixture
             ->setEmail($faker->email)
             ->setRoles(["ROLE_RESTAURATEUR"])
             ->setPassword(self::PWD)
+            ->setIsValid(true)
         ;
         $manager->persist($userRestaurateur);
         $manager->flush();
@@ -47,6 +49,7 @@ class UserFixtures extends Fixture
                 ->setEmail($faker->email)
                 ->setRoles(["ROLE_ADMIN"])
                 ->setPassword(self::PWD)
+                ->setIsValid(true)
             ;
             $manager->persist($object);
 
@@ -56,6 +59,7 @@ class UserFixtures extends Fixture
                 ->setEmail($faker->email)
                 ->setRoles(["ROLE_RESTAURATEUR"])
                 ->setPassword(self::PWD)
+                ->setIsValid(true)
             ;
             $manager->persist($object);
 
@@ -65,6 +69,7 @@ class UserFixtures extends Fixture
                 ->setEmail($faker->email)
                 ->setRoles(["ROLE_WAITER"])
                 ->setPassword(self::PWD)
+                ->setIsValid(true)
             ;
             $manager->persist($object);
 
