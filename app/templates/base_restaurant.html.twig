@@ -93,6 +93,17 @@
 
             <div class="col-9">
                 <div class="container mt-5 d-flex flex-column align-items-center">
+                {% for label, messages in app.flashes() %}                    
+            {% for message in messages %}
+                <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex">
+                        <div class="toast-body">
+                            {{ message }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
                     {% block body %}{% endblock %}
                 </div>
             </div>
@@ -108,10 +119,16 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {                
                 {% for label, messages in app.flashes() %}                    
-                    {% for message in messages %}
-                        M.toast({html: '{{ message }}', classes: '{{ label }}'});
-                    {% endfor %}
-                {% endfor %}
+            {% for message in messages %}
+                <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex">
+                        <div class="toast-body">
+                            {{ message }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
             });	 
 
             // LISTEN ORDERS

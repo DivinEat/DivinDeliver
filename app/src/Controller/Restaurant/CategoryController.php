@@ -56,7 +56,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            $this->addFlash('green', 'Catégorie créée.');
+            $this->addFlash('success', 'Catégorie créée.');
 
             return $this->redirectToRoute('restaurant_category_index', [
                 'id' => $category->getId()

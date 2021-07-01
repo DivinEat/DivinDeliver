@@ -83,7 +83,9 @@
             document.addEventListener('DOMContentLoaded', function() {                
                 {% for label, messages in app.flashes() %}                    
                     {% for message in messages %}
-                        M.toast({html: '{{ message }}', classes: '{{ label }}'});
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
                     {% endfor %}
                 {% endfor %}
             });	  
