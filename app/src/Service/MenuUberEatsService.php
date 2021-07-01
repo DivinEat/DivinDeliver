@@ -46,7 +46,7 @@ class MenuUberEatsService
     private StoreRepository $storeRepository;
     private \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK;
 
-    public function __construct(\App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK, MenuSDK $menuSDK, StoreRepository $storeRepository,MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
+    public function __construct(\App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK, MenuSDK $menuSDK, StoreRepository $storeRepository, MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
     {
         $this->menuRepository = $menuRepository;
         $this->categoryRepository = $categoryRepository;
@@ -70,19 +70,25 @@ class MenuUberEatsService
         $this->menuSDK->uploadMenu($storeUberEatsId, $menu);
     }
 
-    public function fetch(string $storeID, string $deliver)
+    public function fetch(string $storeId, string $deliver)
     {
         $menuSDK = $deliver === 'ubereats' ? $this->menuSDK : $this->deliverooMenuSDK;
-        $menu = $menuSDK->getMenus($storeID);
-        $store = $this->storeRepository->findBy(['storeIdFakeUberEat' => $storeID])[0];
+        $menu = $menuSDK->getMenus($storeId);
+
+        if ($deliver === 'ubereats')
+            $store = $this->storeRepository->findBy(['storeIdFakeUberEat' => $storeId])[0];
+        else
+            $store = $this->storeRepository->findBy(['storeIdFakeDeliveroo' => $storeId])[0];
+
         $returned = $this->createCategories($menu['categories'], $store);
+
         $this->createItems($menu['items'], $returned[1], $store);
         $this->createMenus($menu['menus'], $returned[0], $store);
     }
 
     public function createItems(array $items, array $idToAdd, Store $store): void
     {
-        array_map(function (array $item) use ($idToAdd, $store){
+        array_map(function (array $item) use ($idToAdd, $store) {
             $createdItem = new Item();
             $createdItem->setTitle($item['title']);
             $createdItem->setPriceInfo($item['price_info']);
