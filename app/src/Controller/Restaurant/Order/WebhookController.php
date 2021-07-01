@@ -47,9 +47,10 @@ class WebhookController extends AbstractController
             'eater' => $orderData['eater'],
             'cart' => $orderData['cart'],
             'payment' => $orderData['payment'],
-            'estimated_ready_for_pickup_at' => $orderData['estimated_ready_for_pickup_at']
+            'estimated_ready_for_pickup_at' => $orderData['estimated_ready_for_pickup_at'],
         ];
         $order->setContent($content);
+        $order->setType($orderData['type']);
 
         $this->em->persist($order);
         $this->em->flush();
@@ -86,6 +87,7 @@ class WebhookController extends AbstractController
             'estimated_ready_for_pickup_at' => $orderData['estimated_ready_for_pickup_at']
         ];
         $order->setContent($content);
+        $order->setType($orderData['type']);
 
         $this->em->persist($order);
         $this->em->flush();

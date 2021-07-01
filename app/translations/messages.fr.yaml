@@ -79,8 +79,11 @@ menu:
 order:
     word: Commande
     list: Liste des commandes
-    accepted: Accepté
-    canceled: Refusé
+    created: Créées
+    accepted: Acceptées
+    canceled: Annnulées
+    all: Toutes
+    denied: Refusées
     id: Numéro de commande
     state: État
     type: Type
