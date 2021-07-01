@@ -6,27 +6,27 @@ namespace App\SDK\UberEats;
 
 trait UberEatsUrl
 {
-    private string $menusUrl = 'http://localhost:8000/eats/stores/{storeID}/menus';
+    private string $menusUrl = 'http://app/eats/stores/{storeID}/menus';
 
-    private string $ordersUrl = 'http://localhost:8000/eats/orders/{orderID}';
+    private string $ordersUrl = 'http://app/eats/orders/{orderID}';
 
-    private string $storeActiveOrdersUrl = 'http://localhost:8000/eats/stores/{storeID}/created-orders';
+    private string $storeActiveOrdersUrl = 'http://app/eats/stores/{storeID}/created-orders';
 
-    private string $storeCancelOrdersUrl = 'http://localhost:8000/eats/stores/{storeID}/canceled-orders';
+    private string $storeCancelOrdersUrl = 'http://app/eats/stores/{storeID}/canceled-orders';
 
-    private string $acceptOrderUrl = 'http://localhost:8000/eats/orders/{orderID}/accept_pos_order';
+    private string $acceptOrderUrl = 'http://app/eats/orders/{orderID}/accept_pos_order';
 
-    private string $denyOrderUrl = 'http://localhost:8000/eats/orders/{orderID}/deny_pos_order';
+    private string $denyOrderUrl = 'http://app/eats/orders/{orderID}/deny_pos_order';
 
-    private string $cancelOrderUrl = 'http://localhost:8000/eats/orders/{orderID}/cancel';
+    private string $cancelOrderUrl = 'http://app/eats/orders/{orderID}/cancel';
 
-    private string $storeDetailsUrl = 'http://localhost:8000/eats/stores/{storeId}';
+    private string $storeDetailsUrl = 'http://app/eats/stores/{storeId}';
 
-    private string $allStoreUrl = 'http://localhost:8000/eats/stores';
+    private string $allStoreUrl = 'http://app/eats/stores';
 
-    private string $restaurantStatusUrl = 'http://localhost:8000/eats/store/{store_id}/status';
+    private string $restaurantStatusUrl = 'http://app/eats/store/{store_id}/status';
 
-    private string $storeHolidayHoursUrl = 'http://localhost:8000/eats/stores/{store_id}/holiday-hours';
+    private string $storeHolidayHoursUrl = 'http://app/eats/stores/{store_id}/holiday-hours';
 
     protected function getUrlWithParams(string $urlName, array $params =  []): ?string
     {

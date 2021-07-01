@@ -122,6 +122,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/push", name="push_deliver", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function pushMenu(MenuUberEatsService $menuUberEatsService)
     {
@@ -135,6 +136,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/fetch/{deliver}", name="fetch_deliver", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function fetchUberEatsMenu(MenuUberEatsService $menuUberEatsService, string $deliver)
     {
@@ -148,6 +150,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/fetch/ubereats", name="fetch_ubereats", methods={"GET"})
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function fetchDeliverooMenu(MenuUberEatsService $menuUberEatsService)
     {

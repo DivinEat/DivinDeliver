@@ -59,6 +59,8 @@ services:
       #- app-front:/srv/app/public/build:ro
     ports:
       - "8082:80"
+    networks:
+      - default
 
   node:
     image: ${NODE_IMAGE:-iw/node}
@@ -78,6 +80,11 @@ services:
     ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui
+
+networks:
+  default:
+    external:
+      name: front_default
 
 volumes:
   db-data: {}
