@@ -97,13 +97,13 @@ class Menu
     {
         return $this->store;
     }
-    
+
     public function setStore(Store $store): self
     {
         $this->store = $store;
 
         return $this;
-    } 
+    }
 
     public function getCover(): ?string
     {
@@ -120,7 +120,7 @@ class Menu
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
-        
+
         if ($image) {
             $this->updatedAt = new \DateTime('now');
         }

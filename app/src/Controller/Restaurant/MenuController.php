@@ -140,13 +140,14 @@ class MenuController extends AbstractController
      */
     public function fetchMenus(MenuUberEatsService $menuUberEatsService, string $deliver)
     {
-        $storeId = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
+        $store = $this->getUser()->getStores()->first();
 
         if ($deliver === 'ubereats')
-            $storeId = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
+            $storeId = $store->getStoreIdFakeUberEat();
         else
-            $storeId = $this->getUser()->getStores()->first()->getStoreIdFakeDeliveroo();
+            $storeId = $store->getStoreIdFakeDeliveroo();
 
+        $menuUberEatsService->resetMenus($store, $deliver);
         $menuUberEatsService->fetch($storeId, $deliver);
 
         $this->addFlash('green', 'Récupération effectué');

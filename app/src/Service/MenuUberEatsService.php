@@ -46,8 +46,15 @@ class MenuUberEatsService
     private StoreRepository $storeRepository;
     private \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK;
 
-    public function __construct(\App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK, MenuSDK $menuSDK, StoreRepository $storeRepository, MenuRepository $menuRepository, CategoryRepository $categoryRepository, ItemRepository $itemRepository, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK,
+        MenuSDK $menuSDK,
+        StoreRepository $storeRepository,
+        MenuRepository $menuRepository,
+        CategoryRepository $categoryRepository,
+        ItemRepository $itemRepository,
+        EntityManagerInterface $entityManager
+    ) {
         $this->menuRepository = $menuRepository;
         $this->categoryRepository = $categoryRepository;
         $this->itemRepository = $itemRepository;
@@ -84,6 +91,26 @@ class MenuUberEatsService
 
         $this->createItems($menu['items'], $returned[1], $store);
         $this->createMenus($menu['menus'], $returned[0], $store);
+    }
+
+    public function resetMenus(Store $store, string $deliver)
+    {
+        $items = $store->getItems();
+        foreach ($items as $item) {
+            $this->entityManager->remove($item);
+        }
+
+        $categories = $store->getCategories();
+        foreach ($categories as $category) {
+            $this->entityManager->remove($category);
+        }
+
+        $menus = $store->getMenus();
+        foreach ($menus as $menu) {
+            $this->entityManager->remove($menu);
+        }
+
+        $this->entityManager->flush();
     }
 
     public function createItems(array $items, array $idToAdd, Store $store): void
