@@ -116,7 +116,7 @@
 
             // LISTEN ORDERS
             const url = new URL("http://localhost:9090/.well-known/mercure");
-            url.searchParams.append("topic", "http://localhost:8082/new-order-notification/");
+            url.searchParams.append("topic", "http://localhost:8082/restaurant/webhook/ubereat");
 
             const eventSource = new EventSource(url);
             eventSource.onmessage = (event) => {
