@@ -7,13 +7,17 @@ use App\Entity\Store;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Publisher;
+use Symfony\Component\Mercure\PublisherInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class WebhookController extends AbstractController
 {
-    private $client;
+    private HttpClientInterface $client;
 
     public function __construct(HttpClientInterface $client, EntityManagerInterface $em)
     {
@@ -22,9 +26,25 @@ class WebhookController extends AbstractController
     }
 
     /**
+     * @Route("/test", name="new-order-ubereat", methods={"POST"})
+     */
+    public function test(Request $request, HubInterface $hub)
+    {
+        $url = $this->generateUrl('restaurant_new-order-ubereat');
+
+        $update = new Update(
+            'http://localhost:8082/restaurant/test',
+            "[]",
+            true
+        );
+
+        $hub->publish($update);
+    }
+
+    /**
      * @Route("/webhook/ubereat", name="new-order-ubereat", methods={"POST"})
      */
-    public function newOrderUberEat(Request $request)
+    public function newOrderUberEat(Request $request, HubInterface $hub)
     {
         $response = $this->client->request(
             'GET',
@@ -55,13 +75,23 @@ class WebhookController extends AbstractController
         $this->em->persist($order);
         $this->em->flush();
 
+        $url = $this->generateUrl('restaurant_new-order-ubereat');
+
+        $update = new Update(
+            'http://localhost:8082/restaurant/webhook/ubereat',
+            $order->getId(),
+            false
+        );
+
+        $hub->publish($update);
+
         return new Response('Saved new order with id ' . $order->getId());
     }
 
     /**
-     * @Route("/webhook/delieroo", name="new-order-deliveroo", methods={"POST"})
+     * @Route("/webhook/deliveroo", name="new-order-deliveroo", methods={"POST"})
      */
-    public function newOrderDelieroo(Request $request)
+    public function newOrderDeliveroo(Request $request)
     {
         $response = $this->client->request(
             'GET',

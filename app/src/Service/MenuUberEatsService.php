@@ -73,7 +73,7 @@ class MenuUberEatsService
             'menu_type' => 'MENU_TYPE_FULFILLMENT_DELIVERY'
         ];
 
-        $this->deliverooMenuSDK->uploadMenu($storeDeliverooId, $menu);
+        //$this->deliverooMenuSDK->uploadMenu($storeDeliverooId, $menu);
         $this->menuSDK->uploadMenu($storeUberEatsId, $menu);
     }
 
