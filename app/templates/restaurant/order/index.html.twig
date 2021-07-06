@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
 
-    <form action"{{ path('restaurant_order_index') }}" method="get" class="w-100 mb-2 mt-3">
+    <form action="{{ path('restaurant_order_index') }}" method="get" class="w-100 mb-2 mt-3">
         <select name="choice" id="choice" class="browser-default form-control" onchange="this.form.submit()">
             <option value="ALL">{% trans %}order.all{% endtrans %}</option>
             <option value="DENIED">{% trans %}order.denied{% endtrans %}</option>

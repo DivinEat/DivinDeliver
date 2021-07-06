@@ -70,6 +70,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(random_bytes(20));
+            $user->addStore($this->getUser()->getStores()->first());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
