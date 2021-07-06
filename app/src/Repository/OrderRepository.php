@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Order;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Store;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Order|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,5 +19,15 @@ class OrderRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Order::class);
+    }
+
+    public function getOrderByUser(User $user)
+    {
+        $store = $user->getStores()->first();
+
+        if (!$store instanceof Store)
+            return [];
+
+        return $store->getOrders()->getValues();
     }
 }

@@ -8,8 +8,8 @@
     {% if is_granted('ROLE_RESTAURATEUR') %}
         <div class="row right-align">
             <a href="{{ path('restaurant_menu_push_deliver') }}" class="dd-btn dd-btn-primary mr-0">{% trans %}menu.push{% endtrans %}</a>
-            <a href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</a>
-            <a href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'deliveroo'} ) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_deliveroo{% endtrans %}</a>
+            <a onclick="confirmFetch()" href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</a>
+            {# <a href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'deliveroo'} ) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_deliveroo{% endtrans %}</a> #}
         </div>
         <a href="{{ path('restaurant_menu_new') }}" class="text-dark mt-3">
             <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
@@ -54,4 +54,11 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        function confirmFetch()
+        {
+            confirm('Confirmer le reset des données.');
+        }
+    </script>
 {% endblock %}

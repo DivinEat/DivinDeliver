@@ -21,7 +21,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         if ($response->getStatusCode() !== 200)
             return [];
 
-        return setTypeToOrders($response->toArray(), 'ubereats');
+        return $this->setTypeToOrders($response->toArray(), 'ubereats');
     }
 
     public function getActiveCreatedOrders(string $storeID): ?array
@@ -39,7 +39,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         if ($response->getStatusCode() !== 200)
             return [];
 
-        return setTypeToOrders($response->toArray(), 'ubereats');
+        return $this->setTypeToOrders($response->toArray(), 'ubereats');
     }
 
     public function getCancelOrders(string $storeID)
@@ -52,7 +52,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         if ($response->getStatusCode() !== 200)
             return [];
 
-        return setTypeToOrders($response->toArray(), 'ubereats');
+        return $this->setTypeToOrders($response->toArray(), 'ubereats');
     }
 
     public function acceptOrder(string $orderID): bool
@@ -60,7 +60,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         $response = $this->client->request(
             'POST',
             $this->getUrlWithParams('acceptOrderUrl', ['orderID' => $orderID]),
-            ['body' =>['reason' => 'accepted']]
+            ['body' => ['reason' => 'accepted']]
         );
 
         return $response->getStatusCode() === 204;
@@ -71,7 +71,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         $response = $this->client->request(
             'POST',
             $this->getUrlWithParams('denyOrderUrl', ['orderID' => $orderID]),
-            ['body' =>['reason' => ['explanation' => $explanation]]]
+            ['body' => ['reason' => ['explanation' => $explanation]]]
         );
 
         return $response->getStatusCode() === 204;
@@ -82,7 +82,7 @@ class OrderSDK extends BaseSDK implements BaseOrderSDKInterface
         $response = $this->client->request(
             'POST',
             $this->getUrlWithParams('cancelOrderUrl', ['orderID' => $orderID]),
-            ['body' =>['reason' => $reason]]
+            ['body' => ['reason' => $reason]]
         );
 
         return $response->getStatusCode() === 200;

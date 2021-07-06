@@ -6,31 +6,31 @@ namespace App\SDK\UberEats;
 
 trait UberEatsUrl
 {
-    private string $menusUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeID}/menus';
+    private string $menusUrl = 'http://app/eats/stores/{storeID}/menus';
 
-    private string $ordersUrl = 'http://93.90.203.240/FakeUberEats/eats/orders/{orderID}';
+    private string $ordersUrl = 'http://app/eats/orders/{orderID}';
 
-    private string $storeActiveOrdersUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeID}/created-orders';
+    private string $storeActiveOrdersUrl = 'http://app/eats/stores/{storeID}/created-orders';
 
-    private string $storeCancelOrdersUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeID}/canceled-orders';
+    private string $storeCancelOrdersUrl = 'http://app/eats/stores/{storeID}/canceled-orders';
 
-    private string $acceptOrderUrl = 'http://93.90.203.240/FakeUberEats/eats/orders/{orderID}/accept_pos_order';
+    private string $acceptOrderUrl = 'http://app/eats/orders/{orderID}/accept_pos_order';
 
-    private string $denyOrderUrl = 'http://93.90.203.240/FakeUberEats/eats/orders/{orderID}/deny_pos_order';
+    private string $denyOrderUrl = 'http://app/eats/orders/{orderID}/deny_pos_order';
 
-    private string $cancelOrderUrl = 'http://93.90.203.240/FakeUberEats/eats/orders/{orderID}/cancel';
+    private string $cancelOrderUrl = 'http://app/eats/orders/{orderID}/cancel';
 
-    private string $storeDetailsUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{storeId}';
+    private string $storeDetailsUrl = 'http://app/eats/stores/{storeId}';
 
-    private string $allStoreUrl = 'http://93.90.203.240/FakeUberEats/eats/stores';
+    private string $allStoreUrl = 'http://app/eats/stores';
 
-    private string $restaurantStatusUrl = 'http://93.90.203.240/FakeUberEats/eats/store/{store_id}/status';
+    private string $restaurantStatusUrl = 'http://app/eats/store/{store_id}/status';
 
-    private string $storeHolidayHoursUrl = 'http://93.90.203.240/FakeUberEats/eats/stores/{store_id}/holiday-hours';
+    private string $storeHolidayHoursUrl = 'http://app/eats/stores/{store_id}/holiday-hours';
 
     protected function getUrlWithParams(string $urlName, array $params =  []): ?string
     {
-        if (! isset($this->$urlName))
+        if (!isset($this->$urlName))
             return null;
 
         $strToReplace = $this->$urlName;
