@@ -1,7 +1,10 @@
 .header-back {
   background-color: #ffffff;
   height: 150px;
-  // box-shadow: rgb(128 128 128) 0px 4px 17px -5px;
+
+  &-p10 {
+    padding: 10px;
+  }
 }
 
 .sidenav {
