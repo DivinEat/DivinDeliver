@@ -8,9 +8,9 @@
     {% if is_granted('ROLE_RESTAURATEUR') %}
         <div class="row right-align">
             <a href="{{ path('restaurant_menu_push_deliver') }}" class="dd-btn dd-btn-primary mr-0">{% trans %}menu.push{% endtrans %}</a>
-            <a onclick="confirmFetch()" href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</a>
-            {# <a href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'deliveroo'} ) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_deliveroo{% endtrans %}</a> #}
+            <button id="importBtn" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</button>
         </div>
+
         <a href="{{ path('restaurant_menu_new') }}" class="text-dark mt-3">
             <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
             {% trans %}add{% endtrans %}
@@ -52,13 +52,41 @@
                     </td>
                 </tr>
             {% endfor %}
+
+            <div id="import" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>L'importation va supprimer la totalité de vos données pour les ré insérer</p>
+                    <a id="importValid" href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">Confirmer</a>
+            
+                </div>
+            </div>
         </tbody>
     </table>
 
     <script>
-        function confirmFetch()
-        {
-            confirm('Confirmer le reset des données.');
+        var modal = document.getElementById("import");
+        var btn = document.getElementById("importBtn");
+        var btnValid = document.getElementById("importValid");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        btnValid.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
+
 {% endblock %}
