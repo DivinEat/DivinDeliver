@@ -29,6 +29,15 @@
             </div>
         </header>
         
+        {% for label, messages in app.flashes() %}                    
+            {% for message in messages %}
+                <div class="alert {{"alert-#{label}"}}">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <div class="bg-white" style="padding-top: 75px">
             {% block body %}{% endblock %}
         </div>

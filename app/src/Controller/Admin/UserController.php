@@ -63,6 +63,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Utilisateur modifié.');
+
             return $this->redirectToRoute('admin_user_edit', [
                 'id' => $user->getId()
             ]);
@@ -82,6 +84,9 @@ class UserController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_user' . $user->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+
+
+        $this->addFlash('success', 'Utilisateur supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);

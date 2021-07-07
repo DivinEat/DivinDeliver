@@ -58,7 +58,7 @@ class MenuController extends AbstractController
             $em->persist($menu);
             $em->flush();
 
-            $this->addFlash('green', 'Menu créé.');
+            $this->addFlash('success', 'Menu créé.');
 
             return $this->redirectToRoute('restaurant_menu_index', [
                 'id' => $menu->getId()
@@ -85,7 +85,7 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('green', 'Menu modifié.');
+            $this->addFlash('success', 'Menu modifié.');
 
             return $this->redirectToRoute('restaurant_menu_edit', [
                 'id' => $menu->getId()
@@ -111,7 +111,7 @@ class MenuController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('red', 'Menu supprimé.');
+        $this->addFlash('success', 'Menu supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($menu);
@@ -128,7 +128,7 @@ class MenuController extends AbstractController
         $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
         $menuUberEatsService->upload($storeID, $storeID);
 
-        $this->addFlash('green', 'Envoi effectué');
+        $this->addFlash('success', 'Envoi effectué.');
 
         return $this->redirectToRoute('restaurant_menu_index');
     }
@@ -141,7 +141,7 @@ class MenuController extends AbstractController
         $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
         $menuUberEatsService->fetch($storeID, $deliver);
 
-        $this->addFlash('green', 'Récupération effectué');
+        $this->addFlash('success', 'Récupération effectuée.');
 
         return $this->redirectToRoute('restaurant_menu_index');
     }
@@ -154,7 +154,7 @@ class MenuController extends AbstractController
         $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
         $menuUberEatsService->fetch($storeID);
 
-        $this->addFlash('green', 'Récupération effectué');
+        $this->addFlash('success', 'Récupération effectuée.');
 
         return $this->redirectToRoute('restaurant_menu_index');
     }

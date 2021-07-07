@@ -74,6 +74,8 @@ class SecurityController extends AbstractController
             $token = $this->accountService->generateAccountValidation($user);
             $this->mailService->sendAccountValidationMail($user->getEmail(), $token, $user->getId());
 
+            $this->addFlash('success', 'Restaurant enregistré.');
+
             return $this->render('security/register_success.html.twig', [
                 'user' => $user
             ]);

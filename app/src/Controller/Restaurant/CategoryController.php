@@ -48,7 +48,7 @@ class CategoryController extends AbstractController
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
-        
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $category->setStore($this->getUser()->getStores()->first());
@@ -83,7 +83,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('green', 'Catégorie modifiée.');
+            $this->addFlash('success', 'Catégorie modifiée.');
 
             return $this->redirectToRoute('restaurant_category_edit', [
                 'id' => $category->getId()
@@ -109,7 +109,7 @@ class CategoryController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('red', 'Catégorie supprimée.');
+        $this->addFlash('success', 'Catégorie supprimée.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

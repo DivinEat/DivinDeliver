@@ -49,6 +49,8 @@ class StoreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Restaurant modifié.');
+
             return $this->redirectToRoute('admin_store_edit', [
                 'id' => $store->getId()
             ]);
@@ -68,6 +70,8 @@ class StoreController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_store' . $store->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+
+        $this->addFlash('success', 'Restaurant supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($store);
