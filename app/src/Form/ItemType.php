@@ -29,10 +29,10 @@ class ItemType extends AbstractType
 
         $builder
             ->add('title', TextType::class, [
-                'label' => 'title'
+                'label' => 'Title'
             ])
             ->add('priceInfo', IntegerType::class, [
-                'label' => 'price'
+                'label' => 'Price'
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -44,8 +44,7 @@ class ItemType extends AbstractType
                 'allow_delete' => true,
                 'download_uri' => false,
                 'image_uri' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -26,7 +26,7 @@ class Order
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $display_id;
+    private $displayId;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -36,7 +36,7 @@ class Order
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $current_state;
+    private $currentState;
 
     /**
      * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="orders")
@@ -48,6 +48,11 @@ class Order
      */
     private $content = [];
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,12 +60,12 @@ class Order
 
     public function getDisplayId(): ?string
     {
-        return $this->display_id;
+        return $this->displayId;
     }
 
-    public function setDisplayId(string $display_id): self
+    public function setDisplayId(string $displayId): self
     {
-        $this->display_id = $display_id;
+        $this->displayId = $displayId;
 
         return $this;
     }
@@ -79,12 +84,12 @@ class Order
 
     public function getCurrentState(): ?string
     {
-        return $this->current_state;
+        return $this->currentState;
     }
 
-    public function setCurrentState(string $current_state): self
+    public function setCurrentState(string $currentState): self
     {
-        $this->current_state = $current_state;
+        $this->currentState = $currentState;
 
         return $this;
     }
@@ -109,6 +114,18 @@ class Order
     public function setContent(array $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

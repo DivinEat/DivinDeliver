@@ -19,6 +19,7 @@
                 <th>{% trans %}user.lastname{% endtrans %}</th>
                 <th>{% trans %}user.email{% endtrans %}</th>
                 <th>{% trans %}user.roles{% endtrans %}</th>
+                <th>{% trans %}user.valid{% endtrans %}</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.roles ? user.roles|json_encode|replace({ ('["ROLE_'): '', '"]' : '' }) : '' }}</td>
+                    <td>{{ user.isValid ? 'Yes' : 'No' }}</td>
                     <td>
                         <a class="t-d-none" href="{{ path('restaurant_user_show', {id: user.id}) }}">
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">

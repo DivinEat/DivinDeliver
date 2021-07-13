@@ -25,7 +25,7 @@ class CategoryRepository extends ServiceEntityRepository
     {
         $store = $user->getStores()->first();
 
-        if (! $store instanceof Store)
+        if (!$store instanceof Store)
             return [];
 
         return $store->getCategories()->getValues();

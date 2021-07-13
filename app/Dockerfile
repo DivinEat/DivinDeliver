@@ -99,12 +99,11 @@ RUN apk --update --no-cache add \
     ttf-dejavu \
     ttf-droid \
     ttf-liberation \
-    ttf-ubuntu-font-family \
     fontconfig
 
 # Add openssl dependencies for wkhtmltopdf
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/apk/repositories && \
-    apk add --no-cache libcrypto1.0 libssl1.0
+    apk add --no-cache libcrypto1.0 libssl1.0 ttf-ubuntu-font-family
 
 COPY --from=wkhtmltopdf_image /bin/wkhtmltopdf /usr/bin/
 

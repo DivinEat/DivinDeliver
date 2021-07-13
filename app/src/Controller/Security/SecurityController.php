@@ -129,7 +129,9 @@ class SecurityController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('app_login');
+            return $this->render('security/account/validation_success.html.twig', [
+                'form' => $form->createView(),
+            ]);
         }
 
         return $this->render('security/account/validation.html.twig', [

@@ -49,7 +49,10 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
+        if (
+            !$user->getStores()->first()
+            || $this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId()
+        )
             throw $this->createAccessDeniedException();
 
         return $this->render('restaurant/user/show.html.twig', [
@@ -70,6 +73,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(random_bytes(20));
+            $user->addStore($this->getUser()->getStores()->first());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -94,7 +98,10 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
-        if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
+        if (
+            !$user->getStores()->first()
+            || $this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId()
+        )
             throw $this->createAccessDeniedException();
 
         $form = $this->createForm(UserType::class, $user);
@@ -122,7 +129,10 @@ class UserController extends AbstractController
      */
     public function delete(User $user, $token)
     {
-        if ($this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId())
+        if (
+            !$user->getStores()->first()
+            || $this->getUser()->getStores()->first()->getId() !== $user->getStores()->first()->getId()
+        )
             throw $this->createAccessDeniedException();
 
         if (!$this->isCsrfTokenValid('delete_user' . $user->getId(), $token)) {

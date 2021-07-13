@@ -40,7 +40,7 @@ services:
       MERCURE_PUBLISHER_JWT_KEY: ’!ChangeMe!’
       MERCURE_SUBSCRIBER_JWT_KEY: ’!ChangeMe!’
       MERCURE_EXTRA_DIRECTIVES: |-
-        cors_origins "http://127.0.0.1"
+        cors_origins "http://localhost:8082"
         anonymous
     ports:
       - "9090:3000"
@@ -59,6 +59,8 @@ services:
       #- app-front:/srv/app/public/build:ro
     ports:
       - "8082:80"
+    networks:
+      - default
 
   node:
     image: ${NODE_IMAGE:-iw/node}
@@ -78,6 +80,11 @@ services:
     ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui
+
+networks:
+  default:
+    external:
+      name: front_default
 
 volumes:
   db-data: {}

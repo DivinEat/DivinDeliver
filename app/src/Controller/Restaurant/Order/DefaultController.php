@@ -4,13 +4,15 @@
 namespace App\Controller\Restaurant\Order;
 
 
-use App\Repository\UserRepository;
-use App\SDK\Deliveroo\OrderSDK as DeliverooOrderSDK;
+use App\Entity\Order;
+use App\Repository\OrderRepository;
 use App\SDK\UberEats\OrderSDK;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\SDK\Deliveroo\OrderSDK as DeliverooOrderSDK;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/orders", name="order_")
@@ -18,44 +20,34 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends AbstractController
 {
     /**
-     * @var OrderSDK $uEOrderSDK
+     * @Route("/", name="index", methods={"GET"})
      */
-    protected OrderSDK $uEOrderSDK;
-    /**
-     * @var UserRepository
-     */
-    private UserRepository $userRepository;
-    /**
-     * @var DeliverooOrderSDK
-     */
-    private DeliverooOrderSDK $dOrderSDK;
-
-    public function __construct(OrderSDK $uEOrderSDK, DeliverooOrderSDK $dOrderSDK)
+    public function index(Request $request, OrderRepository $orderRepository): Response
     {
-        $this->uEOrderSDK = $uEOrderSDK;
-        $this->dOrderSDK = $dOrderSDK;
+        $choice = $request->query->get('choice') ?? "ALL";
+
+        $choice = strtoupper($choice);
+
+        if ($choice !== 'ALL')
+            $orders = $orderRepository->findBy(['currentState' =>  $choice]);
+        else
+            $orders = $orderRepository->findAll();
+
+        return $this->render('restaurant/order/index.html.twig', [
+            'orders' => $orders
+        ]);
     }
 
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route("/show/{id}", name="show", methods={"GET"})
      */
-    public function index(Request $request): Response
+    public function show(Order $order): Response
     {
-        $choice = $request->query->get('choice') ?? "accepted";
-        $storeID = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
+        if ($this->getUser()->getStores()->first()->getId() !== $order->getStore()->getId())
+            throw $this->createAccessDeniedException();
 
-        if("accepted" == $choice) {
-            $orders = array_merge(
-                $this->uEOrderSDK->getActiveCreatedOrders($storeID),
-                $this->dOrderSDK->getActiveCreatedOrders($storeID)
-            );
-        } else {
-            $orders = array_merge(
-                $this->uEOrderSDK->getCancelOrders($storeID),
-                $this->dOrderSDK->getCancelOrders($storeID)
-            );
-        }
-
-        return $this->render('restaurant/order/index.html.twig', ['orders' => $orders, 'choice' => $choice]);
+        return $this->render('restaurant/order/show.html.twig', [
+            'order' => $order,
+        ]);
     }
 }

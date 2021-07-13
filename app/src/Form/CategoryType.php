@@ -14,12 +14,11 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'title'
+                'label' => 'Title'
             ])
             ->add('subtitle', TextType::class, [
-                'label' => 'subtitle'
-            ])
-        ;
+                'label' => 'Subtitle'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
