@@ -17,7 +17,7 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'title'
+                'label' => 'Title'
             ])
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
@@ -30,8 +30,7 @@ class MenuType extends AbstractType
                 'allow_delete' => true,
                 'download_uri' => false,
                 'image_uri' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

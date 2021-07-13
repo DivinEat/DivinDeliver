@@ -6,6 +6,8 @@ edit: Éditer
 add: Ajouter
 logout: Déconnexion
 edit_profile: Modifier mon profil
+partners: Ils pourraient être nos partenaires
+small: Wouha c'est bien beau d'avoir un restaurant populaire, mais ne pas pouvoir laisser tout le monde se sustenter, ça l'est moins. Mais attendez, on a ce qu'il vous faut. Divindeliver, c'est si simple qu'on dit adieu à l’infernale gestion des commandes.
 
 store:
   list: Liste des restaurants
@@ -76,6 +78,8 @@ menu:
   word: Menu
   fetch_ubereats: Importer depuis Uber Eats
   fetch_deliveroo: Importer depuis Deliveroo
+  fetch: L'importation va supprimer la totalité de vos données pour les ré insérer
+  confirm: Confirmer
 
 order:
   word: Commande

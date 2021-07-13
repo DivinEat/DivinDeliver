@@ -6,6 +6,8 @@ edit: Edit
 add: Add
 logout: Logout
 edit_profile: Update my profile
+partners: They could be our partners
+small: Wow, it's nice to have a popular restaurant, but not being able to let everyone eat is not so great. But wait, we've got just what you need. Divindeliver, it's so easy, you can say goodbye to the hellish ordering process.
 
 store:
   list: Stores list
@@ -80,6 +82,8 @@ menu:
   word: Menu
   fetch_ubereats: Import from Uber Eats
   fetch_deliveroo: Import from Deliveroo
+  fetch: Importing will remove all your data and reinsert it
+  confirm: Confirm
 
 order:
   word: Order
