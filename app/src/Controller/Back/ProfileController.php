@@ -16,7 +16,7 @@ class ProfileController extends AbstractController
 {
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
-        $this->encoder = $encoder;        
+        $this->encoder = $encoder;
     }
 
     /**
@@ -31,6 +31,8 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Profil modifié.');
 
             return $this->redirectToRoute('back_profile_index');
         }

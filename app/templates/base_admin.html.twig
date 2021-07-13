@@ -66,6 +66,15 @@
             </div>
 
             <div class="col-9">
+                {% for label, messages in app.flashes() %}                    
+                    {% for message in messages %}
+                        <div class="alert {{"alert-#{label}"}}">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                
                 <div class="container mt-5 d-flex flex-column align-items-center">
                     {% block body %}{% endblock %}
                 </div>
@@ -83,7 +92,9 @@
             document.addEventListener('DOMContentLoaded', function() {                
                 {% for label, messages in app.flashes() %}                    
                     {% for message in messages %}
-                        M.toast({html: '{{ message }}', classes: '{{ label }}'});
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
                     {% endfor %}
                 {% endfor %}
             });	  

@@ -94,27 +94,27 @@
             </div>
 
             <div class="col-9">
+                {% for label, messages in app.flashes() %}                    
+                    {% for message in messages %}
+                        <div class="alert {{"alert-#{label}"}}">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
                 <div class="container mt-5 d-flex flex-column align-items-center">
                     {% block body %}{% endblock %}
                 </div>
             </div>
         </div>
 
-        <footer class="d-flex justify-content-end">
-        </footer>
+        <footer class="d-flex justify-content-end"></footer>
         
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
 
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    {% for label, messages in app.flashes() %}
-                    {% for message in messages %}
-                    M.toast({html: '{{ message }}', classes: '{{ label }}'});
-                    {% endfor %}
-                    {% endfor %}
-                });
-
                 // LISTEN ORDERS
                 const url = new URL("http://localhost:9090/.well-known/mercure");
                 url.searchParams.append("topic", "http://localhost:8082/restaurant/webhook/ubereat");
@@ -126,9 +126,7 @@
 
                 order_notification.firstElementChild.setAttribute('href', `{{ path('restaurant_order_index') }}show/${event.data}`);
                 };
-                //POP les nouvelles order au user connected
             </script>
         {% endblock %}
-
     </body>
 </html>

@@ -79,7 +79,7 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('green', 'Utilisateur ajouté.');
+            $this->addFlash('success', 'Utilisateur ajouté.');
 
             $token = $this->accountService->generateAccountValidation($user);
             $this->mailService->sendAccountValidationMail($user->getEmail(), $token, $user->getId());
@@ -110,6 +110,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Utilisateur modifié.');
+
             return $this->redirectToRoute('restaurant_user_edit', [
                 'id' => $user->getId()
             ]);
@@ -136,6 +138,8 @@ class UserController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_user' . $user->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+
+        $this->addFlash('success', 'Utilisateur supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);

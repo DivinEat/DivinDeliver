@@ -28,6 +28,8 @@ class SettingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Paramètre modifié.');
+
             return $this->redirectToRoute('restaurant_settings_index');
         }
 

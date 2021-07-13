@@ -1,0 +1,51 @@
+.alert {
+  padding: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  position: absolute;
+  right: 15px;
+
+  &-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+  }
+
+  &-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+
+  &-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+
+  &-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+  }
+
+  &-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+
+  & .closebtn {
+    margin-left: 15px;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
