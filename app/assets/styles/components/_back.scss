@@ -53,4 +53,14 @@ footer {
   height: 100px;
   background-color: $purple;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+  & a {
+    text-decoration: none;
+    color: $white;
+  }
 }
