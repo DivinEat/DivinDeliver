@@ -111,7 +111,7 @@ class MenuController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('success', 'Menu supprimé.');
+        $this->addFlash('danger', 'Menu supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($menu);

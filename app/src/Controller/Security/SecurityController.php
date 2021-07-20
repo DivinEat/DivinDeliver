@@ -204,6 +204,8 @@ class SecurityController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Mot de passe mis à jour.');
+
             return $this->redirectToRoute('app_login');
         }
 
