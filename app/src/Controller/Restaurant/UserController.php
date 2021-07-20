@@ -139,7 +139,7 @@ class UserController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('success', 'Utilisateur supprimé.');
+        $this->addFlash('danger', 'Utilisateur supprimé.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);

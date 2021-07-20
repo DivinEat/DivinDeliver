@@ -109,7 +109,7 @@ class CategoryController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('success', 'Catégorie supprimée.');
+        $this->addFlash('danger', 'Catégorie supprimée.');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
