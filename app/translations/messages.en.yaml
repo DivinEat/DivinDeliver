@@ -105,6 +105,11 @@ order:
   accept: Accept
   deny: Deny
   cancel: Cancel
+  item:
+    title: Title
+    external_data: External data
+    quantity: Quantity
+    price: Price
 
 settings:
   word: Settings

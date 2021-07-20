@@ -101,6 +101,11 @@ order:
   accept: Accepter
   deny: Refuser
   cancel: Annuler
+  item:
+    title: Titre
+    external_data: Données externes
+    quantity: Quantité
+    price: Prix
 
 settings:
   word: Paramètres
