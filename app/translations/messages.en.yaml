@@ -15,6 +15,10 @@ store:
   id_fake_ubereat: Secret Key FakeUberEat
   id_fake_deliveroo: Secret Key FakeDeliveroo
   create: Create store
+  go_to: Go to stores
+  updated: Store updated
+  deleted: Store deleted
+  saved: Store saved
 
 user:
   list: Users list
@@ -28,6 +32,14 @@ user:
   login: Login
   new: New user
   valid: Valid
+  go_to: Go to users
+  validate: You must validate your account here.
+  validate_success: Your account has been successfully validated !
+  received_email: You have received an email, check your mailbox
+  updated: User updated
+  deleted: User deleted
+  added: User added
+  profile_updated: Profile updated
 
 password:
   set_pwd_title: Set your password
@@ -43,6 +55,7 @@ password:
   reset_button: Reset password
   here: here
   send_reset_pwd_mail: Send reset password mail
+  updated: Password updated
 
 nav:
   back_home: Back to home
@@ -62,6 +75,10 @@ category:
   title: Title
   subtitle: Subtitle
   new: New category
+  go_to: Go to categories
+  created: Category created
+  updated: Category updated
+  deleted: Category deleted
 
 item:
   word: Item
@@ -73,6 +90,10 @@ item:
   main: Main course
   dessert: Dessert
   drink: Drink
+  go_to: Go to items
+  created: Item created
+  updated: Item updated
+  deleted: Item deleted
 
 menu:
   list: Menus list
@@ -84,6 +105,12 @@ menu:
   fetch_deliveroo: Import from Deliveroo
   fetch: Importing will remove all your data and reinsert it
   confirm: Confirm
+  go_to: Go to menus
+  created: Menu created
+  updated: Menu updated
+  deleted: Menu deleted
+  sent: Menu sent
+  fetched: Menu fetched
 
 order:
   word: Order
@@ -105,6 +132,8 @@ order:
   accept: Accept
   deny: Deny
   cancel: Cancel
+  go_to: Go to orders
+  waiting: You have a new order pending.
   item:
     title: Title
     external_data: External data
@@ -113,6 +142,7 @@ order:
 
 settings:
   word: Settings
+  updated: Settings updated
 
 form:
   email: Email
@@ -143,3 +173,16 @@ account:
     form:
       confirm_email: Confirm email
       create_password: Create password
+
+stats:
+  registered:
+    users: Number of registered users
+    stores: Number of registered stores
+    orders: Number of orders
+    menus: Number of menus
+    items: Number of items
+    categories: Number of categories
+
+error:
+  default: An error occured. Checkout for any URL
+  not_found: Oops! The page you requested was not found lol

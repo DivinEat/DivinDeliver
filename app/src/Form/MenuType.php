@@ -17,7 +17,7 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Title'
+                'label' => 'menu.title'
             ])
             ->add('categories', EntityType::class, [
                 'class' => Category::class,

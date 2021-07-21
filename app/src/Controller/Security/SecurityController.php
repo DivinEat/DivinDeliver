@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\AccountValidationRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -24,11 +25,13 @@ class SecurityController extends AbstractController
 {
     private $accountService;
     private $mailService;
+    private $translator;
 
-    public function __construct(AccountService $accountService, MailService $mailService)
+    public function __construct(AccountService $accountService, MailService $mailService, TranslatorInterface $translator)
     {
         $this->accountService = $accountService;
         $this->mailService = $mailService;
+        $this->translator = $translator;
     }
 
     /**
@@ -74,7 +77,7 @@ class SecurityController extends AbstractController
             $token = $this->accountService->generateAccountValidation($user);
             $this->mailService->sendAccountValidationMail($user->getEmail(), $token, $user->getId());
 
-            $this->addFlash('success', 'Restaurant enregistré.');
+            $this->addFlash('success', $this->translator->trans('store.saved'));
 
             return $this->render('security/register_success.html.twig', [
                 'user' => $user
@@ -204,7 +207,7 @@ class SecurityController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Mot de passe mis à jour.');
+            $this->addFlash('success', $this->translator->trans('password.updated'));
 
             return $this->redirectToRoute('app_login');
         }
