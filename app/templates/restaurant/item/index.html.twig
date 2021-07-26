@@ -25,7 +25,7 @@
         <tbody>
             {% for item in items %}
                 <tr>
-                    <td><img src="{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/></td>
+                    <td><img src="DivinDeliver{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/></td>
                     <td>{{ item.category.title }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.priceInfo }}</td>

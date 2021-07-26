@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="w-100">
-        <img src="{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/> <br>
+        <img src="DivinDeliver{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/> <br>
         {% trans %}item.title{% endtrans %} : {{ item.title }} <br>
         {% trans %}item.price{% endtrans %} : {{ item.priceInfo }} <br>
         {% trans %}category.word{% endtrans %} : {{ item.category.title }} <br>
