@@ -24,7 +24,7 @@ class MailService
     public function sendResetPasswordMail(String $to, String $token, int $userid)
     {
         $subject = $this->translator->trans('password.reset_pwd_title');
-        $from = 'contact@divindeliver.fr';
+        $from = 'tao.berquer@gmail.com';
         $htmlTemplate = 'emails/password/reset_password.html.twig';
         $context = ['token' => $token, 'userid' => $userid];
 
@@ -37,7 +37,7 @@ class MailService
     public function sendCreatePasswordNewUserMail(String $to, String $token, int $userid)
     {
         $subject = $this->translator->trans('password.set_pwd_title');
-        $from = 'contact@divindeliver.fr';
+        $from = 'tao.berquer@gmail.com';
         $htmlTemplate = 'emails/password/new_user_password.html.twig';
         $context = ['token' => $token, 'userid' => $userid];
 
@@ -50,7 +50,7 @@ class MailService
     public function sendAccountValidationMail(String $to, String $token, int $userid)
     {
         $subject = $this->translator->trans('account.validation.mail.title');
-        $from = 'contact@divindeliver.fr'; // todo : à configurer dans le restau
+        $from = 'tao.berquer@gmail.com'; // todo : à configurer dans le restau
         $htmlTemplate = 'emails/account/validation.html.twig';
         $context = ['token' => $token, 'userid' => $userid];
 
