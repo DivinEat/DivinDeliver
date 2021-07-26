@@ -2,13 +2,13 @@
   "entrypoints": {
     "app": {
       "js": [
-        "http://93.90.203.240/DivinDeliver/build/runtime.46d54cfb.js",
-        "http://93.90.203.240/DivinDeliver/build/0.65a1906c.js",
-        "http://93.90.203.240/DivinDeliver/build/app.18780649.js"
+        "http://217.160.64.31/DivinDeliver/build/runtime.1036ab76.js",
+        "http://217.160.64.31/DivinDeliver/build/0.65a1906c.js",
+        "http://217.160.64.31/DivinDeliver/build/app.18780649.js"
       ],
       "css": [
-        "http://93.90.203.240/DivinDeliver/build/0.af40abc2.css",
-        "http://93.90.203.240/DivinDeliver/build/app.6db768dd.css"
+        "http://217.160.64.31/DivinDeliver/build/0.af40abc2.css",
+        "http://217.160.64.31/DivinDeliver/build/app.b112ba9f.css"
       ]
     }
   }
