@@ -14,10 +14,10 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Title'
+                'label' => 'category.title'
             ])
             ->add('subtitle', TextType::class, [
-                'label' => 'Subtitle'
+                'label' => 'category.subtitle'
             ]);
     }
 

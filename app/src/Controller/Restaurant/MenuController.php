@@ -8,6 +8,7 @@ use App\Repository\MenuRepository;
 use App\Service\MenuUberEatsService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,6 +18,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class MenuController extends AbstractController
 {
+
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -58,7 +67,7 @@ class MenuController extends AbstractController
             $em->persist($menu);
             $em->flush();
 
-            $this->addFlash('success', 'Menu créé.');
+            $this->addFlash('success', $this->translator->trans('menu.created'));
 
             return $this->redirectToRoute('restaurant_menu_index', [
                 'id' => $menu->getId()
@@ -85,7 +94,7 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Menu modifié.');
+            $this->addFlash('success', $this->translator->trans('menu.updated'));
 
             return $this->redirectToRoute('restaurant_menu_edit', [
                 'id' => $menu->getId()
@@ -111,7 +120,7 @@ class MenuController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('danger', 'Menu supprimé.');
+        $this->addFlash('danger', $this->translator->trans('menu.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($menu);
@@ -129,7 +138,7 @@ class MenuController extends AbstractController
         $storeId = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
         $menuUberEatsService->upload($storeId, $storeId);
 
-        $this->addFlash('success', 'Envoi effectué.');
+        $this->addFlash('success', $this->translator->trans('menu.sent'));
 
         return $this->redirectToRoute('restaurant_menu_index');
     }
@@ -150,7 +159,7 @@ class MenuController extends AbstractController
         $menuUberEatsService->resetMenus($store, $deliver);
         $menuUberEatsService->fetch($storeId, $deliver);
 
-        $this->addFlash('success', 'Récupération effectuée.');
+        $this->addFlash('success', $this->translator->trans('menu.fetched'));
 
         return $this->redirectToRoute('restaurant_menu_index');
     }

@@ -9,10 +9,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.users{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of registered users</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.users{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ users }}</p>
                 <a href="{{ path('admin_user_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to users
+                    {% trans %}user.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
@@ -21,10 +21,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.restaurants{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of registered stores</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.stores{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ stores }}</p>
                 <a href="{{ path('admin_store_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to stores
+                    {% trans %}store.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
