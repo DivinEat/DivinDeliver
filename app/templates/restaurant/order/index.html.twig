@@ -6,9 +6,10 @@
     <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
 
     <div class="w-100 d-flex justify-content-center mt-4">
-        <img class="icon" style="margin-right: 5px;" src="{{ asset('images/icons/icon-accept.png') }}"> Accept order
-        <img class="icon" style="margin-left: 25px; margin-right: 5px;" src="{{ asset('images/icons/icon-cancel.png') }}"> Cancel order
-        <img class="icon" style="margin-left: 25px" src="{{ asset('images/icons/icon-deny.png') }}"> Deny order
+        <img class="icon" style="margin-right: 5px;" src="{{ asset('images/icons/icon-accept.png') }}">Accept order
+        <img class="icon" style="margin-left: 25px; margin-right: 5px;" src="{{ asset('images/icons/icon-cancel.png') }}">Cancel order
+        <img class="icon" style="margin-left: 25px; margin-right: 5px;" src="{{ asset('images/icons/icon-deny.png') }}">Deny order
+        <img class="icon" style="margin-left: 25px; margin-right: 5px;" src="{{ asset('images/icons/icon-show.png') }}">Show order
     </div>
 
     <form action="{{ path('restaurant_order_index') }}" method="get" class="w-100 mb-2 mt-3">
@@ -25,7 +26,6 @@
         <thead>
             <tr>
                 <th>{% trans %}order.state{% endtrans %}</th>
-                <th>{% trans %}order.type{% endtrans %}</th>
                 <th>{% trans %}order.store{% endtrans %}</th>
                 <th>{% trans %}order.eater{% endtrans %}</th>
                 <th>{% trans %}order.payment{% endtrans %}</th>
@@ -38,11 +38,10 @@
             {% for order in orders %}
                 <tr>
                     <td>{{ order.currentState }}</td>
-                    <td>{{ order.type }}</td>
                     <td>{{ order.store.name }}</td>
                     <td>{{ order.content.eater.first_name }}</td>
                     <td>{{ order.content.payment.charges.total_fee.formatted_amount }}</td>
-                    <td>{{ order.content.estimated_ready_for_pickup_at }}</td>
+                    <td>{{ order.content.estimated_ready_for_pickup_at|date("d/m/Y H:i:s") }}</td>
                     <td>{{ order.deliver|capitalize }}</td>
                     <td>
                         {% if order.currentState is not same as('CANCELED') %}
