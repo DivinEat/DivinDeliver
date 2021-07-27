@@ -15,6 +15,10 @@ store:
   id_fake_ubereat: Secret Key FakeUberEat
   id_fake_deliveroo: Secret Key FakeDeliveroo
   create: Créer un restaurant
+  go_to: Voir les restaurants
+  updated: Restaurant modifié
+  deleted: Restaurant supprimé
+  saved: Restaurant enregistré
 
 user:
   list: Liste des utilisateurs
@@ -28,6 +32,14 @@ user:
   login: Connexion
   new: Nouveau utilisateur
   valid: Valide
+  go_to: Voir les utilisateurs
+  validate: Vous devez valider votre compte ici.
+  validate_success: Votre compte a été validé avec succès !
+  received_email: Vous avez reçu un e-mail, vérifiez votre boîte de réception
+  updated: Utilisateur modifié
+  deleted: Utilisateur supprimé
+  added: Utilisateur ajouté
+  profile_updated: Profil modifié
 
 password:
   set_pwd_title: Définissez votre mot de passe
@@ -43,6 +55,7 @@ password:
   reset_button: Réinitialiser le mot de passe
   here: ici
   send_reset_pwd_mail: Envoyer un mail de réinitialisation de mot de passe
+  updated: Mot de passe mis à jour
 
 nav:
   back_home: Retour accueil
@@ -62,6 +75,10 @@ category:
   title: Titre
   subtitle: Sous-titre
   new: Nouvelle catégorie
+  go_to: Aller aux catégories
+  created: Catégorie créée
+  updated: Catégorie modifiée
+  deleted: Catégorie supprimée
 
 item:
   word: Produit
@@ -69,6 +86,10 @@ item:
   price: Prix
   list: Liste des produits
   new: Nouveau produit
+  go_to: Aller aux produits
+  created: Produit créé
+  updated: Produit modifié
+  deleted: Produit supprimé
 
 menu:
   list: Liste des menus
@@ -80,6 +101,12 @@ menu:
   fetch_deliveroo: Importer depuis Deliveroo
   fetch: L'importation va supprimer la totalité de vos données pour les ré insérer
   confirm: Confirmer
+  go_to: Aller aux menus
+  created: Menu créé
+  updated: Menu modifié
+  deleted: Menu supprimé
+  sent: Envoi effectué
+  fetched: Récupération effectuée
 
 order:
   word: Commande
@@ -101,6 +128,8 @@ order:
   accept: Accepter
   deny: Refuser
   cancel: Annuler
+  go_to: Aller aux commandes
+  waiting: Vous avez une nouvelle commande en attente.
   item:
     title: Titre
     external_data: Données externes
@@ -109,6 +138,7 @@ order:
 
 settings:
   word: Paramètres
+  updated: Paramètres modifiés
 
 form:
   email: Email
@@ -139,3 +169,16 @@ account:
     form:
       confirm_email: Confirmer votre email
       create_password: Créez votre mot de passe
+
+stats:
+  registered:
+    users: Nombre d'utilisateurs enregistrés
+    stores: Nombre de restaurants enregistrés
+    orders: Nombre de commandes
+    menus: Nombre de menus
+    items: Nombre d'items
+    categories: Nombre de catégories
+
+error:
+  default: Une erreur est arrivée. Essayez une autre URL
+  not_found: Oops! La page que vous recherchiez n'existe pas

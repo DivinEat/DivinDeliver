@@ -9,6 +9,7 @@ use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -17,6 +18,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class CategoryController extends AbstractController
 {
+
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -56,7 +65,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Catégorie créée.');
+            $this->addFlash('success', $this->translator->trans('category.created'));
 
             return $this->redirectToRoute('restaurant_category_index', [
                 'id' => $category->getId()
@@ -83,7 +92,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Catégorie modifiée.');
+            $this->addFlash('success', $this->translator->trans('category.updated'));
 
             return $this->redirectToRoute('restaurant_category_edit', [
                 'id' => $category->getId()
@@ -109,7 +118,7 @@ class CategoryController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('danger', 'Catégorie supprimée.');
+        $this->addFlash('danger', $this->translator->trans('category.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

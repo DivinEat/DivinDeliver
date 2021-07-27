@@ -12,6 +12,7 @@ use App\Service\User\AccountService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -24,12 +25,14 @@ class UserController extends AbstractController
     private $userService;
     private $accountService;
     private $mailService;
+    private $translator;
 
-    public function __construct(UserService $userService, AccountService $accountService, MailService $mailService)
+    public function __construct(UserService $userService, AccountService $accountService, MailService $mailService, TranslatorInterface $translator)
     {
         $this->userService = $userService;
         $this->accountService = $accountService;
         $this->mailService = $mailService;
+        $this->translator = $translator;
     }
 
     /**
@@ -63,7 +66,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Utilisateur modifié.');
+            $this->addFlash('success', $this->translator->trans('user.updated'));
 
             return $this->redirectToRoute('admin_user_edit', [
                 'id' => $user->getId()
@@ -86,7 +89,7 @@ class UserController extends AbstractController
         }
 
 
-        $this->addFlash('success', 'Utilisateur supprimé.');
+        $this->addFlash('success', $this->translator->trans('user.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
