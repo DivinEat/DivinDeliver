@@ -5,6 +5,12 @@
 {% block body %}
     <h1 class="title">{% trans %}order.list{% endtrans %}</h1>
 
+    <div class="w-100 d-flex justify-content-center mt-4">
+        <img class="icon" style="margin-right: 5px;" src="{{ asset('images/icons/icon-accept.png') }}"> Accept order
+        <img class="icon" style="margin-left: 25px; margin-right: 5px;" src="{{ asset('images/icons/icon-cancel.png') }}"> Cancel order
+        <img class="icon" style="margin-left: 25px" src="{{ asset('images/icons/icon-deny.png') }}"> Deny order
+    </div>
+
     <form action="{{ path('restaurant_order_index') }}" method="get" class="w-100 mb-2 mt-3">
         <select name="choice" id="choice" class="browser-default form-control" onchange="this.form.submit()">
             <option value="ALL">{% trans %}order.all{% endtrans %}</option>
