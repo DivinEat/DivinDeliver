@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Validator\UniqueEmail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,6 +24,9 @@ class RegisterType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => 'form.email',
+                'constraints' => [
+                    new UniqueEmail()
+                ]
             ])
             ->add('stores', CollectionType::class, [
                 'entry_type' => StoreType::class,

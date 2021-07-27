@@ -3,6 +3,11 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Validator\PasswordDigit;
+use App\Validator\PasswordLength;
+use App\Validator\PasswordLowercase;
+use App\Validator\PasswordSpecial;
+use App\Validator\PasswordUppercase;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,6 +21,14 @@ class ResetPasswordType extends AbstractType
         $builder
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
+                'invalid_message' => 'The password fields must match',
+                'constraints' => [
+                    new PasswordLength(),
+                    new PasswordUppercase(),
+                    new PasswordDigit(),
+                    new PasswordSpecial(),
+                    new PasswordLowercase()
+                ],
                 'first_options' => [
                     'label' => 'form.password'
                 ],

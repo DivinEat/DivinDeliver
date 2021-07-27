@@ -4,12 +4,15 @@ namespace App\Form;
 
 use App\Entity\Menu;
 use App\Entity\Category;
+use App\Validator\FileIsAnImage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints\Image;
 
 class MenuType extends AbstractType
 {
@@ -17,7 +20,12 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'menu.title'
+                'label' => 'menu.title',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Enter a title !'
+                    ]),
+                ]
             ])
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
@@ -29,7 +37,10 @@ class MenuType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => false,
-                'image_uri' => false
+                'image_uri' => false,
+                'constraints' => [
+                    new Image()
+                ]
             ]);
     }
 
