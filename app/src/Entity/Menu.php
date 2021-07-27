@@ -17,7 +17,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
  * @Vich\Uploadable()
- * @UniqueEntity(fields={"title"}, message="A menu with this title already exists!")
  */
 class Menu
 {

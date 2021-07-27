@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use App\Validator\UniqueCategoryTitle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -17,7 +18,8 @@ class CategoryType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'category.title',
                 'constraints' => [
-                    new NotBlank()
+                    new NotBlank(),
+                    new UniqueCategoryTitle()
                 ]
             ])
             ->add('subtitle', TextType::class, [

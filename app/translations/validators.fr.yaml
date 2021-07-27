@@ -9,6 +9,7 @@ user:
         lowercase: Votre mot de passe doit contenir au moins une minuscule.
         digit: Votre mot de passe doit contenir au moins un nombre.
         special: Votre mot de passe doit contenir au moins un caractère spécial.
+    unique_title: Ce titre est déjà utilisé.
 store:
     name.unique: Le nom {{ value }} est déjà utilisé.
     slug.unique: Le slug {{ value }} est déjà utilisé.

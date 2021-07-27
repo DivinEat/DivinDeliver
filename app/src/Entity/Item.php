@@ -14,7 +14,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
  * @Vich\Uploadable()
- * @UniqueEntity(fields={"title"}, message="An item with this title already exists!")
  */
 class Item
 {

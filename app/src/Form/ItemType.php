@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Item;
 use App\Entity\Category;
 use App\Validator\FileIsAnImage;
+use App\Validator\UniqueItemTitle;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +32,10 @@ class ItemType extends AbstractType
 
         $builder
             ->add('title', TextType::class, [
-                'label' => 'item.title'
+                'label' => 'item.title',
+                'constraints' => [
+                    new UniqueItemTitle()
+                ]
             ])
             ->add('priceInfo', IntegerType::class, [
                 'label' => 'item.price'
