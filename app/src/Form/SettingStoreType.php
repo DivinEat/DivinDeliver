@@ -14,13 +14,13 @@ class SettingStoreType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name'
+                'label' => 'store.name'
             ])
             ->add('storeIdFakeUberEat', TextType::class, [
-                'label' => 'Secret Key UberEat'
+                'label' => 'store.id_fake_ubereat'
             ])
             ->add('storeIdFakeDeliveroo', TextType::class, [
-                'label' => 'Secret Key Deliveroo'
+                'label' => 'store.id_fake_deliveroo'
             ])
         ;
     }

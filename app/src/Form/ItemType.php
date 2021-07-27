@@ -29,10 +29,10 @@ class ItemType extends AbstractType
 
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Title'
+                'label' => 'item.title'
             ])
             ->add('priceInfo', IntegerType::class, [
-                'label' => 'Price'
+                'label' => 'item.price'
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

@@ -14,7 +14,7 @@ class StoreEditType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'name'
+                'label' => 'store.name'
             ])
             ->add('storeIdFakeUberEat', TextType::class, [
                 'label' => 'store.id_fake_ubereat'

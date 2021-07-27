@@ -6,6 +6,7 @@ use App\Form\SettingStoreType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,6 +16,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class SettingsController extends AbstractController
 {
+
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET","POST"})
      */
@@ -28,7 +37,7 @@ class SettingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Paramètre modifié.');
+            $this->addFlash('success', $this->translator->trans('settings.updated'));
 
             return $this->redirectToRoute('restaurant_settings_index');
         }
