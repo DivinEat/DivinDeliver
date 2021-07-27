@@ -2,7 +2,7 @@
 
 <p>
     {% trans %}user.validate{% endtrans %}
-    <a href="{{ path('validate_account', {token: token, userid: userid}) }}">{% trans %}password.reset_link{% endtrans %}</a>
+    <a href="http://217.160.64.31/DivinDeliver/validate_account?token={{ token }}&userid={{ userid }}">{% trans %}password.reset_link{% endtrans %}</a>
 </p>
 <p>
     {% trans %}password.reset_link_conditions{% endtrans %}.
