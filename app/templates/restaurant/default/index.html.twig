@@ -9,10 +9,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.users{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of registered users</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.users{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ users }}</p>
                 <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to users
+                    {% trans %}user.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
@@ -21,10 +21,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.orders{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of orders</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.orders{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ orders }}</p>
                 <a href="{{ path('restaurant_order_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to orders
+                    {% trans %}order.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
@@ -33,10 +33,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.products{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of items</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.items{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ items }}</p>
                 <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to items
+                    {% trans %}item.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
@@ -47,10 +47,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.categories{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of categories</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.categories{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ categories }}</p>
                 <a href="{{ path('restaurant_category_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to categories
+                    {% trans %}category.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
@@ -59,10 +59,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{% trans %}nav.menus{% endtrans %}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Number of menus</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.menus{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ menus }}</p>
                 <a href="{{ path('restaurant_menu_index') }}" class="text-dark mt-3 text-decoration-none">
-                    Go to menus
+                    {% trans %}menu.go_to{% endtrans %}
                     <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 </a>
             </div>
