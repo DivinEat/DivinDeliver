@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Image;
 
 class MenuType extends AbstractType
 {
@@ -38,7 +39,7 @@ class MenuType extends AbstractType
                 'download_uri' => false,
                 'image_uri' => false,
                 'constraints' => [
-                    new FileIsAnImage()
+                    new Image()
                 ]
             ]);
     }

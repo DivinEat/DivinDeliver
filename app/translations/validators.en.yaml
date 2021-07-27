@@ -2,6 +2,7 @@ user:
     email:
         user_should_exist: No user is registered with the email {{ email }}. You may register.
         unique: The email {{ value }} is already used.
+        unique_constraint: This email adress is already taken.
     password:
         length: Your password is too short. Must be at least 8 characters.
         uppercase: Your password must contain at least one uppercase.
