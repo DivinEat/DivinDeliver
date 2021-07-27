@@ -151,6 +151,8 @@ form:
   slug: Slug
   firstname: First Name
   lastname: Last Name
+  constraints:
+    confirm_password: The password fields must match
 
 button:
   send: Send

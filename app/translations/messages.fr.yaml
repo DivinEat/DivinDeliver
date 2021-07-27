@@ -147,6 +147,8 @@ form:
   slug: Slug
   firstname: Prénom
   lastname: Nom
+  constraints:
+    confirm_password: Les mots de passes doivent être identiques.
 
 button:
   send: Envoyer
