@@ -41,7 +41,7 @@ Encore
     //.autoProvidejQuery()
 ;
 if (Encore.isProduction()) {
-  Encore.setPublicPath('http://93.90.203.240/DivinDeliver/build/');
+  Encore.setPublicPath('http://217.160.64.31/DivinDeliver/build/');
 
   // guarantee that the keys in manifest.json are *still*
   // prefixed with build/
