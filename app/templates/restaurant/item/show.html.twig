@@ -4,20 +4,35 @@
 
 {% block body %}
     <div class="w-100">
-        <img src="{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/> <br>
-        {% trans %}item.title{% endtrans %} : {{ item.title }} <br>
-        {% trans %}item.price{% endtrans %} : {{ item.priceInfo }} <br>
-        {% trans %}category.word{% endtrans %} : {{ item.category.title }} <br>
+        <div class="w-50 flex justify-center wrap m-auto">
+            <img src="{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/> <br>
+            <table class="table mt-1">
+                <tbody>
+                    <tr>
+                        <th>{% trans %}item.title{% endtrans %}</th>
+                        <td>{{ item.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}item.price{% endtrans %}</th>
+                        <td>{{ item.priceInfo }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}category.word{% endtrans %}</th>
+                        <td>{{ item.category.title }}</td>
+                    </tr>
+                </tbody>
+            </table><br>
+        </div>
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3">
+            <a href="{{ path('restaurant_item_index') }}" class="btn btn-primary btn-back mt-3 p-auto">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>    
-            <a href="{{ path('restaurant_item_edit', {id: item.id}) }}" class="text-dark mt-3">
-                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+            <a href="{{ path('restaurant_item_edit', {id: item.id}) }}" class="btn btn-primary btn-edit mt-3 p-auto">
                 {% trans %}edit{% endtrans %}
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
             </a>
         </div>
     </div>

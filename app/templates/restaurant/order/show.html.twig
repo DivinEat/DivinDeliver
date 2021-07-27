@@ -4,13 +4,40 @@
 
 {% block body %}
     <div class="w-100">
-        {% trans %}order.state{% endtrans %} : {{ order.currentState }}<br>
-        {% trans %}order.type{% endtrans %} : {{ order.type }}<br>
-        {% trans %}order.store{% endtrans %} : {{ order.store.name }}<br>
-        {% trans %}order.eater{% endtrans %} : {{ order.content.eater.first_name }}<br>
-        {% trans %}order.payment{% endtrans %} : {{ order.content.payment.charges.total_fee.formatted_amount }}<br>
-        {% trans %}order.estimated_ready_for_pickup_at{% endtrans %} : {{ order.content.estimated_ready_for_pickup_at }}<br>
-        {% trans %}order.deliver{% endtrans %} : {{ order.deliver|capitalize }}<br><br>
+        <div class="w-50 flex justify-center wrap m-auto">
+            <table class="table mt-1">
+                <tbody>
+                    <tr>
+                        <th>{% trans %}order.state{% endtrans %}</th>
+                        <td>{{ order.currentState }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}order.type{% endtrans %}</th>
+                        <td>{{ order.type }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}order.store{% endtrans %}</th>
+                        <td>{{ order.store.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}order.eater{% endtrans %}</th>
+                        <td>{{ order.content.eater.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}order.payment{% endtrans %}</th>
+                        <td>{{ order.content.payment.charges.total_fee.formatted_amount }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}order.estimated_ready_for_pickup_at{% endtrans %}</th>
+                        <td>{{ order.content.estimated_ready_for_pickup_at }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}order.deliver{% endtrans %}</th>
+                        <td>{{ order.deliver|capitalize }}</td>
+                    </tr>
+                </tbody>
+            </table><br>
+        </div>
 
         <table class="table">
             <thead>
@@ -68,7 +95,7 @@
         {% endif %}
         
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ path('restaurant_order_index') }}" class="text-dark mt-3 t-d-none">
+            <a href="{{ path('restaurant_order_index') }}" class="btn btn-primary btn-back mt-3 p-auto">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>

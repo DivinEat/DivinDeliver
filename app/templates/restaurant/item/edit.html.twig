@@ -15,13 +15,12 @@
         
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ path('restaurant_item_index') }}" class="text-dark mt-3">
+            <a href="{{ path('restaurant_item_index') }}" class="btn btn-primary btn-back mt-3 p-auto">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>
             <div>
-                <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                <input type="submit" class="dd-bt-edit" value="{% trans %}edit{% endtrans %}">
+                <input type="submit" class="btn btn-primary btn-edit mt-3 p-auto" value="{% trans %}save{% endtrans %}">
             </div>
         </div>
     {{ form_end(form) }}

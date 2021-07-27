@@ -4,20 +4,39 @@
 
 {% block body %}
     <div class="w-100">
-        {% trans %}user.firstname{% endtrans %} : {{ user.firstname }} <br>
-        {% trans %}user.lastname{% endtrans %} : {{ user.lastname }} <br>
-        {% trans %}user.email{% endtrans %} : {{ user.email }} <br>
-        {% trans %}user.roles{% endtrans %} : {{ user.roles ? user.roles|json_encode|replace({ ('["ROLE_'): '', '"]' : '' }) : '' }}<br>
+        <div class="w-50 flex justify-center wrap m-auto">
+            <table class="table mt-1">
+                <tbody>
+                    <tr>
+                        <th>{% trans %}user.firstname{% endtrans %}</th>
+                        <td>{{ user.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}user.lastname{% endtrans %}</th>
+                        <td>{{ user.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}user.email{% endtrans %}</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}user.roles{% endtrans %}</th>
+                        <td>{{ user.roles ? user.roles|json_encode|replace({ ('["ROLE_'): '', '"]' : '' }) : '' }}</td>
+                    </tr>
+                </tbody>
+            </table><br>
+        </div>
+
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3">
+            <a href="{{ path('restaurant_user_index') }}" class="btn btn-primary btn-back mt-3 p-auto">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>    
-            <a href="{{ path('restaurant_user_edit', {id: user.id}) }}" class="text-dark mt-3">
-                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+            <a href="{{ path('restaurant_user_edit', {id: user.id}) }}" class="btn btn-primary btn-edit mt-3 p-auto">
                 {% trans %}edit{% endtrans %}
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
             </a>
         </div>
     </div>

@@ -1,15 +1,20 @@
 .header-back {
   background-color: #ffffff;
-  height: 150px;
+  height: 80px;
 
   &-p10 {
     padding: 10px;
   }
 }
 
+.sidebar {
+  position: relative;
+  height: 100%;
+}
+
 .sidenav {
   background-color: #e9e9e9;
-  min-height: 70vh;
+  height: 100%;
 }
 
 .sidenav ul {
@@ -50,6 +55,10 @@ nav a span {
 }
 
 footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 100px;
   background-color: $purple;
   color: #ffffff;
@@ -62,5 +71,58 @@ footer {
   & a {
     text-decoration: none;
     color: $white;
+  }
+}
+
+.nav-link{
+  transition: font-size 1s;
+  &:hover {
+      color: $purple !important;
+  }
+  &.priority-2 {
+      &:hover {
+          font-size: 18px;
+      }
+  }
+  &.active {
+      font-size: 18px;
+      font-weight: bold;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &.justify-center {
+      justify-content: center;
+  }
+  &.wrap {
+      flex-wrap: wrap;
+  }
+}
+
+.btn-back, .btn-edit {
+  background-color: #7f2aff;
+  border-color: #7f2aff;
+  &:hover {
+      background-color: #7f2aff;
+      border-color: #7f2aff;
+  }
+}
+
+.btn-purple {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.375rem;
+  border: 0.125rem solid $purple;
+  background-color: $purple;
+  color: #fff;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  &:hover {
+      color: $purple;
+      background-color: transparent;
   }
 }

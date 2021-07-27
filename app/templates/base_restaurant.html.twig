@@ -10,7 +10,7 @@
     
     <body>
         <header class="d-flex align-items-center justify-content-between header-back header-back-p10">
-                <a href="{{ path('default_index') }}"><img src="{{ asset('images/logo.png') }}" style="height: 125px"></a>
+                <a href="{{ path('default_index') }}"><img src="{{ asset('images/logo.png') }}" style="height: 67px"></a>
                 
                 <div id="order_notification" class="alert-order d-none">
                     <a href="#" style="color:red;">Vous avez une nouvelle commande en attente.</a>
@@ -19,21 +19,50 @@
                 <div class="d-flex flex-row">
                     {% if app.user %}
                         <a href="{{ path('back_profile_index') }}" class="t-d-none text-dark" style="margin-right:15px;">
-                            <img class="icon" src="{{ asset('images/icons/icon admin mobile-hack.png') }}">
-                            <span class="ml-3">{% trans %}nav.profile{% endtrans %}</span>
+                            <span class="m-3">{% trans %}nav.profile{% endtrans %}</span>
                         </a>
 
                         <div>
-                            <a href="{{ path('app_logout') }}" class="text-dark">{% trans %}logout{% endtrans %}</a>
-                            <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"></span>
+                            <a href="{{ path('app_logout') }}" class="btn-purple">{% trans %}logout{% endtrans %}</a>
                         </div>
                     {% endif %}
                 </div>
         </header>
 
-        <div class="row">
-            <div class="col-3 sidenav">
-                <ul class="mt-2 d-flex flex-column align-items-center">
+        <div class="row sidebar">
+            <div class="col-2 sidenav">
+                <ul class="nav m-2 d-flex flex-column">
+                    <li class="nav-item">
+                        <a href="{{ path('restaurant_order_index') }}" class="nav-link {{ (app.request.get('_route') == 'restaurant_order_index') ? 'active' : '' }}" aria-current="page">
+                            <span style="font-size: 22px;">{% trans %}nav.orders{% endtrans %}</span>
+                        </a>
+                    </li><br>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'restaurant_default_index') ? 'active' : '' }}" href="{{ path('restaurant_default_index') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'restaurant_menu_index') ? 'active' : '' }}" href="{{ path('restaurant_menu_index') }}">{% trans %}nav.menus{% endtrans %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'restaurant_item_index') ? 'active' : '' }}" href="{{ path('restaurant_item_index') }}">{% trans %}nav.products{% endtrans %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'restaurant_category_index') ? 'active' : '' }}" href="{{ path('restaurant_category_index') }}">{% trans %}nav.categories{% endtrans %}</a>
+                    </li>
+
+                    {% if is_granted('ROLE_RESTAURATEUR') %}
+                        <li class="nav-item">
+                            <a class="nav-link priority-2 {{ (app.request.get('_route') == 'restaurant_user_index') ? 'active' : '' }}" href="{{ path('restaurant_user_index') }}">{% trans %}nav.users{% endtrans %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link priority-2 {{ (app.request.get('_route') == 'restaurant_settings_index') ? 'active' : '' }}" href="{{ path('restaurant_settings_index') }}">{% trans %}nav.settings{% endtrans %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+
+
+                {# <ul class="mt-2 d-flex flex-column align-items-center">
                     <li class="w-100 pl-2 pr-2 mt-4">
                         <a href="{{ path('restaurant_order_index') }}" class="w-100 d-flex flex-row justify-content-between align-items-center t-d-none">
                             <span style="font-size: 22px;">{% trans %}nav.orders{% endtrans %}</span>
@@ -90,7 +119,7 @@
                             </a>
                         </li>
                     {% endif %}
-                </ul>
+                </ul> #}
             </div>
 
             <div class="col-9">
@@ -103,7 +132,7 @@
                     {% endfor %}
                 {% endfor %}
 
-                <div class="container mt-5 d-flex flex-column align-items-center">
+                <div class="container mx-5 mt-5 d-flex flex-column align-items-center">
                     {% block body %}{% endblock %}
                 </div>
             </div>

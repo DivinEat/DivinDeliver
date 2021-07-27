@@ -11,20 +11,49 @@
     <body>
         <header class="d-flex align-items-center justify-content-between header-back header-back-p10">
             <div class="d-flex align-items-center flex-row ml-5">
-                <a href="{{ path('default_index') }}"><img src="{{ asset('images/logo.png') }}" style="height: 125px"></a>
+                <a href="{{ path('default_index') }}"><img src="{{ asset('images/logo.png') }}" style="height: 67px"></a>
             </div>
 
             <div class="mr-5">
             {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="text-dark">{% trans %}logout{% endtrans %} Admin</a>
-                <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"> </span>
+                <a href="{{ path('app_logout') }}" class="btn-purple">{% trans %}logout{% endtrans %} Admin</a>
             {% endif %}
             </div>
         </header>
 
         <div class="row">
-            <div class="col-3 sidenav">
-                <ul class="mt-2 d-flex flex-column align-items-center">
+            <div class="col-2 sidenav">
+                <ul class="nav m-2 d-flex flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'default_index') ? 'active' : '' }}" href="{{ path('default_index') }}">
+                            <img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
+                            <span style="font-size: 18px;">{% trans %}nav.back_home{% endtrans %}</span>
+                        </a>
+                    </li>
+                    <div class="ligne"></div>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'back_profile_index') ? 'active' : '' }}" href="{{ path('back_profile_index') }}">
+                            <span class="ml-3">{% trans %}nav.profile{% endtrans %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'admin_default_index') ? 'active' : '' }}" href="{{ path('admin_default_index') }}">
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'admin_user_index') ? 'active' : '' }}" href="{{ path('admin_user_index') }}">
+                            <span>{% trans %}nav.users{% endtrans %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link priority-2 {{ (app.request.get('_route') == 'admin_store_index') ? 'active' : '' }}" href="{{ path('admin_store_index') }}">
+                            <span>{% trans %}nav.restaurants{% endtrans %}</span>
+                        </a>
+                    </li>
+                </ul>
+
+                {# <ul class="mt-2 d-flex flex-column align-items-center">
                     <li class="w-100 pl-2 pr-2 mt-4">
                         <a href="{{ path('default_index') }}" class="w-100 d-flex flex-row align-items-center t-d-none">
                             <img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
@@ -62,7 +91,7 @@
                             <img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}">
                         </a>
                     </li>
-                </ul>
+                </ul> #}
             </div>
 
             <div class="col-9">

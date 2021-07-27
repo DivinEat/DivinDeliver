@@ -11,13 +11,13 @@
             <button id="importBtn" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</button>
         </div>
 
-        <a href="{{ path('restaurant_menu_new') }}" class="text-dark mt-3">
-            <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
+        <a href="{{ path('restaurant_menu_new') }}" type="button" class="btn btn-dark m-3 p-2 px-4">
+            <span><img class="icon m-1" src="{{ asset('images/icons/icon-plus-white.png') }}"></span>
             {% trans %}add{% endtrans %}
         </a>
     {% endif %}
 
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Image</th>

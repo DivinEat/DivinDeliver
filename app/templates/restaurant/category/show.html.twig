@@ -4,18 +4,30 @@
 
 {% block body %}
     <div class="w-100">
-        {% trans %}category.title{% endtrans %} : {{ category.title }} <br>
-        {% trans %}category.subtitle{% endtrans %} : {{ category.subtitle }} <br>
+        <div class="w-50 flex justify-center m-auto">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>{% trans %}category.title{% endtrans %}</th>
+                        <td>{{ category.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}category.subtitle{% endtrans %}</th>
+                        <td>{{ category.subtitle }}</td>
+                    </tr>
+                </tbody>
+            </table><br>
+        </div>
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ path('restaurant_category_index') }}" class="text-dark mt-3">
+            <a href="{{ path('restaurant_category_index') }}" class="btn btn-primary btn-back mt-3 p-auto">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>    
-            <a href="{{ path('restaurant_category_edit', {id: category.id}) }}" class="text-dark mt-3">
-                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+            <a href="{{ path('restaurant_category_edit', {id: category.id}) }}" class="btn btn-primary btn-edit mt-3 p-auto">
                 {% trans %}edit{% endtrans %}
+                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
             </a>
         </div>
     </div>
