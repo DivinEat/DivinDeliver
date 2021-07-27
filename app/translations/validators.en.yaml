@@ -12,3 +12,5 @@ store:
     name.unique: The name {{ value }} is already used.
     slug.unique: The slug {{ value }} is already used.
     restaurateur.has.no.store: Sorry, but you can't have many stores.
+image:
+    not_valid: Incorrect image format

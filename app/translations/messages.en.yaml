@@ -79,6 +79,7 @@ category:
   created: Category created
   updated: Category updated
   deleted: Category deleted
+  unique_title: A category with this title already exists!
 
 item:
   word: Item
@@ -94,6 +95,7 @@ item:
   created: Item created
   updated: Item updated
   deleted: Item deleted
+  unique_title: An item with this title already exists!
 
 menu:
   list: Menus list
@@ -111,6 +113,7 @@ menu:
   deleted: Menu deleted
   sent: Menu sent
   fetched: Menu fetched
+  unique_title: A menu with this title already exists!
 
 order:
   word: Order

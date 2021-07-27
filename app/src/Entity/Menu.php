@@ -3,17 +3,21 @@
 namespace App\Entity;
 
 use App\Entity\Store;
+use App\Entity\Category;
 use App\Traits\EntityTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
  * @Vich\Uploadable()
+ * @UniqueEntity(fields={"title"}, message="A menu with this title already exists!")
  */
 class Menu
 {
@@ -34,6 +38,7 @@ class Menu
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class)
+     * @Assert\NotBlank
      */
     private $categories;
 

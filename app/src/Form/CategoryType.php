@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -14,10 +15,16 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'category.title'
+                'label' => 'category.title',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('subtitle', TextType::class, [
-                'label' => 'category.subtitle'
+                'label' => 'category.subtitle',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ]);
     }
 
