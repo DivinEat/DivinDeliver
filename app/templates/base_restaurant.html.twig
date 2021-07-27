@@ -24,7 +24,7 @@
                         </a>
 
                         <div>
-                            <a href="{{ path('app_logout') }}" class="text-dark">{% trans %}logout{% endtrans %}</a>
+                            <a href="{{ path('app_logout') }}" class="text-dark t-d-none">{% trans %}logout{% endtrans %}</a>
                             <span><img class="icon" src="{{ asset('images/icons/icon-admin-hack.png') }}"></span>
                         </div>
                     {% endif %}
@@ -114,9 +114,9 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>© 2021, DivinDeliver</div>
                 <div class="text-right">
-                    <a href="tel:+33102030405">+33 1 02 03 04 05</a>
+                    <a class="color-white" href="tel:+33102030405">+33 1 02 03 04 05</a>
                     <br>
-                    <a href="mailto:contact@divindeliver.fr">contact@divindeliver.fr</a>
+                    <a class="" href="mailto:contact@divindeliver.fr">contact@divindeliver.fr</a>
                 </div>
             </div>
         </footer>

@@ -9,7 +9,7 @@
         {% trans %}order.store{% endtrans %} : {{ order.store.name }}<br>
         {% trans %}order.eater{% endtrans %} : {{ order.content.eater.first_name }}<br>
         {% trans %}order.payment{% endtrans %} : {{ order.content.payment.charges.total_fee.formatted_amount }}<br>
-        {% trans %}order.estimated_ready_for_pickup_at{% endtrans %} : {{ order.content.estimated_ready_for_pickup_at }}<br>
+        {% trans %}order.estimated_ready_for_pickup_at{% endtrans %} : {{ order.content.estimated_ready_for_pickup_at|date("d/m/Y H:i:s") }}<br>
         {% trans %}order.deliver{% endtrans %} : {{ order.deliver|capitalize }}<br><br>
 
         <table class="table">
