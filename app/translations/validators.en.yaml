@@ -9,6 +9,7 @@ user:
         lowercase: Your password must contain at least one lowercase.
         digit: Your password must contain at least one number.
         special: Your password must contain at least one special character.
+    unique_title: This title is already taken.
 store:
     name.unique: The name {{ value }} is already used.
     slug.unique: The slug {{ value }} is already used.
