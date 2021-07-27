@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Service\User\UserService;
+use App\Validator\UniqueEmail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,7 +33,10 @@ class UserType extends AbstractType
                 'label' => 'user.lastname'
             ])
             ->add('email', EmailType::class, [
-                'label' => 'user.email'
+                'label' => 'user.email',
+                'constraints' => [
+                    new UniqueEmail()
+                ]
             ])
             ->add('roles', ChoiceType::class, [
                 'multiple' => false,

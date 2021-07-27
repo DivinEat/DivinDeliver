@@ -9,10 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ItemRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
  * @Vich\Uploadable()
+ * @UniqueEntity(fields={"title"}, message="An item with this title already exists!")
  */
 class Item
 {

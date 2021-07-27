@@ -4,14 +4,16 @@ namespace App\Form;
 
 use App\Entity\Item;
 use App\Entity\Category;
+use App\Validator\FileIsAnImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ItemType extends AbstractType
 {
@@ -43,7 +45,10 @@ class ItemType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => false,
-                'image_uri' => false
+                'image_uri' => false,
+                'constraints' => [
+                    new FileIsAnImage()
+                ]
             ]);
     }
 

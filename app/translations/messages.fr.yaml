@@ -79,6 +79,7 @@ category:
   created: Catégorie créée
   updated: Catégorie modifiée
   deleted: Catégorie supprimée
+  unique_title: Une catégorie avec ce titre existe déjà !
 
 item:
   word: Produit
@@ -90,6 +91,7 @@ item:
   created: Produit créé
   updated: Produit modifié
   deleted: Produit supprimé
+  unique_title: Un produit avec ce titre existe déjà !
 
 menu:
   list: Liste des menus
@@ -107,6 +109,7 @@ menu:
   deleted: Menu supprimé
   sent: Envoi effectué
   fetched: Récupération effectuée
+  unique_title: Un menu avec ce titre existe déjà !
 
 order:
   word: Commande
@@ -147,6 +150,8 @@ form:
   slug: Slug
   firstname: Prénom
   lastname: Nom
+  constraints:
+    confirm_password: Les mots de passes doivent être identiques.
 
 button:
   send: Envoyer
