@@ -19,4 +19,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
-        script: cd /var/DivinDeliver && git pull origin main
+        script: cd /var/DivinDeliver && git checkout . && git pull origin main
