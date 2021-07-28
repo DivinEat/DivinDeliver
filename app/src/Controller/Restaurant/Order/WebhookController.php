@@ -75,7 +75,7 @@ class WebhookController extends AbstractController
     public function newOrderDeliveroo(Request $request, Store $store)
     {
         $orderData = json_decode($request->getContent(), 1);
-        $orderArray = current($orderData['order_events'])['order'];
+        $orderArray = current($orderData['order_events'])['payload']['order'];
 
         $order = new Order();
         $order->setDeliver('Deliveroo');
@@ -84,12 +84,12 @@ class WebhookController extends AbstractController
         $order->setCurrentState('CREATED');
 
         $content = [
-            'eater' => ['firstname' => 'Unknown'],
+            'eater' => ['first_name' => 'Unknown'],
             'cart' => ['items' => $orderArray['items']],
-            'payment' => ['charges' => ['total_fee' => ['formatted_amount' => $orderArray]['total_price']['fractional']]],
+            'payment' => ['charges' => ['total_fee' => ['formatted_amount' => $orderArray['total_price']['fractional']]]],
             'estimated_ready_for_pickup_at' => $orderArray['pickup_at']
         ];
-        
+
         $order->setContent($content);
         $order->setType('DELIVERY_BY_DELIVEROO');
 
