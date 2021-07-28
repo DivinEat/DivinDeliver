@@ -73,19 +73,13 @@ class MenuUberEatsService
             'menu_type' => 'MENU_TYPE_FULFILLMENT_DELIVERY'
         ];
 
-        //$this->deliverooMenuSDK->uploadMenu($storeDeliverooId, $menu);
         $this->menuSDK->uploadMenu($storeUberEatsId, $menu);
     }
 
-    public function fetch(string $storeId, string $deliver)
+    public function fetch(Store $store, string $deliver)
     {
-        $menuSDK = $deliver === 'ubereats' ? $this->menuSDK : $this->deliverooMenuSDK;
-        $menu = $menuSDK->getMenus($storeId);
-
-        if ($deliver === 'ubereats')
-            $store = $this->storeRepository->findBy(['storeIdFakeUberEat' => $storeId])[0];
-        else
-            $store = $this->storeRepository->findBy(['storeIdFakeDeliveroo' => $storeId])[0];
+        $menuSDK = $this->menuSDK;
+        $menu = $menuSDK->getMenus($store->getStoreIdFakeUberEat());
 
         $returned = $this->createCategories($menu['categories'], $store);
 
