@@ -63,7 +63,6 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $item->setStore($this->getUser()->getStores()->first());
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
             $em->flush();
