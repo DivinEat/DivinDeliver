@@ -127,7 +127,7 @@
             <script>
                 // LISTEN ORDERS
                 const url = new URL("{{ app.request.server.get('MERCURE_PUBLIC_URL') }}");
-                url.searchParams.append("topic", "new-order-topic-{{ app.user.stores.first.id }} ");
+                url.searchParams.append("topic", "new-order-topic-{{ app.user.stores.first.id }}");
 
                 const eventSource = new EventSource(url);
                 eventSource.onmessage = (event) => {
