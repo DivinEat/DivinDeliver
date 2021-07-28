@@ -16,7 +16,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=MenuRepository::class)
- * @Vich\Uploadable()
  */
 class Menu
 {
@@ -45,17 +44,6 @@ class Menu
      * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="menus")
      */
     private $store;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cover;
-
-    /**
-     * @Vich\UploadableField(mapping="cover_item", fileNameProperty="cover")
-     * @var File
-     */
-    private $imageFile;
 
     public function __construct()
     {
@@ -107,31 +95,5 @@ class Menu
         $this->store = $store;
 
         return $this;
-    }
-
-    public function getCover(): ?string
-    {
-        return $this->cover;
-    }
-
-    public function setCover(?string $cover): self
-    {
-        $this->cover = $cover;
-
-        return $this;
-    }
-
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        if ($image) {
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
     }
 }

@@ -83,6 +83,7 @@ category:
   unique_title: Une catégorie avec ce titre existe déjà !
 
 item:
+  infos: Veillez à créer des catégories avant d'ajouter un nouvel item.
   word: Produit
   title: Titre
   price: Prix
@@ -95,9 +96,10 @@ item:
   unique_title: Un produit avec ce titre existe déjà !
 
 menu:
+  infos: Veillez à créer des catégories avant d'ajouter un nouveau menu.
   list: Liste des menus
   new: Nouveau menu
-  push: Envoyer sur les APIs
+  push_ubereat: Envoyer sur Uber Eats
   title: Titre
   word: Menu
   fetch_ubereats: Importer depuis Uber Eats

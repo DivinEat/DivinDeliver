@@ -6,6 +6,7 @@ use Exception;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ItemRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,10 +21,12 @@ class CategoryController extends AbstractController
 {
 
     private $translator;
+    private $itemRepository;
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, ItemRepository $itemRepository)
     {
         $this->translator = $translator;
+        $this->itemRepository = $itemRepository;
     }
 
     /**
@@ -117,8 +120,13 @@ class CategoryController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_category' . $category->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+        
+        if (!empty($this->itemRepository->findBy(['store' => $this->getUser()->getStores()->first()->getId(), 'category' => $category->getId()]))) {
+            $this->addFlash('danger', "Can't delete a category which is given to one or more items.");
+            return $this->redirectToRoute('restaurant_category_index');
+        }
 
-        $this->addFlash('danger', $this->translator->trans('category.deleted'));
+        $this->addFlash('success', $this->translator->trans('category.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

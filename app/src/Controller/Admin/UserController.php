@@ -88,6 +88,9 @@ class UserController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
+        if ($user->getId() == $this->getUser()->getId()) {
+            throw new Exception("Can't delete yourself lol");
+        }
 
         $this->addFlash('success', $this->translator->trans('user.deleted'));
 
