@@ -117,6 +117,11 @@ class MenuUberEatsService
             $createdItem = new Item();
             $createdItem->setTitle($item['title']);
             $createdItem->setPriceInfo($item['price_info']);
+            $createdItem->setCover(str_replace(
+                'http://217.160.64.31/DivinDeliver/uploads/item/covers/',
+                '',
+                $item['image_url']
+            ));
             $createdItem->setCategory($this->categoryRepository->find($idToAdd[$item['id']]));
             $createdItem->setStore($store);
 
@@ -220,7 +225,9 @@ class MenuUberEatsService
         $items = $store->getItems()->toArray();
 
         return array_map(function (Item $item) {
-            return $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
+            $createdItem = $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
+            $createdItem['image_url'] = 'http://217.160.64.31/DivinDeliver/uploads/item/covers/' . $item->getCover();
+            return $createdItem;
         }, $items);
     }
 }
