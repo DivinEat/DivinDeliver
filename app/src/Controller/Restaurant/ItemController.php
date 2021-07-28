@@ -120,7 +120,7 @@ class ItemController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('danger', $this->translator->trans('item.deleted'));
+        $this->addFlash('success', $this->translator->trans('item.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($item);
