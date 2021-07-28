@@ -11,7 +11,11 @@
             {% trans %}add{% endtrans %}
         </a>
     {% endif %}
-    <p style="opacity:0.5;margin-top:10px"><i>{% trans %}menu.infos{% endtrans %}</i></p>
+
+    {% if app.user.stores.first.categories.count == 0 %}
+        <p style="opacity:0.5;margin-top:10px"><i>{% trans %}menu.infos{% endtrans %}</i></p>
+    {% endif %}
+
     <table class="table">
         <thead>
             <tr>

@@ -14,15 +14,15 @@
         {{ form_errors(form) }}
 
         {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
-        <span>Ubereats webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/ubereat/{{ app.user.stores.first().id }}</span>
         {{ form_row(form.storeIdFakeUberEat, {'attr': {'class': 'form-control'}}) }}
-        <span>Deliveroo webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/deliveroo/{{ app.user.stores.first().id }}</span>
-    {{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
+        <small>Ubereats webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/ubereat/{{ app.user.stores.first().id }}</small>
+        {{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
+        <small>Deliveroo webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/deliveroo/{{ app.user.stores.first().id }}</small>
         
         <br>
         <div>
             <span class="mr-1"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-            <input type="submit" class="dd-bt-edit" value="{% trans %}edit{% endtrans %}">
+            <input type="submit" class="dd-bt-edit mt-2" value="{% trans %}edit{% endtrans %}">
         </div>
     {{ form_end(form) }}
 

@@ -120,7 +120,7 @@ class MenuController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('danger', $this->translator->trans('menu.deleted'));
+        $this->addFlash('success', $this->translator->trans('menu.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($menu);
@@ -140,7 +140,7 @@ class MenuController extends AbstractController
 
         $this->addFlash('success', $this->translator->trans('menu.sent'));
 
-        return $this->redirectToRoute('restaurant_menu_index');
+        return $this->redirectToRoute('restaurant_settings_index');
     }
 
     /**
@@ -157,6 +157,6 @@ class MenuController extends AbstractController
 
         $this->addFlash('success', $this->translator->trans('menu.fetched'));
 
-        return $this->redirectToRoute('restaurant_menu_index');
+        return $this->redirectToRoute('restaurant_settings_index');
     }
 }

@@ -146,7 +146,7 @@ class UserController extends AbstractController
             throw new Exception("Can't delete yourself lol");
         }
 
-        $this->addFlash('danger', $this->translator->trans('user.deleted'));
+        $this->addFlash('success', $this->translator->trans('user.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
