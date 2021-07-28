@@ -37,8 +37,9 @@ class UniqueMenuTitleValidator extends ConstraintValidator
         
 
         $user = $this->security->getUser();
+        $menus = $this->menuRepository->findBy(['title' =>  $title, 'store' => $user->getStores()->first()->getId()]);
 
-        $title_exists = !empty($this->menuRepository->findBy(['title' =>  $title, 'store' => $user->getStores()->first()->getId()]));
+        $title_exists = !empty($menus) && !( sizeof($menus) == 1 && $menus[0]->getId() == $this->context->getRoot()->getData()->getId() );
 
         if ($title_exists)
             $this->context->buildViolation(
