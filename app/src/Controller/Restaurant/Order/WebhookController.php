@@ -27,22 +27,6 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/test", name="new-order-ubereat", methods={"POST"})
-     */
-    public function test(Request $request, HubInterface $hub)
-    {
-        $url = $this->generateUrl('restaurant_new-order-ubereat');
-
-        $update = new Update(
-            'http://localhost:8082/restaurant/test',
-            "[]",
-            true
-        );
-
-        $hub->publish($update);
-    }
-
-    /**
      * @Route("/webhook/ubereat/{storeId}", name="new-order-ubereat", methods={"POST"})
      */
     public function newOrderUberEat(Request $request, HubInterface $hub, string $storeId)
@@ -76,8 +60,6 @@ class WebhookController extends AbstractController
 
         $this->em->persist($order);
         $this->em->flush();
-
-        $url = $this->generateUrl('restaurant_new-order-ubereat');
 
         $update = new Update(
             $this->getParameter('mercure.hub.default.url') . '/restaurant/webhook/ubereat',
