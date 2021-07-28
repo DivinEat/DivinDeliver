@@ -28,6 +28,6 @@ class MenuSDK extends BaseSDK implements BaseMenuSDKInterface
             $this->getUrlWithParams('menusUrl', ['storeID' => $storeID]),
             ['body' => $params]
         );
-        dd($response);
+        dd($response->getContent());
     }
 }
