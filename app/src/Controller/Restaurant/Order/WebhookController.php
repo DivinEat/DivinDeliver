@@ -80,7 +80,7 @@ class WebhookController extends AbstractController
         $url = $this->generateUrl('restaurant_new-order-ubereat');
 
         $update = new Update(
-            'http://localhost:8082/restaurant/webhook/ubereat',
+            $this->getParameter('mercure.hub.default.url') . '/restaurant/webhook/ubereat',
             $order->getId(),
             false
         );
