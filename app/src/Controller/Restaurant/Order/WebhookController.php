@@ -4,6 +4,7 @@ namespace App\Controller\Restaurant\Order;
 
 use App\Entity\Order;
 use App\Entity\Store;
+use App\Repository\StoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -89,10 +90,17 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/deliveroo", name="new-order-deliveroo", methods={"POST"})
+     * @Route("/webhook/deliveroo/{restaurantId}", name="new-order-deliveroo", methods={"POST"})
      */
-    public function newOrderDeliveroo(Request $request)
+    public function newOrderDeliveroo(Request $request, string $storeId)
     {
+        /** @var StoreRepository $storeRepository */
+        $storeRepository = $this->em->getRepository(Store::class);
+        $store = $storeRepository->find($storeId);
+
+        if ($store === null)
+            return new Response();
+
         $response = $this->client->request(
             'GET',
             $request->get('resource_href')
