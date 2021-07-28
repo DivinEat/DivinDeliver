@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App;
 
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Jwt\TokenFactoryInterface;
 use Symfony\Component\Mercure\Jwt\TokenProviderInterface;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
