@@ -42,6 +42,7 @@ user:
   profile_updated: Profil modifié
 
 password:
+  infos: Entrez une combinaison d'au moins 8 chiffres, lettres (majuscules et minuscules) et signes de ponctuation (tels que ! et &)
   set_pwd_title: Définissez votre mot de passe
   reset_pwd_title: Réinitialiser votre mot de passe
   reset_link: Cliquez ici pour réinitialiser votre mot de passe
