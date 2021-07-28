@@ -9,7 +9,7 @@
 
             <form method="post" class="admin-form mt-5">
                 {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <p style="color:red;">Email or password incorrect.</p>
                 {% endif %}
 
                 <label for="inputEmail">{% trans %}user.email{% endtrans %}</label>
