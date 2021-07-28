@@ -9,8 +9,10 @@
         {{ form_errors(form) }}
 
         {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+        <span>Ubereats webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/ubereat/{{ app.user.stores.first().id }}</span>
         {{ form_row(form.storeIdFakeUberEat, {'attr': {'class': 'form-control'}}) }}
-        {{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
+        <span>Deliveroo webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/deliveroo/{{ app.user.stores.first().id }}</span>
+    {{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
         
         <br>
         <div>
