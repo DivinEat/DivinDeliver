@@ -5,6 +5,11 @@
 {% block body %}
     <h1>{% trans %}settings.word{% endtrans %}</h1>
 
+    <div class="row right-align">
+        <a href="{{ path('restaurant_menu_push_deliver') }}" class="dd-btn dd-btn-primary mr-0">{% trans %}menu.push_ubereat{% endtrans %}</a>
+        <button id="importBtn" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</button>
+    </div>
+
     {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
         {{ form_errors(form) }}
 
@@ -20,4 +25,37 @@
             <input type="submit" class="dd-bt-edit" value="{% trans %}edit{% endtrans %}">
         </div>
     {{ form_end(form) }}
+
+    <div id="import" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>{% trans %}menu.fetch{% endtrans %}</p>
+            <a id="importValid" href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.confirm{% endtrans %}</a>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("import");
+        var btn = document.getElementById("importBtn");
+        var btnValid = document.getElementById("importValid");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        btnValid.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 {% endblock %}

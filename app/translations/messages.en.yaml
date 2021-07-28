@@ -42,6 +42,7 @@ user:
   profile_updated: Profile updated
 
 password:
+  infos: Enter a combination of at least 8 numbers, letters (upper and lower case) and punctuation marks (such as ! and &)
   set_pwd_title: Set your password
   reset_pwd_title: Reset your password
   reset_link: Click here to reset your password
@@ -82,6 +83,7 @@ category:
   unique_title: A category with this title already exists!
 
 item:
+  infos: Please create categories before adding a new item.
   word: Item
   title: Title
   price: Price
@@ -98,9 +100,10 @@ item:
   unique_title: An item with this title already exists!
 
 menu:
+  infos: Please create categories before adding a new menu.
   list: Menus list
   new: Create menu
-  push: Push to APIs
+  push_ubereat: Push to Uber Eats
   title: Title
   word: Menu
   fetch_ubereats: Import from Uber Eats

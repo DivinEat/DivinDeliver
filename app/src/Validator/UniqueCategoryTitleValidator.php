@@ -34,8 +34,9 @@ class UniqueCategoryTitleValidator extends ConstraintValidator
         
 
         $user = $this->security->getUser();
+        $categories = $this->categoryRepository->findBy(['title' =>  $title, 'store' => $user->getStores()->first()->getId()]);
 
-        $title_exists = !empty($this->categoryRepository->findBy(['title' =>  $title, 'store' => $user->getStores()->first()->getId()]));
+        $title_exists = !empty($categories) && !( sizeof($categories) == 1 && $categories[0]->getId() == $this->context->getRoot()->getData()->getId() );
 
         if ($title_exists)
             $this->context->buildViolation(

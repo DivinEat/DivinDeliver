@@ -16,7 +16,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\PositiveOrZero;
 
 class ItemType extends AbstractType
 {
@@ -41,8 +43,17 @@ class ItemType extends AbstractType
                     new UniqueItemTitle()
                 ]
             ])
-            ->add('priceInfo', IntegerType::class, [
-                'label' => 'item.price'
+            ->add('priceInfo', NumberType::class, [
+                'label' => 'item.price',
+                'scale' => 2,
+                'html5' => true,
+                'attr' => array(
+                    'min' => 0,
+                    'step' => '.01',
+                ),
+                'constraints' => [
+                    new PositiveOrZero()
+                ]
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

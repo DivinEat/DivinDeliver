@@ -6,21 +6,15 @@
     <h1 class="title">{% trans %}menu.list{% endtrans %}</h1>
 
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <div class="row right-align">
-            <a href="{{ path('restaurant_menu_push_deliver') }}" class="dd-btn dd-btn-primary mr-0">{% trans %}menu.push{% endtrans %}</a>
-            <button id="importBtn" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.fetch_ubereats{% endtrans %}</button>
-        </div>
-
         <a href="{{ path('restaurant_menu_new') }}" class="text-dark mt-3 t-d-none">
             <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
             {% trans %}add{% endtrans %}
         </a>
     {% endif %}
-
+    <p style="opacity:0.5;margin-top:10px"><i>{% trans %}menu.infos{% endtrans %}</i></p>
     <table class="table">
         <thead>
             <tr>
-                <th>Image</th>
                 <th>{% trans %}menu.title{% endtrans %}</th>
                 <th>{% trans %}category.word{% endtrans %}</th>
                 <th>Actions</th>
@@ -29,7 +23,6 @@
         <tbody>
             {% for menu in menus %}
                 <tr>
-                    <td><img src="/DivinDeliver{{ vich_uploader_asset(menu, 'imageFile') }}" class="thumbnail" alt="{{ menu.title }}"/></td>
                     <td>{{ menu.title }}</td>
                     <td>
                         {% for category in menu.categories %}
@@ -52,39 +45,6 @@
                     </td>
                 </tr>
             {% endfor %}
-
-            <div id="import" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>{% trans %}menu.fetch{% endtrans %}</p>
-                    <a id="importValid" href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.confirm{% endtrans %}</a>
-                </div>
-            </div>
         </tbody>
     </table>
-
-    <script>
-        var modal = document.getElementById("import");
-        var btn = document.getElementById("importBtn");
-        var btnValid = document.getElementById("importValid");
-        var span = document.getElementsByClassName("close")[0];
-
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        btnValid.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
 {% endblock %}

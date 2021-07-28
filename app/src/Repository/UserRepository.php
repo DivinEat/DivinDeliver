@@ -33,7 +33,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if (! $store instanceof Store)
             return [];
 
-        return $store->getUsers()->getValues();
+        $users = $store->getUsers();
+        $users->removeElement($user);
+        
+        return $users;
     }
 
     /**

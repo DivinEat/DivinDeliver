@@ -49,15 +49,6 @@ class MenuType extends AbstractType
                 'choice_label' => 'title',
                 'label' => 'category.word',
                 'multiple' => true
-            ])
-            ->add('imageFile', VichImageType::class, [
-                'required' => false,
-                'allow_delete' => true,
-                'download_uri' => false,
-                'image_uri' => false,
-                'constraints' => [
-                    new Image()
-                ]
             ]);
     }
 
