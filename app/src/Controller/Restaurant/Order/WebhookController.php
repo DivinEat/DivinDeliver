@@ -70,42 +70,28 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/deliveroo/{$storeId}", name="new-order-deliveroo", methods={"POST"})
+     * @Route("/webhook/deliveroo/{id}", name="new-order-deliveroo", methods={"POST"})
      */
-    public function newOrderDeliveroo(Request $request, string $storeId)
+    public function newOrderDeliveroo(Request $request, Store $store)
     {
-        /** @var StoreRepository $storeRepository */
-        $storeRepository = $this->em->getRepository(Store::class);
-        $store = $storeRepository->find($storeId);
-
-        if ($store === null)
-            return new Response();
-
-        $response = $this->client->request(
-            'GET',
-            $request->get('resource_href')
-        );
-
-        $orderData = json_decode($response->getContent(), true);
+        $orderData = json_decode($request->getContent(), 1);
+        $orderArray = current($orderData['order_events'])['payload']['order'];
 
         $order = new Order();
-        $order->setDeliver('deliveroo');
-        $order->setDisplayId($orderData['_id']);
-
-        $storeRepository = $this->em->getRepository(Store::class);
-        $store = $storeRepository->findOneBy(['storeIdFakeDeliveroo' => $orderData['store_id']]);
+        $order->setDeliver('Deliveroo');
+        $order->setDisplayId($orderData['order_id']);
         $order->setStore($store);
-
-        $order->setCurrentState($orderData['current_state']);
+        $order->setCurrentState('CREATED');
 
         $content = [
-            'eater' => $orderData['eater'],
-            'cart' => $orderData['cart'],
-            'payment' => $orderData['payment'],
-            'estimated_ready_for_pickup_at' => $orderData['estimated_ready_for_pickup_at']
+            'eater' => ['first_name' => 'Unknown'],
+            'cart' => ['items' => $orderArray['items']],
+            'payment' => ['charges' => ['total_fee' => ['formatted_amount' => $orderArray['total_price']['fractional']]]],
+            'estimated_ready_for_pickup_at' => $orderArray['pickup_at']
         ];
+
         $order->setContent($content);
-        $order->setType($orderData['type']);
+        $order->setType('DELIVERY_BY_DELIVEROO');
 
         $this->em->persist($order);
         $this->em->flush();
