@@ -30,7 +30,7 @@ class WebhookController extends AbstractController
     /**
      * @Route("/webhook/ubereat/{id}", name="new-order-ubereat", methods={"POST"})
      */
-    public function newOrderUberEat(Request $request, MercureHub $hub, Store $store)
+    public function newOrderUberEat(Request $request, HubInterface $hub, Store $store)
     {
         $response = $this->client->request(
             'GET',
@@ -64,6 +64,7 @@ class WebhookController extends AbstractController
             false
         );
 
+        dd($hub->getProvider()->getJwt());
         $hub->publish($update);
 
         return new Response('Saved new order with id ' . $order->getId());
