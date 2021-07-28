@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\Email;
 
 class UserType extends AbstractType
 {
@@ -35,7 +36,8 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'user.email',
                 'constraints' => [
-                    new UniqueEmail()
+                    new UniqueEmail(),
+                    new Email()
                 ]
             ])
             ->add('roles', ChoiceType::class, [

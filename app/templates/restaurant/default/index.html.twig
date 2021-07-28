@@ -11,10 +11,12 @@
                 <h5 class="card-title">{% trans %}nav.users{% endtrans %}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{% trans %}stats.registered.users{% endtrans %}</h6>
                 <p class="card-text text-center" style="font-size: 3rem">{{ users }}</p>
-                <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3 text-decoration-none">
-                    {% trans %}user.go_to{% endtrans %}
-                    <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                </a>
+                {% if is_granted('ROLE_RESTAURATEUR') %}
+                    <a href="{{ path('restaurant_user_index') }}" class="text-dark mt-3 text-decoration-none">
+                        {% trans %}user.go_to{% endtrans %}
+                        <span class="mr-2"><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                    </a>
+                {% endif %}
             </div>
         </div>
 

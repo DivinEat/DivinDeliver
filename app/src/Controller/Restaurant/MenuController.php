@@ -140,7 +140,7 @@ class MenuController extends AbstractController
 
         $this->addFlash('success', $this->translator->trans('menu.sent'));
 
-        return $this->redirectToRoute('restaurant_menu_index');
+        return $this->redirectToRoute('restaurant_settings_index');
     }
 
     /**

@@ -37,11 +37,7 @@ class UniqueEmailValidator extends ConstraintValidator
 
         $users = $this->userRepository->findBy(array('email' => $email));
 
-        $email_exists = !empty($users);
-
-        if ($this->security->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $email_exists = $email_exists && $users[0]->getId() != $this->security->getUser()->getId();
-        }
+        $email_exists = !empty($users) && !( sizeof($users) == 1 && $users[0]->getId() == $this->context->getRoot()->getData()->getId() );
         
         if ($email_exists)
             $this->context->buildViolation(

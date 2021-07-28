@@ -13,10 +13,12 @@
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>    
-            <a href="{{ path('restaurant_category_edit', {id: category.id}) }}" class="text-dark mt-3 t-d-none">
-                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                {% trans %}edit{% endtrans %}
-            </a>
+            {% if is_granted('ROLE_RESTAURATEUR') %}
+                <a href="{{ path('restaurant_category_edit', {id: category.id}) }}" class="text-dark mt-3 t-d-none">
+                    <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                    {% trans %}edit{% endtrans %}
+                </a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
