@@ -4,6 +4,7 @@ namespace App\Controller\Restaurant\Order;
 
 use App\Entity\Order;
 use App\Entity\Store;
+use App\MercureHub;
 use App\Repository\StoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,7 @@ class WebhookController extends AbstractController
     /**
      * @Route("/webhook/ubereat/{id}", name="new-order-ubereat", methods={"POST"})
      */
-    public function newOrderUberEat(Request $request, HubInterface $hub, Store $store)
+    public function newOrderUberEat(Request $request, MercureHub $hub, Store $store)
     {
         $response = $this->client->request(
             'GET',
