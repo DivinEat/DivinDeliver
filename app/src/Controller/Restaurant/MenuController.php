@@ -136,7 +136,7 @@ class MenuController extends AbstractController
     public function pushMenu(MenuUberEatsService $menuUberEatsService)
     {
         $storeId = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
-        $menuUberEatsService->upload($storeId, $storeId);
+        $menuUberEatsService->upload($storeId);
 
         $this->addFlash('success', $this->translator->trans('menu.sent'));
 

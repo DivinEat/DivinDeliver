@@ -16,6 +16,7 @@ use App\SDK\UberEats\MenuSDK;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
 class MenuUberEatsService
@@ -45,6 +46,7 @@ class MenuUberEatsService
      */
     private StoreRepository $storeRepository;
     private \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK;
+    private Security $security;
 
     public function __construct(
         \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK,
@@ -53,7 +55,8 @@ class MenuUberEatsService
         MenuRepository $menuRepository,
         CategoryRepository $categoryRepository,
         ItemRepository $itemRepository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Security $security
     ) {
         $this->menuRepository = $menuRepository;
         $this->categoryRepository = $categoryRepository;
@@ -62,14 +65,17 @@ class MenuUberEatsService
         $this->entityManager = $entityManager;
         $this->storeRepository = $storeRepository;
         $this->deliverooMenuSDK = $deliverooMenuSDK;
+        $this->security = $security;
     }
 
-    public function upload(string $storeUberEatsId, string $storeDeliverooId)
+    public function upload(string $storeUberEatsId)
     {
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
         $menu = [
-            'menus' => $this->getMenus(),
-            'categories' => $this->getCategories(),
-            'items' => $this->getItems(),
+            'menus' => $store->getMenus(),
+            'categories' => $store->getCategories(),
+            'items' => $store->getItems(),
             'menu_type' => 'MENU_TYPE_FULFILLMENT_DELIVERY'
         ];
 
