@@ -9,6 +9,9 @@ use App\Service\MenuUberEatsService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Doctrine\DBAL\Driver\PDO\Exception as PDOException;
+use ErrorException;
+use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -135,8 +138,20 @@ class MenuController extends AbstractController
      */
     public function pushMenu(MenuUberEatsService $menuUberEatsService)
     {
-        $storeId = $this->getUser()->getStores()->first()->getStoreIdFakeUberEat();
-        $menuUberEatsService->upload($storeId);
+        $store = $this->getUser()->getStores()->first();
+        $storeId = $store->getStoreIdFakeUberEat();
+
+        if ($store->getItems()->count() == 0 || $store->getMenus()->count() == 0 || $store->getCategories()->count() == 0) {
+            $this->addFlash('danger', "You must have at least 1 category, item and menu to be able to push.");
+            return $this->redirectToRoute('restaurant_settings_index');
+        }
+
+        try {
+            $menuUberEatsService->upload($storeId);
+        } catch(ClientException $e) {
+            $this->addFlash('danger', "An error occured while pushing to Uber Eats");
+            return $this->redirectToRoute('restaurant_settings_index');
+        }
 
         $this->addFlash('success', $this->translator->trans('menu.sent'));
 
@@ -152,8 +167,16 @@ class MenuController extends AbstractController
         $store = $this->getUser()->getStores()->first();
 
 
-        $menuUberEatsService->resetMenus($store, $deliver);
-        $menuUberEatsService->fetch($store, $deliver);
+        try {
+            $menuUberEatsService->resetMenus($store, $deliver);
+            $menuUberEatsService->fetch($store, $deliver);
+        } catch(ClientException $e) {
+            $this->addFlash('danger', "An error occured while fetching Uber Eats");
+            return $this->redirectToRoute('restaurant_settings_index');
+        } catch(ErrorException $e) {
+            $this->addFlash('danger', "An error occured while fetching Uber Eats");
+            return $this->redirectToRoute('restaurant_settings_index');
+        }
 
         $this->addFlash('success', $this->translator->trans('menu.fetched'));
 

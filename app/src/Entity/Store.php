@@ -18,7 +18,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=StoreRepository::class)
- * @UniqueEntity(fields={"name"}, message="store.name.unique")
  * @UniqueEntity(fields={"slug"}, message="store.slug.unique")
  */
 class Store
