@@ -187,7 +187,7 @@ class MenuUberEatsService
     {
         /** @var Store $store */
         $store = $this->security->getUser()->getStores()->first();
-        $menus = $store->getMenus();
+        $menus = $store->getMenus()->toArray();
 
         return array_map(function (Menu $menu) {
             $categoriesID = array_map(function (Category $category) {
@@ -202,7 +202,7 @@ class MenuUberEatsService
     {
         /** @var Store $store */
         $store = $this->security->getUser()->getStores()->first();
-        $categories = $store->getCategories();
+        $categories = $store->getCategories()->toArray();
 
         return array_map(function (Category $category) {
             $entities = array_map(function (Item $item) {
@@ -217,7 +217,7 @@ class MenuUberEatsService
     {
         /** @var Store $store */
         $store = $this->security->getUser()->getStores()->first();
-        $items = $store->getItems();
+        $items = $store->getItems()->toArray();
 
         return array_map(function (Item $item) {
             return $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
