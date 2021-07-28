@@ -70,12 +70,10 @@ class MenuUberEatsService
 
     public function upload(string $storeUberEatsId)
     {
-        /** @var Store $store */
-        $store = $this->security->getUser()->getStores()->first();
         $menu = [
-            'menus' => $store->getMenus(),
-            'categories' => $store->getCategories(),
-            'items' => $store->getItems(),
+            'menus' => $this->getMenus(),
+            'categories' => $this->getCategories(),
+            'items' => $this->getItems(),
             'menu_type' => 'MENU_TYPE_FULFILLMENT_DELIVERY'
         ];
 
@@ -187,7 +185,9 @@ class MenuUberEatsService
 
     protected function getMenus(): array
     {
-        $menus = $this->menuRepository->findAll();
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
+        $menus = $store->getMenus();
 
         return array_map(function (Menu $menu) {
             $categoriesID = array_map(function (Category $category) {
@@ -200,7 +200,9 @@ class MenuUberEatsService
 
     protected function getCategories(): array
     {
-        $categories = $this->categoryRepository->findAll();
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
+        $categories = $store->getCategories();
 
         return array_map(function (Category $category) {
             $entities = array_map(function (Item $item) {
@@ -213,7 +215,9 @@ class MenuUberEatsService
 
     protected function getItems(): array
     {
-        $items = $this->itemRepository->findAll();
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
+        $items = $store->getItems();
 
         return array_map(function (Item $item) {
             return $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
