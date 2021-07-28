@@ -63,11 +63,6 @@ class WebhookController extends AbstractController
             $order->getId(),
             false
         );
-        try {
-            $hub->publish($update);
-        } catch (\Exception $exception) {
-            dd($exception);
-        }
 
         return new Response('Saved new order with id ' . $order->getId());
     }
