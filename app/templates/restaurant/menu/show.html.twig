@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="w-100">
-        <img src="DivinDeliver{{ vich_uploader_asset(menu, 'imageFile') }}" class="thumbnail" alt="{{ menu.title }}"/> <br>
+        <img src="/DivinDeliver{{ vich_uploader_asset(menu, 'imageFile') }}" class="thumbnail" alt="{{ menu.title }}"/> <br>
         {% trans %}menu.word{% endtrans %} : {{ menu.title }} <br>
         {% trans %}menu.title{% endtrans %} : {{ menu.title }} <br>
         Categories :
