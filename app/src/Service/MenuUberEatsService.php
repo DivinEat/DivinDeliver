@@ -226,7 +226,7 @@ class MenuUberEatsService
 
         return array_map(function (Item $item) {
             $createdItem = $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
-            $createdItem['image_url'] = 'http://217.160.64.31' . $item->getCover();
+            $createdItem['image_url'] = 'http://217.160.64.31' . $item->getCover() .$item->getImageFile();
             return $createdItem;
         }, $items);
     }
