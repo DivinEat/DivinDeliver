@@ -43,10 +43,14 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/ubereat", name="new-order-ubereat", methods={"POST"})
+     * @Route("/webhook/ubereat/{storeId}", name="new-order-ubereat", methods={"POST"})
      */
-    public function newOrderUberEat(Request $request, HubInterface $hub)
+    public function newOrderUberEat(Request $request, HubInterface $hub, string $storeId)
     {
+        /** @var StoreRepository $storeRepository */
+        $storeRepository = $this->em->getRepository(Store::class);
+        $store = $storeRepository->find($storeId);
+
         $response = $this->client->request(
             'GET',
             $request->get('resource_href')
@@ -57,9 +61,6 @@ class WebhookController extends AbstractController
         $order = new Order();
         $order->setDeliver('ubereat');
         $order->setDisplayId($orderData['_id']);
-
-        $storeRepository = $this->em->getRepository(Store::class);
-        $store = $storeRepository->findOneBy(['storeIdFakeUberEat' => $orderData['store_id']]);
         $order->setStore($store);
 
         $order->setCurrentState($orderData['current_state']);
@@ -90,7 +91,7 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/deliveroo/{restaurantId}", name="new-order-deliveroo", methods={"POST"})
+     * @Route("/webhook/deliveroo/{$storeId}", name="new-order-deliveroo", methods={"POST"})
      */
     public function newOrderDeliveroo(Request $request, string $storeId)
     {
