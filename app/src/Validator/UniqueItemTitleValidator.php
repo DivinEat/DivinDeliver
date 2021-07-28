@@ -33,10 +33,9 @@ class UniqueItemTitleValidator extends ConstraintValidator
         if (null === $title || '' === $title)
             return;
         
-
         $user = $this->security->getUser();
-
-        $title_exists = !empty($this->itemRepository->findBy(['title' =>  $title, 'store' => $user->getStores()->first()->getId()]));
+        $items = $this->itemRepository->findBy(['title' =>  $title, 'store' => $user->getStores()->first()->getId()]);
+        $title_exists = !empty($items) && !( sizeof($items) == 1 && $items[0]->getId() == $this->context->getRoot()->getData()->getId() );
 
         if ($title_exists)
             $this->context->buildViolation(
