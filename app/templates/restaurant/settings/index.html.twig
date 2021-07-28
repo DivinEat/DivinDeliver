@@ -15,9 +15,9 @@
 
         {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
         {{ form_row(form.storeIdFakeUberEat, {'attr': {'class': 'form-control'}}) }}
-        <small>Ubereats webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/ubereat/{{ app.user.stores.first().id }}</small>
-        {{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
-        <small>Deliveroo webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/deliveroo/{{ app.user.stores.first().id }}</small>
+        <small >Ubereats webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/ubereat/{{ app.user.stores.first().id }}</small>
+        <div class="mt-2">{{ form_row(form.storeIdFakeDeliveroo, {'attr': {'class': 'form-control'}}) }}
+        <small>Deliveroo webhook : http://217.160.64.31/DivinDeliver/restaurant/webhook/deliveroo/{{ app.user.stores.first().id }}</small></div>
         
         <br>
         <div>
@@ -30,7 +30,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>{% trans %}menu.fetch{% endtrans %}</p>
-            <a id="importValid" href="{{ path('restaurant_settings_index', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.confirm{% endtrans %}</a>
+            <a id="importValid" href="{{ path('restaurant_menu_fetch_deliver', {deliver: 'ubereats'}) }}" class="dd-btn dd-btn-primary mt-2">{% trans %}menu.confirm{% endtrans %}</a>
         </div>
     </div>
 
