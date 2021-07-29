@@ -5,6 +5,7 @@ namespace App\Controller\Restaurant\Order;
 use App\Entity\Order;
 use App\Repository\UserRepository;
 use \App\SDK\Deliveroo\OrderSDK;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,9 +27,10 @@ class DeliverooOrderController extends AbstractController
      */
     private UserRepository $userRepository;
 
-    public function __construct(OrderSDK $orderSDK)
+    public function __construct(OrderSDK $orderSDK, EntityManagerInterface $entityManager)
     {
         $this->orderSDK = $orderSDK;
+        $this->entityManager = $entityManager;
     }
 
     /**
