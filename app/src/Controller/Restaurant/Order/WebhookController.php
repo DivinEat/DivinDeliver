@@ -72,7 +72,7 @@ class WebhookController extends AbstractController
     /**
      * @Route("/webhook/deliveroo/{id}", name="new-order-deliveroo", methods={"POST"})
      */ 
-    public function newOrderDeliveroo(Request $request, Store $store)
+    public function newOrderDeliveroo(Request $request, HubInterface $hub, Store $store)
     {
         $orderData = json_decode($request->getContent(), 1);
         $orderArray = current($orderData['order_events'])['payload']['order'];
@@ -95,6 +95,14 @@ class WebhookController extends AbstractController
 
         $this->em->persist($order);
         $this->em->flush();
+
+        $update = new Update(
+            'new-order-topic-' .  $store->getId(),
+            $order->getId(),
+            false
+        );
+
+        $hub->publish($update);
 
         return new Response('Saved new order with id ' . $order->getId());
     }
