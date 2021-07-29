@@ -15,22 +15,36 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Instance id</th>
-                <th>{% trans %}order.item.title{% endtrans %}</th>
-                <th>{% trans %}order.item.external_data{% endtrans %}</th>
-                <th>{% trans %}order.item.quantity{% endtrans %}</th>
-                <th>{% trans %}order.item.price{% endtrans %}</th>
+                {% if order.type is same as('DELIVERY_BY_DELIVEROO') %}
+                    <th>{% trans %}order.item.title{% endtrans %}</th>
+                    <th>{% trans %}order.item.quantity{% endtrans %}</th>
+                    <th>{% trans %}order.item.price{% endtrans %}</th>
+                {% else %}
+                    <th>Id</th>
+                    <th>Instance id</th>
+                    <th>{% trans %}order.item.title{% endtrans %}</th>
+                    <th>{% trans %}order.item.external_data{% endtrans %}</th>
+                    <th>{% trans %}order.item.quantity{% endtrans %}</th>
+                    <th>{% trans %}order.item.price{% endtrans %}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
             {% for item in order.content.cart.items %}
-                <td>{{ item.id }}</td>
-                <td>{{ item.instance_id }}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ item.external_data }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.price }}</td>
+                <tr>
+                    {% if order.type is same as('DELIVERY_BY_DELIVEROO') %}
+                        <td>{{ item.pos_item_id }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.unit_price.fractional }}</td>
+                    {% else %}
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.instance_id }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.external_data }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price }}</td>
+                    {% endif %}
+                </tr>
             {% endfor %}
             </tbody>
         </table>
