@@ -29,9 +29,9 @@ final class Version20210729055522 extends AbstractMigration implements Container
 
     public function up(Schema $schema) : void
     {
-        $this->addSql("INSERT INTO user_role (code, libelle) VALUES  ('ROLE_ADMIN', 'Admin')");
-        $this->addSql("INSERT INTO user_role (code, libelle) VALUES  ('ROLE_WAITER', 'Waiter')");
-        $this->addSql("INSERT INTO user_role (code, libelle) VALUES  ('ROLE_RESTAURATEUR', 'Restaurateur')");
+        $this->addSql("INSERT INTO user_role (id, code, libelle) VALUES  (" . rand(1, 9999) . ", 'ROLE_ADMIN', 'Admin')");
+        $this->addSql("INSERT INTO user_role (id, code, libelle) VALUES  (" . rand(1, 9999). ", 'ROLE_WAITER', 'Waiter')");
+        $this->addSql("INSERT INTO user_role (id, code, libelle) VALUES  (" . rand(1, 9999). ", 'ROLE_RESTAURATEUR', 'Restaurateur')");
     }
 
     public function down(Schema $schema) : void
