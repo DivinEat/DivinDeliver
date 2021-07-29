@@ -29,24 +29,9 @@ final class Version20210729055522 extends AbstractMigration implements Container
 
     public function up(Schema $schema) : void
     {
-        $manager = $this->container->get('doctrine.orm.entity_manager');
-        $role = (new UserRole())
-            ->setCode('ROLE_ADMIN')
-            ->setLibelle('Admin');
-        $manager->persist($role);
-
-        $role = (new UserRole())
-            ->setCode('ROLE_WAITER')
-            ->setLibelle('Waiter');
-        $manager->persist($role);
-
-        $role = (new UserRole())
-            ->setCode('ROLE_RESTAURATEUR')
-            ->setLibelle('Restaurateur');
-        $manager->persist($role);
-
-        $manager->flush();
-
+        $this->addSql("INSERT INTO user_role ('code', 'libelle') VALUE ('ROLE_ADMIN', 'Admin')");
+        $this->addSql("INSERT INTO user_role ('code', 'libelle') VALUE ('ROLE_WAITER', 'Waiter')");
+        $this->addSql("INSERT INTO user_role ('code', 'libelle') VALUE ('ROLE_RESTAURATEUR', 'Restaurateur')");
     }
 
     public function down(Schema $schema) : void
