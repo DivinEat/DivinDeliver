@@ -32,10 +32,10 @@ class DefaultController extends AbstractController
         if ($choice !== 'ALL')
             $orders = $orderRepository->findBy([
                 'currentState' =>  $choice,
-                'storeId    ' => $security->getUser()->getStores->first()->getId()
+                'storeId    ' => $security->getUser()->getStores()->first()->getId()
             ]);
         else
-            $orders = $security->getUser()->getStores->first()->getOrders();
+            $orders = $security->getUser()->getStores()->first()->getOrders();
 
         return $this->render('restaurant/order/index.html.twig', [
             'orders' => $orders
