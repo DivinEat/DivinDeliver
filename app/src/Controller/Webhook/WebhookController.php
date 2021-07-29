@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Restaurant\Order;
+namespace App\Controller\Webhook;
 
 use App\Entity\Order;
 use App\Entity\Store;
