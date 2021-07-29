@@ -2,6 +2,7 @@
 
 namespace App\Controller\Restaurant\Order;
 
+use App\Entity\Order;
 use App\Repository\UserRepository;
 use \App\SDK\Deliveroo\OrderSDK;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,9 +34,13 @@ class DeliverooOrderController extends AbstractController
     /**
      * @Route("/accept/{id}", name="accept", methods={"GET"})
      */
-    public function accept(Request $request): Response
+    public function accept(Request $request, Order $order): Response
     {
         $this->orderSDK->acceptOrder($request->get('id'));
+
+        $order->setCurrentState('ACCEPTED');
+
+        $this->entityManager->flush($order);
 
         return $this->redirectToRoute('restaurant_order_index');
     }
@@ -43,9 +48,13 @@ class DeliverooOrderController extends AbstractController
     /**
      * @Route("/deny/{id}", name="deny", methods={"GET"})
      */
-    public function deny(Request $request): Response
+    public function deny(Request $request, Order $order): Response
     {
         $this->orderSDK->denyOrder($request->get('id'));
+
+        $order->setCurrentState('DENIED');
+
+        $this->entityManager->flush($order);
 
         return $this->redirectToRoute('restaurant_order_index');
     }
@@ -53,9 +62,13 @@ class DeliverooOrderController extends AbstractController
     /**
      * @Route("/cancel/{id}", name="cancel", methods={"GET"})
      */
-    public function cancel(Request $request): Response
+    public function cancel(Request $request, Order $order): Response
     {
         $this->orderSDK->cancelOrder($request->get('id'));
+
+        $order->setCurrentState('CANCELED');
+
+        $this->entityManager->flush($order);
 
         return $this->redirectToRoute('restaurant_order_index');
     }
