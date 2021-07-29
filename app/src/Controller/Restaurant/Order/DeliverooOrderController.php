@@ -3,7 +3,7 @@
 namespace App\Controller\Restaurant\Order;
 
 use App\Repository\UserRepository;
-use App\SDK\UberEats\OrderSDK;
+use \App\SDK\Deliveroo\OrderSDK;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
