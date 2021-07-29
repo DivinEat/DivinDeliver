@@ -27,7 +27,9 @@ final class Version20210729063422 extends AbstractMigration
                   email, 
                   password, 
                   roles, 
-                  is_valid
+                  is_valid,
+                  created_at,
+                  updated_at
                   ) VALUES (
                             " . rand(900, 9999) . ", 
                             'Admin', 
@@ -35,7 +37,9 @@ final class Version20210729063422 extends AbstractMigration
                             'admin@admin.com', 
                             '" . $pwd . "', 
                             '[\"ROLE_ADMIN\"]',
-                            true)");
+                            true,
+                            '2021-07-29 08:38:39',
+                            '2021-07-29 08:38:39')");
     }
 
     public function down(Schema $schema) : void

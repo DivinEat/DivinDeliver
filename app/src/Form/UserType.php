@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 class UserType extends AbstractType
@@ -52,12 +53,7 @@ class UserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'multiple' => false,
-                'choices'  => $rolesList,
-                'constraints' => [
-                    new Choice([
-                        'choices' =>  array(null)
-                    ])
-                ]
+                'choices'  => $rolesList
             ])
         ;
 
