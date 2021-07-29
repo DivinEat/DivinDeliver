@@ -6,9 +6,11 @@ use Exception;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ItemRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -17,6 +19,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class CategoryController extends AbstractController
 {
+
+    private $translator;
+    private $itemRepository;
+
+    public function __construct(TranslatorInterface $translator, ItemRepository $itemRepository)
+    {
+        $this->translator = $translator;
+        $this->itemRepository = $itemRepository;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -56,7 +68,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Catégorie créée.');
+            $this->addFlash('success', $this->translator->trans('category.created'));
 
             return $this->redirectToRoute('restaurant_category_index', [
                 'id' => $category->getId()
@@ -83,7 +95,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Catégorie modifiée.');
+            $this->addFlash('success', $this->translator->trans('category.updated'));
 
             return $this->redirectToRoute('restaurant_category_edit', [
                 'id' => $category->getId()
@@ -108,8 +120,13 @@ class CategoryController extends AbstractController
         if (!$this->isCsrfTokenValid('delete_category' . $category->getId(), $token)) {
             throw new Exception('Invalid CSRF Token');
         }
+        
+        if (!empty($this->itemRepository->findBy(['store' => $this->getUser()->getStores()->first()->getId(), 'category' => $category->getId()]))) {
+            $this->addFlash('danger', "Can't delete a category which is given to one or more items.");
+            return $this->redirectToRoute('restaurant_category_index');
+        }
 
-        $this->addFlash('danger', 'Catégorie supprimée.');
+        $this->addFlash('success', $this->translator->trans('category.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

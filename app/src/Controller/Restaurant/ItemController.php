@@ -10,6 +10,7 @@ use App\Repository\ItemRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ItemController extends AbstractController
 {
+
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -54,12 +63,11 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $item->setStore($this->getUser()->getStores()->first());
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
             $em->flush();
 
-            $this->addFlash('success', 'Produit créé.');
+            $this->addFlash('success', $this->translator->trans('item.created'));
 
             return $this->redirectToRoute('restaurant_item_index', [
                 'id' => $item->getId()
@@ -86,7 +94,7 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Produit modifié.');
+            $this->addFlash('success', $this->translator->trans('item.updated'));
 
             return $this->redirectToRoute('restaurant_item_edit', [
                 'id' => $item->getId()
@@ -112,7 +120,7 @@ class ItemController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('danger', 'Produit supprimé.');
+        $this->addFlash('success', $this->translator->trans('item.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($item);

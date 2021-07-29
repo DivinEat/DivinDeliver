@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ItemRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
@@ -24,7 +25,7 @@ class Item
     private $title;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $priceInfo;
 
@@ -67,12 +68,12 @@ class Item
         return $this;
     }
 
-    public function getPriceInfo(): ?int
+    public function getPriceInfo(): ?float
     {
         return $this->priceInfo;
     }
 
-    public function setPriceInfo(int $priceInfo): self
+    public function setPriceInfo(float $priceInfo): self
     {
         $this->priceInfo = $priceInfo;
 

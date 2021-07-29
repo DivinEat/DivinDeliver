@@ -5,7 +5,7 @@ vich_uploader:
         cover_item:
             uri_prefix: /uploads/item/covers
             upload_destination: '%kernel.project_dir%/public/uploads/item/covers'
-            delete_on_remove: true
+            delete_on_remove: false
             delete_on_update: true
         cover_menu:
             uri_prefix: /uploads/menu/covers

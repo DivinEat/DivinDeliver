@@ -33,7 +33,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if (! $store instanceof Store)
             return [];
 
-        return $store->getUsers()->getValues();
+        $users = $store->getUsers();
+        $users->removeElement($user);
+        
+        return $users;
     }
 
     /**
@@ -48,6 +51,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newEncodedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function findByEmail($email)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.email = :email')
+            ->setParameter('email', $email)
+            ->orderBy('p.email', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // marche pas sa grand mère

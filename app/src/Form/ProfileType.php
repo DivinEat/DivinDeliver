@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Validator\UniqueEmail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +22,10 @@ class ProfileType extends AbstractType
                 'label' => 'user.lastname'
             ])
             ->add('email', EmailType::class, [
-                'label' => 'user.email'
+                'label' => 'user.email',
+                'constraints' => [
+                    new UniqueEmail()
+                ]
             ]);
     }
 

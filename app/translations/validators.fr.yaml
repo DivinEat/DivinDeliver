@@ -2,7 +2,17 @@ user:
     email:
         user_should_exist: Aucun utilisateur n'est enregistré avec l'email {{ email }}. Vous devez vous enregistrer.
         unique: L'adresse mail {{ value }} est déjà utilisée.
+        unique_constraint: Cette adresse email est déjà utilisée.
+    password:
+        length: Votre mot de passe est trop court. Il doit avoir au moins 8 caractères.
+        uppercase: Votre mot de passe doit contenir au moins une majuscule.
+        lowercase: Votre mot de passe doit contenir au moins une minuscule.
+        digit: Votre mot de passe doit contenir au moins un nombre.
+        special: Votre mot de passe doit contenir au moins un caractère spécial.
+    unique_title: Ce titre est déjà utilisé.
 store:
     name.unique: Le nom {{ value }} est déjà utilisé.
     slug.unique: Le slug {{ value }} est déjà utilisé.
     restaurateur.has.no.store: Désolé, vous ne pouvez pas avoir plusieurs restaurants.
+image:
+    not_valid: Format de l'image incorrect

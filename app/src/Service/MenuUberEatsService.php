@@ -16,6 +16,7 @@ use App\SDK\UberEats\MenuSDK;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
 class MenuUberEatsService
@@ -45,6 +46,7 @@ class MenuUberEatsService
      */
     private StoreRepository $storeRepository;
     private \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK;
+    private Security $security;
 
     public function __construct(
         \App\SDK\Deliveroo\MenuSDK $deliverooMenuSDK,
@@ -53,7 +55,8 @@ class MenuUberEatsService
         MenuRepository $menuRepository,
         CategoryRepository $categoryRepository,
         ItemRepository $itemRepository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Security $security
     ) {
         $this->menuRepository = $menuRepository;
         $this->categoryRepository = $categoryRepository;
@@ -62,9 +65,10 @@ class MenuUberEatsService
         $this->entityManager = $entityManager;
         $this->storeRepository = $storeRepository;
         $this->deliverooMenuSDK = $deliverooMenuSDK;
+        $this->security = $security;
     }
 
-    public function upload(string $storeUberEatsId, string $storeDeliverooId)
+    public function upload(string $storeUberEatsId)
     {
         $menu = [
             'menus' => $this->getMenus(),
@@ -73,19 +77,13 @@ class MenuUberEatsService
             'menu_type' => 'MENU_TYPE_FULFILLMENT_DELIVERY'
         ];
 
-        //$this->deliverooMenuSDK->uploadMenu($storeDeliverooId, $menu);
         $this->menuSDK->uploadMenu($storeUberEatsId, $menu);
     }
 
-    public function fetch(string $storeId, string $deliver)
+    public function fetch(Store $store, string $deliver)
     {
-        $menuSDK = $deliver === 'ubereats' ? $this->menuSDK : $this->deliverooMenuSDK;
-        $menu = $menuSDK->getMenus($storeId);
-
-        if ($deliver === 'ubereats')
-            $store = $this->storeRepository->findBy(['storeIdFakeUberEat' => $storeId])[0];
-        else
-            $store = $this->storeRepository->findBy(['storeIdFakeDeliveroo' => $storeId])[0];
+        $menuSDK = $this->menuSDK;
+        $menu = $menuSDK->getMenus($store->getStoreIdFakeUberEat());
 
         $returned = $this->createCategories($menu['categories'], $store);
 
@@ -119,6 +117,11 @@ class MenuUberEatsService
             $createdItem = new Item();
             $createdItem->setTitle($item['title']);
             $createdItem->setPriceInfo($item['price_info']);
+            $createdItem->setCover(str_replace(
+                'http://217.160.64.31',
+                '',
+                $item['image_url']
+            ));
             $createdItem->setCategory($this->categoryRepository->find($idToAdd[$item['id']]));
             $createdItem->setStore($store);
 
@@ -187,7 +190,9 @@ class MenuUberEatsService
 
     protected function getMenus(): array
     {
-        $menus = $this->menuRepository->findAll();
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
+        $menus = $store->getMenus()->toArray();
 
         return array_map(function (Menu $menu) {
             $categoriesID = array_map(function (Category $category) {
@@ -200,7 +205,9 @@ class MenuUberEatsService
 
     protected function getCategories(): array
     {
-        $categories = $this->categoryRepository->findAll();
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
+        $categories = $store->getCategories()->toArray();
 
         return array_map(function (Category $category) {
             $entities = array_map(function (Item $item) {
@@ -213,10 +220,14 @@ class MenuUberEatsService
 
     protected function getItems(): array
     {
-        $items = $this->itemRepository->findAll();
+        /** @var Store $store */
+        $store = $this->security->getUser()->getStores()->first();
+        $items = $store->getItems()->toArray();
 
         return array_map(function (Item $item) {
-            return $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
+            $createdItem = $this->getNecessaryAttributes($item, ['id', 'title', 'price_info']);
+            $createdItem['image_url'] = 'http://217.160.64.31' . $item->getCover() .$item->getImageFile();
+            return $createdItem;
         }, $items);
     }
 }

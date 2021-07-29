@@ -3,10 +3,14 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Validator\PasswordDigit;
+use App\Validator\PasswordLength;
+use App\Validator\PasswordSpecial;
+use App\Validator\PasswordLowercase;
+use App\Validator\PasswordUppercase;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -15,11 +19,16 @@ class AccountValidationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, [
-                'label' => 'account.validation.form.confirm_email',
-            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
+                'constraints' => [
+                    new PasswordLength(),
+                    new PasswordUppercase(),
+                    new PasswordDigit(),
+                    new PasswordSpecial(),
+                    new PasswordLowercase()
+                ],
+                'invalid_message' => 'The password fields must match',
                 'first_options' => [
                     'label' => 'account.validation.form.create_password'
                 ],

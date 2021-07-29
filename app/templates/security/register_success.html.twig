@@ -5,8 +5,8 @@
 {% block body %}
     <div class="row d-flex align-items-center justify-content-center">
         <div class="card pt-5 pb-5 text-align-center">
-            Welcome {{ user.firstname }} {{ user.lastname }}<br>
-            You have received an email, check your mailbox
+            {% trans %}welcome{% endtrans %} {{ user.firstname }} {{ user.lastname }}<br>
+            {% trans %}user.received_email{% endtrans %}
         </div>
     </div>
 {% endblock %}

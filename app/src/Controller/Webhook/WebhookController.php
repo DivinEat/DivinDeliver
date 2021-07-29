@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Controller\Restaurant\Order;
+namespace App\Controller\Webhook;
 
 use App\Entity\Order;
 use App\Entity\Store;
+use App\MercureHub;
+use App\Repository\StoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,25 +28,9 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/test", name="new-order-ubereat", methods={"POST"})
+     * @Route("/ubereat/{id}", name="new-order-ubereat", methods={"POST"})
      */
-    public function test(Request $request, HubInterface $hub)
-    {
-        $url = $this->generateUrl('restaurant_new-order-ubereat');
-
-        $update = new Update(
-            'http://localhost:8082/restaurant/test',
-            "[]",
-            true
-        );
-
-        $hub->publish($update);
-    }
-
-    /**
-     * @Route("/webhook/ubereat", name="new-order-ubereat", methods={"POST"})
-     */
-    public function newOrderUberEat(Request $request, HubInterface $hub)
+    public function newOrderUberEat(Request $request, HubInterface $hub, Store $store)
     {
         $response = $this->client->request(
             'GET',
@@ -56,9 +42,6 @@ class WebhookController extends AbstractController
         $order = new Order();
         $order->setDeliver('ubereat');
         $order->setDisplayId($orderData['_id']);
-
-        $storeRepository = $this->em->getRepository(Store::class);
-        $store = $storeRepository->findOneBy(['storeIdFakeUberEat' => $orderData['store_id']]);
         $order->setStore($store);
 
         $order->setCurrentState($orderData['current_state']);
@@ -75,10 +58,8 @@ class WebhookController extends AbstractController
         $this->em->persist($order);
         $this->em->flush();
 
-        $url = $this->generateUrl('restaurant_new-order-ubereat');
-
         $update = new Update(
-            'http://localhost:8082/restaurant/webhook/ubereat',
+            'new-order-topic-' .  $store->getId(),
             $order->getId(),
             false
         );
@@ -89,38 +70,39 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/deliveroo", name="new-order-deliveroo", methods={"POST"})
-     */
-    public function newOrderDeliveroo(Request $request)
+     * @Route("/deliveroo/{id}", name="new-order-deliveroo", methods={"POST"})
+     */ 
+    public function newOrderDeliveroo(Request $request, HubInterface $hub, Store $store)
     {
-        $response = $this->client->request(
-            'GET',
-            $request->get('resource_href')
-        );
-
-        $orderData = json_decode($response->getContent(), true);
+        $orderData = json_decode($request->getContent(), 1);
+        $orderArray = current($orderData['order_events'])['payload']['order'];
 
         $order = new Order();
-        $order->setDeliver('deliveroo');
-        $order->setDisplayId($orderData['_id']);
-
-        $storeRepository = $this->em->getRepository(Store::class);
-        $store = $storeRepository->findOneBy(['storeIdFakeDeliveroo' => $orderData['store_id']]);
+        $order->setDeliver('Deliveroo');
+        $order->setDisplayId($orderData['order_id']);
         $order->setStore($store);
-
-        $order->setCurrentState($orderData['current_state']);
+        $order->setCurrentState('CREATED');
 
         $content = [
-            'eater' => $orderData['eater'],
-            'cart' => $orderData['cart'],
-            'payment' => $orderData['payment'],
-            'estimated_ready_for_pickup_at' => $orderData['estimated_ready_for_pickup_at']
+            'eater' => ['first_name' => 'Unknown'],
+            'cart' => ['items' => $orderArray['items']],
+            'payment' => ['charges' => ['total_fee' => ['formatted_amount' => $orderArray['total_price']['fractional']]]],
+            'estimated_ready_for_pickup_at' => $orderArray['pickup_at']
         ];
+
         $order->setContent($content);
-        $order->setType($orderData['type']);
+        $order->setType('DELIVERY_BY_DELIVEROO');
 
         $this->em->persist($order);
         $this->em->flush();
+
+        $update = new Update(
+            'new-order-topic-' .  $store->getId(),
+            $order->getId(),
+            false
+        );
+
+        $hub->publish($update);
 
         return new Response('Saved new order with id ' . $order->getId());
     }

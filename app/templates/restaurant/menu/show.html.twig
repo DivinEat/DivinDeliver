@@ -4,7 +4,6 @@
 
 {% block body %}
     <div class="w-100">
-        <img src="{{ vich_uploader_asset(menu, 'imageFile') }}" class="thumbnail" alt="{{ menu.title }}"/> <br>
         {% trans %}menu.word{% endtrans %} : {{ menu.title }} <br>
         {% trans %}menu.title{% endtrans %} : {{ menu.title }} <br>
         Categories :
@@ -14,14 +13,16 @@
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ path('restaurant_menu_index') }}" class="text-dark mt-3">
+            <a href="{{ path('restaurant_menu_index') }}" class="text-dark mt-3 t-d-none">
                 <span class="mr-2"><img class="icon rotate-180" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
                 {% trans %}back{% endtrans %}
             </a>    
-            <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}" class="text-dark mt-3">
-                <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
-                {% trans %}edit{% endtrans %}
-            </a>
+            {% if is_granted('ROLE_RESTAURATEUR') %}
+                <a href="{{ path('restaurant_menu_edit', {id: menu.id}) }}" class="text-dark mt-3 t-d-none">
+                    <span><img class="icon" src="{{ asset('images/icons/icon-fleche-r-hack.png') }}"></span>
+                    {% trans %}edit{% endtrans %}
+                </a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

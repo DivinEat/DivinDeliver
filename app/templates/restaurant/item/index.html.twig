@@ -6,10 +6,14 @@
     <h1 class="title">{% trans %}item.list{% endtrans %}</h1>
 
     {% if is_granted('ROLE_RESTAURATEUR') %}
-        <a href="{{ path('restaurant_item_new') }}" class="text-dark mt-3">
+        <a href="{{ path('restaurant_item_new') }}" class="text-dark mt-3 t-d-none">
             <span><img class="icon" src="{{ asset('images/icons/icon-plus-hack.png') }}"></span>
             {% trans %}add{% endtrans %}
         </a>
+    {% endif %}
+
+    {% if app.user.stores.first.categories.count == 0 %}
+        <p style="opacity:0.5;margin-top:10px"><i>{% trans %}item.infos{% endtrans %}</i></p>
     {% endif %}
 
     <table class="table">
@@ -25,7 +29,7 @@
         <tbody>
             {% for item in items %}
                 <tr>
-                    <td><img src="{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/></td>
+                    <td><img src="/DivinDeliver{{ vich_uploader_asset(item, 'imageFile') }}" class="thumbnail" alt="{{ item.title }}"/></td>
                     <td>{{ item.category.title }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.priceInfo }}</td>

@@ -24,11 +24,12 @@ security:
                 path: app_logout
 
     access_control:
-        - { path: ^/admin, roles: [ROLE_RESTAURATEUR, ROLE_WAITER] }
+        - { path: ^/admin, roles: [ROLE_RESTAURATEUR, ROLE_WAITER, IS_AUTHENTICATED_FULLY] }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/forgot_password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/reset_password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/restaurant, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/, roles: IS_AUTHENTICATED_FULLY }

@@ -9,6 +9,7 @@ use App\Repository\StoreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -18,6 +19,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class StoreController extends AbstractController
 {
+
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -49,7 +58,7 @@ class StoreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Restaurant modifié.');
+            $this->addFlash('success', $this->translator->trans('store.updated'));
 
             return $this->redirectToRoute('admin_store_edit', [
                 'id' => $store->getId()
@@ -71,7 +80,7 @@ class StoreController extends AbstractController
             throw new Exception('Invalid CSRF Token');
         }
 
-        $this->addFlash('success', 'Restaurant supprimé.');
+        $this->addFlash('success', $this->translator->trans('store.deleted'));
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($store);
