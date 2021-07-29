@@ -28,7 +28,7 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/ubereat/{id}", name="new-order-ubereat", methods={"POST"})
+     * @Route("/ubereat/{id}", name="new-order-ubereat", methods={"POST"})
      */
     public function newOrderUberEat(Request $request, HubInterface $hub, Store $store)
     {
@@ -70,7 +70,7 @@ class WebhookController extends AbstractController
     }
 
     /**
-     * @Route("/webhook/deliveroo/{id}", name="new-order-deliveroo", methods={"POST"})
+     * @Route("/deliveroo/{id}", name="new-order-deliveroo", methods={"POST"})
      */ 
     public function newOrderDeliveroo(Request $request, HubInterface $hub, Store $store)
     {

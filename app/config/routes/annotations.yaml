@@ -24,6 +24,12 @@ controllers_back:
     prefix: /
     type: annotation
 
+controllers_webhook:
+    resource: ../../src/Controller/Webhook/
+    name_prefix: webhook_
+    prefix: /webhook
+    type: annotation
+
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
