@@ -16,14 +16,6 @@ use Psr\Log\LoggerInterface;
  */
 final class Version20210729055522 extends AbstractMigration
 {
-    private ObjectManager $manager;
-
-    public function __construct(Connection $connection, LoggerInterface $logger, ObjectManager $manager)
-    {
-        parent::__construct($connection, $logger);
-
-        $this->manager = $manager;
-    }
 
     public function getDescription() : string
     {
@@ -32,22 +24,23 @@ final class Version20210729055522 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
+        $manager = $this->container->get('doctrine.orm.entity_manager');
         $role = (new UserRole())
             ->setCode('ROLE_ADMIN')
             ->setLibelle('Admin');
-        $this->manager->persist($role);
+        $manager->persist($role);
 
         $role = (new UserRole())
             ->setCode('ROLE_WAITER')
             ->setLibelle('Waiter');
-        $this->manager->persist($role);
+        $manager->persist($role);
 
         $role = (new UserRole())
             ->setCode('ROLE_RESTAURATEUR')
             ->setLibelle('Restaurateur');
-        $this->manager->persist($role);
+        $manager->persist($role);
 
-        $this->manager->flush();
+        $manager->flush();
 
     }
 
